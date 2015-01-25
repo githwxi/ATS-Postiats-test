@@ -1,0 +1,52 @@
+os:
+  - osx
+  - linux
+before_install:
+  - date
+  - cd ${HOME}
+  # Setting-up
+  - export ATSHOME=${HOME}/ats-lang-anairiats-0.2.12
+  - export ATSHOMERELOC=ATS-0.2.12
+  # Install pkgs
+  - ${TRAVIS_BUILD_DIR}/travis-ci/installpkg.sh
+  # Download ATS1
+  - ${TRAVIS_BUILD_DIR}/travis-ci/ats1_setup.sh 0.2.12
+  # Download ATS2
+  - export PATSHOME=${HOME}/ATS-Postiats
+  - git clone https://github.com/githwxi/ATS-Postiats.git ATS-Postiats
+  # Download ATS2-contrib
+  - export PATSHOMERELOC=${HOME}/ATS-Postiats-contrib
+  - git clone https://github.com/githwxi/ATS-Postiats-contrib.git ATS-Postiats-contrib
+  - export GCC=gcc
+  - export CLANG=clang
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export GCC=gcc-4.8; fi
+script:
+  - ${GCC} --version
+  - ${CLANG} --version
+  # Building ATS1
+  - cd ${ATSHOME}
+  # ./configure&&make CC=${GCC} all
+  - ./configure&&make CC=${GCC} all_ngc
+  # Building ATS2
+  - cd ${PATSHOME}
+  - make -f Makefile_devl CC=${GCC} all
+  # make GCFLAG=-D_ATS_GCATS -f Makefile_devl CC=${GCC} all
+  # make C3NSTRINTKND=intknd -f Makefile_devl CC=${CLANG} all
+  # make C3NSTRINTKND=intknd GCFLAG=-D_ATS_GCATS -f Makefile_devl CC=${CLANG} all
+  - export PATH=${PATH}:${PATSHOME}/bin
+  # Trying-out release process
+  - cd ${TRAVIS_BUILD_DIR}
+  - make -C ${PATSHOME}/src CBOOT
+  - make -C ${PATSHOME}/src/CBOOT/prelude
+  - make -C ${PATSHOME}/src/CBOOT/libc
+  - make -C ${PATSHOME}/src/CBOOT/libats
+  - make -C ${PATSHOME}/doc/DISTRIB atspackaging
+  - make -C ${PATSHOME}/doc/DISTRIB atspacktarzvcf
+  - make -C ${PATSHOME}/doc/DISTRIB cleanall
+  # Regress test
+  - export Makefile_test=Makefile_test
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export Makefile_test=Makefile_test_osx; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export Makefile_test=Makefile_test_linux; fi
+  - make -f ${Makefile_test}
+after_script:
+  - date
