@@ -1,0 +1,22 @@
+#
+# For testing
+#
+
+######
+
+MAKE=make
+
+######
+
+all::
+
+######
+#
+all:: \
+test-hwxi
+test-hwxi:: ; \
+$(MAKE) -C test-hwxi -f Makefile testall
+#
+######
+
+###### end of [Makefile_test] ######
