@@ -1,6 +1,9 @@
 os:
   - osx
   - linux
+env:
+  - CCATS2=GCC
+  - CCATS2=CLANG
 before_install:
   - date
   - cd ${HOME}
@@ -29,7 +32,9 @@ script:
   - ./configure&&make CC=${GCC} all_ngc
   # Building ATS2
   - cd ${PATSHOME}
-  - make -f Makefile_devl CC=${GCC} all
+  - eval CC=\${${CCATS2}}
+  - make -f Makefile_devl CC=${CC} all
+  # make -f Makefile_devl CC=${GCC} all
   # make GCFLAG=-D_ATS_GCATS -f Makefile_devl CC=${GCC} all
   # make C3NSTRINTKND=intknd -f Makefile_devl CC=${CLANG} all
   # make C3NSTRINTKND=intknd GCFLAG=-D_ATS_GCATS -f Makefile_devl CC=${CLANG} all
