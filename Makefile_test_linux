@@ -9,7 +9,7 @@ MAKE=make
 ######
 #
 core:: ; \
-$(MAKE) -C core/Linux -f Makefile_test
+$(MAKE) -C core -f Makefile_test
 #
 ######
 

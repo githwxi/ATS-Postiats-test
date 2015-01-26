@@ -9,7 +9,7 @@ MAKE=make
 ######
 #
 core:: ; \
-$(MAKE) -C core/OSX -f Makefile_test
+$(MAKE) -C core -f Makefile_test
 #
 ######
 

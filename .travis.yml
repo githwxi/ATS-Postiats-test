@@ -1,3 +1,6 @@
+os:
+  - osx
+  - linux
 before_install:
   - date
   - cd ${HOME}
