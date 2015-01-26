@@ -33,7 +33,8 @@ script:
   # Building ATS2
   - cd ${PATSHOME}
   - eval CC=\${${CCATS2}}
-  - make -f Makefile_devl CC=${CC} all
+  # make -f Makefile_devl CC=${CC} all
+  - make C3NSTRINTKND=intknd -f Makefile_devl CC=${CC} all
   # make C3NSTRINTKND=gmpknd -f Makefile_devl CC=${GCC} all
   # make C3NSTRINTKND=intknd -f Makefile_devl CC=${CLANG} all
   # make C3NSTRINTKND=gmpknd GCFLAG=-D_ATS_GCATS -f Makefile_devl CC=${GCC} all
