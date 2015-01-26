@@ -7,12 +7,20 @@
 MAKE=make
 
 ######
+
+all::
+
+######
 #
+all:: \
+core
 core:: ; \
 $(MAKE) -C core -f Makefile_test
 #
 ######
 #
+all:: \
+contrib
 contrib:: ; \
 $(MAKE) -C contrib -f Makefile_test
 #

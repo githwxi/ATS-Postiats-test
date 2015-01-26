@@ -2,7 +2,7 @@
 This repository is primarily for testing ATS2 on various platforms,
 including Linux, OSX, etc.
 
-I welcome everyone to contribute testing code. The "wilder" the coding
+Everyone is welcome to contribute testing code. The "wilder" the coding
 style is, the better. Just make sure that you do not submit code that
 loops indefinitely :)
 
