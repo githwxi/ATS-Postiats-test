@@ -28,6 +28,18 @@ cleanall:: ; $(RMF) test00
 
 ## ###### ###### ##
 
+ifeq ($(OS),linux)
+all:: \
+test01
+test01: \
+test01.dats; \
+$(PATSCC) -D_GNU_SOURCE -o $@ $< -lrt
+regress:: ; ./test01
+cleanall:: ; $(RMF) test01
+endif # if(OS=linux)
+
+## ###### ###### ##
+
 testall:: all
 testall:: regress
 testall:: cleanall
