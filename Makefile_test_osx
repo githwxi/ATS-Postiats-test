@@ -1,0 +1,16 @@
+#
+# Testing for OSX
+#
+
+######
+
+MAKE=make
+
+######
+#
+core:: ; \
+$(MAKE) -C core/OSX -f Makefile_test
+#
+######
+
+###### end of [Makefile_test_osx] ######

@@ -1,0 +1,16 @@
+#
+# Testing for Linux
+#
+
+######
+
+MAKE=make
+
+######
+#
+core:: ; \
+$(MAKE) -C core/Linux -f Makefile_test
+#
+######
+
+###### end of [Makefile_test_linux] ######
