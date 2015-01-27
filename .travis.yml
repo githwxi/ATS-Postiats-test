@@ -33,19 +33,12 @@ script:
   # Building ATS2
   - cd ${PATSHOME}
   - eval CC=\${${CCATS2}}
-  - make -f Makefile_devl CC=${CC} all
-  # make C3NSTRINTKND=gmpknd -f Makefile_devl CC=${CC} all
-  # make C3NSTRINTKND=gmpknd -f Makefile_devl CC=${GCC} all
-  # make C3NSTRINTKND=gmpknd -f Makefile_devl CC=${CLANG} all
-  # make C3NSTRINTKND=intknd -f Makefile_devl CC=${CC} all
-  # make C3NSTRINTKND=intknd -f Makefile_devl CC=${GCC} all
-  # make C3NSTRINTKND=intknd -f Makefile_devl CC=${CLANG} all
-  # make C3NSTRINTKND=gmpknd GCFLAG=-D_ATS_GCATS -f Makefile_devl CC=${CC} all
-  # make C3NSTRINTKND=gmpknd GCFLAG=-D_ATS_GCATS -f Makefile_devl CC=${GCC} all
-  # make C3NSTRINTKND=gmpknd GCFLAG=-D_ATS_GCATS -f Makefile_devl CC=${CLANG} all
-  # make C3NSTRINTKND=intknd GCFLAG=-D_ATS_GCATS -f Makefile_devl CC=${CC} all
-  # make C3NSTRINTKND=intknd GCFLAG=-D_ATS_GCATS -f Makefile_devl CC=${GCC} all
-  # make C3NSTRINTKND=intknd GCFLAG=-D_ATS_GCATS -f Makefile_devl CC=${CLANG} all
+  # GCFLAG=-D_ATS_NGC
+  # GCFLAG=-D_ATS_GCATS
+  - GCFLAG=-D_ATS_GCBDW
+  # C3NSTRINTKND=intknd
+  - C3NSTRINTKND=gmpknd
+  - make C3NSTRINTKND=${C3NSTRINTKND} -f Makefile_devl CC=${CC} GCFLAG=${GCFLAG} all
   - export PATH=${PATH}:${PATSHOME}/bin
   # Trying-out release process
   - cd ${TRAVIS_BUILD_DIR}
