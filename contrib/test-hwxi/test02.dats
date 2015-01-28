@@ -51,6 +51,16 @@ val fact2 =
 val () = assertloc (fact2(10) = 1*2*3*4*5*6*7*8*9*10)
 
 (* ****** ****** *)
+//
+val
+rec fact3: int -> int =
+  lam (x) => if x > 0 then x*fact3(x-1) else 1
+//
+(* ****** ****** *)
+
+val () = assertloc (fact3(10) = 1*2*3*4*5*6*7*8*9*10)
+
+(* ****** ****** *)
 
 implement main0 () = ()
 
