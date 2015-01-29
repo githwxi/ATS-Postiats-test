@@ -9,7 +9,7 @@ loops indefinitely :)
 You can easily figure out how to contribute by simply taking a look at the
 following directory:
 
-[https://github.com/githwxi/ATS-Postiats-test/contrib](https://github.com/githwxi/ATS-Postiats-test/contrib)
+[https://github.com/githwxi/ATS-Postiats-test/tree/master/contrib](https://github.com/githwxi/ATS-Postiats-test/tree/master/contrib)
 
 Please do not submit anything that may (potentially) result in copyright infringement!
 
