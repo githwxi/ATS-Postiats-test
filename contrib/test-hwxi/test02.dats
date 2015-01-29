@@ -64,7 +64,7 @@ val () =
   lam (x:int):int => if x > 0 then x * !fact4(x-1) else 1
 ) (* end of [val] *)
 //
-val () = assertloc (fact3(10) = 1*2*3*4*5*6*7*8*9*10)
+val () = assertloc (!fact4(10) = 1*2*3*4*5*6*7*8*9*10)
 //
 (* ****** ****** *)
 
