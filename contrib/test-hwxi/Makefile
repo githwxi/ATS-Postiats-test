@@ -38,6 +38,17 @@ regress:: test01; ./test01
 cleanall:: ; $(RMF) test01
 endif # if(OS=linux)
 
+ifeq ($(OS),osx)
+all:: \
+test01-osx
+test01-osx: \
+test01-osx.dats; \
+$(PATSCC) -D_GNU_SOURCE -o $@ $< -lrt
+regress:: \
+test01-osx; ./test01-osx
+cleanall:: ; $(RMF) test01-osx
+endif # if(OS=osx)
+
 ## ###### ###### ##
 
 all:: \
