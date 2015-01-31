@@ -41,7 +41,7 @@ implement int3_1 (xyz) = xyz.1
 implement
 mul_int3_int3
 (
-  @(a,b,c), @(d,e,f)
+  (a,b,c), (d,e,f)
 ) =
   (a*d + b*e, a*e + b*f, b*e + c*f)
 //
