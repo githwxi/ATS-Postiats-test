@@ -21,10 +21,8 @@ staload UN = $UNSAFE
 (* ****** ****** *)
 
 fun
-theConversionFactor_get
-(
-// argumentless
-) = let
+theTimeRatio_get
+  ((*void*)) = let
 //
 typedef
 timebase_t =
@@ -44,7 +42,7 @@ val numer = $UN.cast{double}(timebase.numer)
 val denom = $UN.cast{double}(timebase.denom)
 in
   numer / denom
-end // end of [theConversionFactor_get]
+end // end of [theTimeRatio_get]
 
 (* ****** ****** *)
 //
@@ -57,8 +55,8 @@ main0() =
 {
 //
 val
-factor =
-  theConversionFactor_get()
+ratio =
+  theTimeRatio_get()
 //
 val start =
   $extfcall(uint64, "mach_absolute_time")
@@ -76,7 +74,7 @@ val finish =
   $extfcall(uint64, "mach_absolute_time")
 //
 val tdiff =
-  factor * $UN.cast{double}(finish - start)
+  ratio * $UN.cast{double}(finish - start)
 //
 val () = println! ("test01-osx: tdiff = ", tdiff)
 //
