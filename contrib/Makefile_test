@@ -13,9 +13,16 @@ all::
 ######
 #
 all:: \
-test-hwxi
-test-hwxi:: ; \
-$(MAKE) -C test-hwxi -f Makefile testall
+hwxi
+hwxi:: ; \
+$(MAKE) -C hwxi -f Makefile_test
+#
+######
+#
+all:: \
+bbarker
+bbarker:: ; \
+$(MAKE) -C bbarker -f Makefile_test
 #
 ######
 

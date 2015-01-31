@@ -1,0 +1,16 @@
+##
+## A Makefile for testing
+##
+
+## ###### ###### ##
+
+MAKE=make
+
+## ###### ###### ##
+
+all:: P2
+P2:: ; $(MAKE) -C P2 -f Makefile testall
+
+## ###### ###### ##
+
+## ###### end of [Makefile_test] ###### ##

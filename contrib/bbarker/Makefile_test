@@ -1,0 +1,18 @@
+##
+## A Makefile for testing
+##
+
+## ###### ###### ##
+
+MAKE=make
+
+## ###### ###### ##
+
+all:: \
+PEULER
+PEULER:: ; \
+$(MAKE) -C PEULER -f Makefile_test
+
+## ###### ###### ##
+
+## ###### end of [Makefile_test] ###### ##
