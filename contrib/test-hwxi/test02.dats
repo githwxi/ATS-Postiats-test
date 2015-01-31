@@ -1,5 +1,6 @@
 (*
-** Hello, world!
+** Various styles of
+** function implementation
 *)
 
 (* ****** ****** *)
