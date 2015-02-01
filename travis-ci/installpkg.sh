@@ -27,7 +27,7 @@ then
   brew install jansson
   brew install caskroom/cask/brew-cask
   brew cask install xquartz
-
+#
   export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig:$PKG_CONFIG_PATH
 #
 fi

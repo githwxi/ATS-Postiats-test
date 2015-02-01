@@ -68,6 +68,18 @@ cleanall:: ; $(RMF) test03
 
 ## ###### ###### ##
 
+ifeq ($(OS),osx)
+all:: \
+OSSpinLock-osx
+OSSpinLock-osx: \
+OSSpinLock-osx.dats; $(PATSCC) -D_GNU_SOURCE -o $@ $<
+regress:: \
+OSSpinLock-osx; ./OSSpinLock-osx
+cleanall:: ; $(RMF) OSSpinLock-osx
+endif # if(OS=osx)
+
+## ###### ###### ##
+
 testall:: all
 testall:: regress
 testall:: cleanall
