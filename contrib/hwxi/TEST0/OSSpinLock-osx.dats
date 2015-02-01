@@ -73,7 +73,7 @@ __assert(lock) where
 //
 in
   // nothing
-end // end of [OSpinLock_initize]
+end // end of [OSSpinLock_initize]
 
 (* ****** ****** *)
 
@@ -87,6 +87,7 @@ val () = OSSpinLock_initize (lock)
 //
 val (pf | ()) = OSSpinLockLock(lock)
 val ((*void*)) = OSSpinLockUnlock(pf | lock)
+val ((*void*)) = println! ("[OSSpinLock-osx] has passed testing!")
 //
 } (* end of [main0] *)
 
