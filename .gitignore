@@ -1,0 +1,16 @@
+#
+# ignoring generated files
+#
+*~
+\#*
+.\#*
+*_?ats.o
+*_?ats.c
+*.exe
+
+
+#
+# IDE files
+#
+.idea
+atlassian-ide-plugin.xml
