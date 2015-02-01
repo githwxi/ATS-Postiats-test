@@ -62,7 +62,7 @@ OSSpinLock_initize
 val () =
 $extfcall
 (
-  void, "memset", addr@lock, sizeof<OSSpinLock>, 0
+  void, "memset", addr@lock, 0, sizeof<OSSpinLock>
 ) (* end of [val] *)
 //
 prval () =
