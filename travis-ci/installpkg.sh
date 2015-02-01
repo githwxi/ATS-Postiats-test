@@ -25,6 +25,10 @@ then
 # brew install gtk+3
   brew install libev
   brew install jansson
+  brew install brew-cask
+  brew cask install xquartz
+
+  export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig:$PKG_CONFIG_PATH
 #
 fi
 
