@@ -25,6 +25,10 @@ staload
 //
 (* ****** ****** *)
 //
+staload P2 = "{$PATSHOMERELOC}/projects/MEDIUM/PEULER/P2/P2.sats"
+//
+(* ****** ****** *)
+//
 #define LIMIT 4000000
 //
 (* ****** ****** *)
@@ -38,7 +42,7 @@ dataprop MYSUM
 ) =
   | {n2,n1:nat | n1 + n2 > LIMIT}
     {t1:int}
-    MYSUM (n2, n1, t1) of  MYSUM (n2, n1, t1)
+    MYSUM (n2, n1, t1) of MYSUM (n2, n1, t1)
   | {n2,n1:nat | n1 + n2 <= LIMIT; (n1 + n2) mod 2 > 0}
     {t1:int}
     MYSUM (n1, n1 + n2, t1) of MYSUM (n2, n1, t1)
@@ -48,7 +52,27 @@ dataprop MYSUM
 // end of [MYSUM]
 
 (* ****** ****** *)
+//
+// Now we should show that the original, abstract definition of
+// MYSUM is equivalent to the MYSUM defined above. More precisely,
+// we should show the MYSUM above implies $P2.MYSUM, as strict
+// equivalence is not necessary as long as we satisfy the specification
+// of $P2.MYSUM.
+//
+(* ****** ****** *)
+
+// Note recurrence subscripts as follows: x_n = x_(n-1) - x_(n-2)
+//                                                (*n1*)    (*n2*)
+//
+praxi
+MYSUM_sat
+  {n1,n2,t:nat}
+  (pf1: MYSUM(n2, n1, t)):
+  ($P2.FIB(n2, n1+n2), $P2.MYSUM(n2, t))
 
 //
-fun mysum {n1,n2:nat} (x_n2: int n2, x_n1: int n1): [t:int] (MYSUM (n2, n1, t) | int t)
+// TODO: annotate inputs with FIB relationship
+//
+fun mysum {n1,n2,t:nat} (x_n2: int n2, x_n1: int n1, tl: int t):
+[n1f,n2f,tf:int | n1f >= n1; n2f >= n2; tf >= t] (MYSUM (n2f, n1f, tf) | int tf)
 //
