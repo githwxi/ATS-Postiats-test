@@ -61,15 +61,18 @@ dataprop MYSUM
 //
 (* ****** ****** *)
 
-dataprop MYSUMSAT
-(
-  int(*n2*), int(*n1*), int(*n*)
-) =
-  | {n2,n1:nat | $P2.FIB(n-1) == n1 + n2}
-    [n,t0,t1:nat | t0 == t1] MYSUMSAT(n2, n1, n) of
-    (MYSUM(n2, n1, t1), $P2.MYSUM(n, t0))
-
+// Note recurrence subscripts as follows: x_n = x_(n-1) - x_(n-2)
+//                                                (*n1*)    (*n2*)
+//
+praxi
+MYSUM_sat
+  {n1,n2,t:nat}
+  (pf1: MYSUM(n2, n1, t)):
+  ($P2.FIB(n2, n1+n2), $P2.MYSUM(n2, t))
 
 //
-fun mysum {n1,n2:nat} (x_n2: int n2, x_n1: int n1): [t:int] (MYSUM (n2, n1, t) | int t)
+// TODO: annotate inputs with FIB relationship
+//
+fun mysum {n1,n2,t:nat} (x_n2: int n2, x_n1: int n1, tl: int t):
+[n1f,n2f,tf:int | n1f >= n1; n2f >= n2; tf >= t] (MYSUM (n2f, n1f, tf) | int tf)
 //
