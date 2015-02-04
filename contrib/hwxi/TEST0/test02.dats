@@ -68,6 +68,19 @@ val () =
 val () = assertloc (!fact4(10) = 1*2*3*4*5*6*7*8*9*10)
 //
 (* ****** ****** *)
+//
+fnx
+fact5(n:int): int = fact5_aux(n, 1)
+and
+fact5_aux
+(
+  n: int, res: int
+) : int =
+  if n > 0 then fact5_aux(n-1, n*res) else res
+//
+val () = assertloc (fact5(10) = 1*2*3*4*5*6*7*8*9*10)
+//
+(* ****** ****** *)
 
 implement main0 () = ()
 
