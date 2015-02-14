@@ -56,9 +56,11 @@ implement gmul_val<int3> = mul_int3_int3
 //
 (* ****** ****** *)
 //
+overload ._1 with int3_1
+//
 fun
 fib (n: intGte(0)): int =
-  int3_1(gpow_int_val<int3> (n, int3(1, 1, 0)))
+  (gpow_int_val<int3> (n, int3(1, 1, 0)))._1
 //
 (* ****** ****** *)
    
