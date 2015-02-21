@@ -68,6 +68,15 @@ cleanall:: ; $(RMF) test03
 
 ## ###### ###### ##
 
+all:: \
+test04
+test04: \
+test04.dats; $(PATSCC) -o $@ $<
+regress:: test04; ./test04
+cleanall:: ; $(RMF) test04
+
+## ###### ###### ##
+
 ifeq ($(OS),osx)
 all:: \
 OSSpinLock-osx
