@@ -96,7 +96,7 @@ var B =
 //
 val res = dotprod3<double> (A, B)
 //
-val () = println! ("res = ", res)
+val () = println! ("res(14) = ", res)
 //
 } (* end of [main0] *)
 
