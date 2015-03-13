@@ -52,7 +52,7 @@ end // end of [local]
 implement
 gnumber_int<int3> (n) = int3(n, 0, n)
 //
-implement gmul_val<int3> = mul_int3_int3
+implement gmul_val_val<int3> = mul_int3_int3
 //
 (* ****** ****** *)
 //
