@@ -73,10 +73,8 @@ val-false = myset.insert(3)
 val-(true) = myset.insert(3)
 //
 (* ****** ****** *)
-
+//
 val xs = myset.listize()
-
-(* ****** ****** *)
 //
 val () =
 fprintln! (stdout_ref, "myset = ", myset)
@@ -110,14 +108,19 @@ val-false = myset.insert(4)
 val-false = myset.insert(5)
 
 (* ****** ****** *)
+//
+val () =
+fprintln! (stdout_ref, "myset = ", myset)
+//
+(* ****** ****** *)
 
 val () = let
 //
 val res =
-myfunset_foldleft_cloref<int>(myset, 0, lam(res, x) => res+x)
+myfunset_foldleft_cloref<int>(myset, 1, lam(res, x) => res*x)
 //
 in
-  fprintln! (stdout_ref, "tally(myset) = ", res)
+  fprintln! (stdout_ref, "product(myset) = ", res)
 end // end of [val]
 
 (* ****** ****** *)
