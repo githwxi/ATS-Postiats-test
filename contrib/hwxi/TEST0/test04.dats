@@ -55,17 +55,20 @@ TIEQS(pf1) = pf0
 val pA0 = addr@A
 val pB0 = addr@B
 //
-val res0 = gmul_val<a>(A[0], B[0])
+val res0 =
+  gmul_val_val<a>(A[0], B[0])
 //
-val (pfA1, fpfA1 | pA1) = $UN.ptr0_vtake{array(a,n-1)}(ptr_succ<a>(pA0))
-val (pfB1, fpfB1 | pB1) = $UN.ptr0_vtake{array(a,n-1)}(ptr_succ<a>(pB0))
+val (pfA1, fpfA1 | pA1) =
+  $UN.ptr0_vtake{array(a,n-1)}(ptr_succ<a>(pA0))
+val (pfB1, fpfB1 | pB1) =
+  $UN.ptr0_vtake{array(a,n-1)}(ptr_succ<a>(pB0))
 //
 val res1 = dotprod (pf1 | !pA1, !pB1)
 //
 prval () = fpfA1 (pfA1) and () = fpfB1 (pfB1)
 //
 in
-  gadd_val<a> (res0, res1)
+  gadd_val_val<a> (res0, res1)
 end // end of [dotprod_S_]
 
 (* ****** ****** *)
