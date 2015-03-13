@@ -89,6 +89,16 @@ endif # if(OS=osx)
 
 ## ###### ###### ##
 
+all:: \
+test05
+test05: \
+test05.dats; \
+$(PATSCC) -DATS_MEMALLOC_LIBC -o $@ $<
+regress:: test05; ./test05
+cleanall:: ; $(RMF) test05
+
+## ###### ###### ##
+
 testall:: all
 testall:: regress
 testall:: cleanall
