@@ -106,6 +106,17 @@ end // end of [val]
 
 (* ****** ****** *)
 
+val () = let
+//
+val res =
+myfunset_foldleft_cloref<int>(myset, 0, lam(res, x) => res+x)
+//
+in
+  fprintln! (stdout_ref, "tally(myset) = ", res)
+end // end of [val]
+
+(* ****** ****** *)
+
 implement main0 () = ()
 
 (* ****** ****** *)
