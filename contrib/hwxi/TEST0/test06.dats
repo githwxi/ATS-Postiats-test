@@ -106,6 +106,11 @@ end // end of [val]
 
 (* ****** ****** *)
 
+val-false = myset.insert(4)
+val-false = myset.insert(5)
+
+(* ****** ****** *)
+
 val () = let
 //
 val res =
