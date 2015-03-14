@@ -122,10 +122,13 @@ val () = assertloc(compare(myset, myset2) < 0)
 val () = assertloc(compare(myset2, myset) > 0)
 //
 (* ****** ****** *)
-
-val () =
-myset := myfunset_symdiff(myset, myset2)
-
+//
+val () = myset.union(myset2)
+val () = myset.intersect(myset2)
+//
+val () = myset.diff(myset2)
+val () = myset.symdiff(myset2)
+//
 (* ****** ****** *)
 //
 val () =
