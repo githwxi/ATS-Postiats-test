@@ -103,9 +103,28 @@ in
 end // end of [val]
 
 (* ****** ****** *)
+//
+val
+myset2 = myfunset_make_nil()
+//
+var
+myset2 = myset2
+val-false = myset2.insert(4)
+val-false = myset2.insert(5)
+val-false = myset2.insert(6)
+//
+(* ****** ****** *)
+//
+val () = assertloc(myset = myset)
+val () = assertloc(myset != myset2)
+val () = assertloc(compare(myset, myset) = 0)
+val () = assertloc(compare(myset, myset2) < 0)
+val () = assertloc(compare(myset2, myset) > 0)
+//
+(* ****** ****** *)
 
-val-false = myset.insert(4)
-val-false = myset.insert(5)
+val () =
+myset := myfunset_symdiff(myset, myset2)
 
 (* ****** ****** *)
 //
@@ -113,14 +132,21 @@ val () =
 fprintln! (stdout_ref, "myset = ", myset)
 //
 (* ****** ****** *)
-
+//
+val myset3 =
+myfunset_tabulate_cloref(10, lam(x) => x+1)
+//
+val () =
+  fprintln! (stdout_ref, "myset3 = ", myset3)
+//
+//
 val () = let
 //
 val res =
-myfunset_foldleft_cloref<int>(myset, 1, lam(res, x) => res*x)
+myfunset_foldleft_cloref<int>(myset3, 1, lam(res, x) => res*x)
 //
 in
-  fprintln! (stdout_ref, "product(myset) = ", res)
+  fprintln! (stdout_ref, "product(myset3) = ", res)
 end // end of [val]
 
 (* ****** ****** *)
