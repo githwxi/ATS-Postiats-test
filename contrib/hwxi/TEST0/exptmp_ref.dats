@@ -20,7 +20,7 @@
 (* ****** ****** *)
 //
 // How to compile and test:
-// patscc -o exptmp exptmp.dats && ./exptmp
+// patscc -DATS_MEMALLOC_LIBC -o exptmp_ref exptmp_ref.dats && ./exptmp_ref
 //
 (* ****** ****** *)
 //
