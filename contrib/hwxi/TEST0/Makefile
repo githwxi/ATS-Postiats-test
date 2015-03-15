@@ -111,9 +111,7 @@ cleanall:: ; $(RMF) test06
 
 all:: \
 exptmp
-exptmp: \
-exptmp.dats; \
-$(PATSCC) -DATS_MEMALLOC_LIBC -o $@ $<
+exptmp: exptmp.dats; $(PATSCC) -o $@ $<
 regress:: exptmp; ./exptmp
 cleanall:: ; $(RMF) exptmp
 

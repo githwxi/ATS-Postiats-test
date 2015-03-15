@@ -19,6 +19,11 @@
 
 (* ****** ****** *)
 //
+// How to compile and test:
+// patscc -o exptmp exptmp.dats && ./exptmp
+//
+(* ****** ****** *)
+//
 #include
 "share/atspre_staload.hats"
 //
@@ -63,7 +68,8 @@ fun{E1,E2:t@ype} Ediv(INV(E1), INV(E2)): Ediv(E1, E2)
 (* ****** ****** *)
 //
 extern
-fun{E:t@ype} eval (expr: &INV(E)): double
+fun{E:t@ype}
+eval (expr: &INV(E)): double
 //
 (* ****** ****** *)
 
