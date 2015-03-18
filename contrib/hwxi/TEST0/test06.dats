@@ -82,10 +82,11 @@ val () =
 fprintln! (stdout_ref, "myset: xs = ", xs)
 //
 (* ****** ****** *)
-
+//
 val () =
-myset.foreach_cloref(lam(x) => println! ("x=", x))
-
+myfunset_foreach_cloref
+  (myset, lam(x) => println! ("x=", x))
+//
 (* ****** ****** *)
 
 val () = let
@@ -93,10 +94,16 @@ val () = let
 var res: int = 0
 val p_res = addr@res
 //
-fun fwork (x: int): void =
-  $UN.ptr0_set<int>(p_res, $UN.ptr0_get<int>(p_res)+x)
+fun
+fwork
+(
+  x: int
+) : void =
+$UN.ptr0_set<int>
+  (p_res, $UN.ptr0_get<int>(p_res)+x)
 //
-val ((*void*)) = myset.foreach_cloref(lam(x) => fwork(x))
+val ((*void*)) =
+myfunset_foreach_cloref(myset, lam(x) => fwork(x))
 //
 in
   fprintln! (stdout_ref, "tally(myset) = ", res)
@@ -105,7 +112,7 @@ end // end of [val]
 (* ****** ****** *)
 //
 val
-myset2 = myfunset_make_nil()
+myset2 = myfunset_nil()
 //
 var
 myset2 = myset2
@@ -126,7 +133,7 @@ val () = assertloc(compare(myset2, myset) > 0)
 val () = myset.union(myset2)
 val () = myset.intersect(myset2)
 //
-val () = myset.diff(myset2)
+val () = myset.differ(myset2)
 val () = myset.symdiff(myset2)
 //
 (* ****** ****** *)
