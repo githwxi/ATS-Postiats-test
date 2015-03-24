@@ -34,6 +34,9 @@ val () = println! ("fact(10) = ", fact10)
 //
 (* ****** ****** *)
 //
+// HX-2015-03-24:
+// print out the multiplication table
+//
 val () =
 (1, 10).foreach()(lam(i) => ((1, i+1).foreach()(lam(j) => (if j > 1 then print ' '; print! (j, "*", i, " = ", j * i))); print_newline()))
 //
