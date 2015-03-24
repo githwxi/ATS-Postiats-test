@@ -33,6 +33,11 @@ fact10 =
 val () = println! ("fact(10) = ", fact10)
 //
 (* ****** ****** *)
+//
+val () =
+(1, 10).foreach()(lam(i) => ((1, i+1).foreach()(lam(j) => (if j > 1 then print ' '; print! (j, "*", i, " = ", j * i))); print_newline()))
+//
+(* ****** ****** *)
 
 implement main0 () = ()
 
