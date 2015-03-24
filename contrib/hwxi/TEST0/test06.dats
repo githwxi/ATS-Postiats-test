@@ -10,10 +10,6 @@
 //
 (* ****** ****** *)
 
-staload UN = $UNSAFE
-
-(* ****** ****** *)
-
 local
 //
 typedef elt = int
@@ -84,9 +80,12 @@ fprintln! (stdout_ref, "myset: xs = ", xs)
 (* ****** ****** *)
 //
 val () =
-myfunset_foreach_cloref
-  (myset, lam(x) => println! ("x=", x))
+myset.foreach()(lam(x) => println! ("x=", x))
 //
+(* ****** ****** *)
+
+staload UN = $UNSAFE
+
 (* ****** ****** *)
 
 val () = let
@@ -143,21 +142,16 @@ fprintln! (stdout_ref, "myset = ", myset)
 //
 (* ****** ****** *)
 //
-val myset3 =
-myfunset_tabulate_cloref(10, lam(x) => x+1)
+macdef int_t = TYPE{int}()
+macdef tabulate = myfunset_tabulate_cloref
 //
-val () =
-  fprintln! (stdout_ref, "myset3 = ", myset3)
+fun
+fact(n:intGte(0)): int =
+  (tabulate(n, lam(x) => x+1)).foldleft(int_t)(1, lam(res, x) => res*x)
 //
-//
-val () = let
-//
-val res =
-myfunset_foldleft_cloref<int>(myset3, 1, lam(res, x) => res*x)
-//
-in
-  fprintln! (stdout_ref, "product(myset3) = ", res)
-end // end of [val]
+(* ****** ****** *)
+
+val () = println! ("fact(12) = ", fact(12))
 
 (* ****** ****** *)
 
