@@ -36,8 +36,8 @@ script:
   - GCFLAG=-D_ATS_NGC
   # GCFLAG=-D_ATS_GCATS
   # GCFLAG=-D_ATS_GCBDW
-  # C3NSTRINTKND=intknd
-  - C3NSTRINTKND=gmpknd
+  - C3NSTRINTKND=intknd
+  # C3NSTRINTKND=gmpknd
   - make C3NSTRINTKND=${C3NSTRINTKND} -f Makefile_devl CC=${CC} GCFLAG=${GCFLAG} all
   - export PATH=${PATH}:${PATSHOME}/bin
   # Trying-out release process
