@@ -128,6 +128,16 @@ regress:: test08; ./test08
 cleanall:: ; $(RMF) test08
 
 ## ###### ###### ##
+
+all:: \
+test09
+test09: \
+test09.dats; \
+$(PATSCC) -DATS_MEMALLOC_LIBC -o $@ $<
+regress:: test09; ./test09
+cleanall:: ; $(RMF) test09
+
+## ###### ###### ##
 #
 all:: \
 exptmp
