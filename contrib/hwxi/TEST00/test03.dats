@@ -60,7 +60,7 @@ overload ._1 with int3_1
 //
 fun
 fib (n: intGte(0)): int =
-  (gpow_int_val<int3> (n, int3(1, 1, 0)))._1
+  (gpow_int_val<int3> (n, int3(1, 1, 0)))._1()
 //
 (* ****** ****** *)
    

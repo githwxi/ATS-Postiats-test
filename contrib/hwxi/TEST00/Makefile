@@ -149,13 +149,24 @@ cleanall:: ; $(RMF) exptmp
 ## ###### ###### ##
 #
 all:: \
-exptmp_ref
-exptmp_ref: \
-exptmp_ref.dats; \
+exptmpref
+exptmpref: \
+exptmpref.dats; \
 $(PATSCC) -DATS_MEMALLOC_LIBC -o $@ $<
 #
-regress:: exptmp_ref; ./$<
-cleanall:: ; $(RMF) exptmp_ref
+regress:: exptmpref; ./$<
+cleanall:: ; $(RMF) exptmpref
+#
+## ###### ###### ##
+#
+all:: \
+dotoverld
+dotoverld: \
+dotoverld.dats; \
+$(PATSCC) -DATS_MEMALLOC_LIBC -o $@ $<
+#
+regress:: dotoverld; ./$<
+cleanall:: ; $(RMF) dotoverld
 #
 ## ###### ###### ##
 

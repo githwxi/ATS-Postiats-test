@@ -46,9 +46,9 @@ mymap = myhashtbl_make_nil(1000)
 (* ****** ****** *)
 //
 val () =
-  assertloc (mymap.size = 0)
+  assertloc (mymap.size() = 0)
 val () =
-  assertloc (mymap.capacity = 1000)
+  assertloc (mymap.capacity() = 1000)
 //
 (* ****** ****** *)
 //
@@ -58,7 +58,7 @@ val () = mymap.insert_any(2, "2")
 val () = mymap.insert_any(3, "3")
 val () = mymap.insert_any(4, "4")
 //
-val () = assertloc (mymap.size = 5)
+val () = assertloc (mymap.size() = 5)
 //
 (* ****** ****** *)
 //
@@ -84,7 +84,7 @@ val-~Some_vt("2") = mymap.takeout(2)
 val-~Some_vt("3") = mymap.takeout(3)
 val-~Some_vt("4") = mymap.takeout(4)
 //
-val () = assertloc (mymap.size = 0)
+val () = assertloc (mymap.size() = 0)
 //
 (* ****** ****** *)
 

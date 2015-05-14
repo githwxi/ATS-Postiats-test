@@ -9,9 +9,9 @@ MAKE=make
 ## ###### ###### ##
 
 all:: \
-TEST0
-TEST0:: ; \
-$(MAKE) -C TEST0 -f Makefile testall
+TEST00
+TEST00:: ; \
+$(MAKE) -C TEST00 -f Makefile testall
 
 ## ###### ###### ##
 

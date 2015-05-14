@@ -30,7 +30,7 @@ end // end of [local]
 val
 mymap = myfunmap_make_nil()
 //
-val () = assertloc (mymap.size = 0)
+val () = assertloc (mymap.size() = 0)
 //
 (* ****** ****** *)
 //

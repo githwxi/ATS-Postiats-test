@@ -25,7 +25,7 @@ end // end of [local]
 val
 myset = myfunset_make_nil()
 //
-val () = assertloc (myset.size = 0)
+val () = assertloc (myset.size() = 0)
 //
 (* ****** ****** *)
 //
