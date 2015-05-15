@@ -9,6 +9,12 @@ MAKE=make
 ## ###### ###### ##
 
 all:: \
+Spring2014
+Spring2014:: ; $(MAKE) -C Spring2014 -f Makefile_test
+
+## ###### ###### ##
+
+all:: \
 Summer2014
 Summer2014:: ; $(MAKE) -C Summer2014 -f Makefile_test
 
