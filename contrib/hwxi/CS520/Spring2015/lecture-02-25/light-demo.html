@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<title>Light-demo</title>
+<style>
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+#canvas-container
+{
+  width: 920px;
+  height: auto;
+  margin: auto;
+  background-color: #D0D0D0;
+}
+#cpanel-container
+{
+  width: auto;
+  height: auto;
+  margin: auto;
+  background-color: #D0D0D0;
+}
+</style>
+<script
+ src="http://cdn.jsdelivr.net/jquery/2.1.1/jquery.min.js">
+</script>
+<script
+ src="http://ats-lang.sourceforge.net/LIBRARY/contrib/libatscc/libatscc2js/libatscc2js_all.js">
+</script>
+<script
+ src="http://ats-lang.sourceforge.net/LIBRARY/contrib/libatscc/libatscc2js/CATS/HTML/canvas-2d/canvas2d_cats.js">
+</script>
+</head>
+<body>
+<h1>Light-demo for linear types</h1>
+<hr></hr>
+<div id="canvas-container">
+<canvas
+ id="Patsoptaas-Evaluate-canvas"
+ width="880px" height="480px"
+ oncontextmenu="event.preventDefault()">
+It seems that canvas is not supported by your browser!
+</canvas>
+</div>
+<hr></hr>
+<div
+ id="cpanel-container">
+<div style="width:auto;margin:auto">
+<table>
+<tr>
+<!--
+<button
+ type="button"
+ onclick="Create_onclick()">
+Create
+</button>
+<button
+ type="button"
+ onclick="Destroy_onclick()">
+Destroy
+</button>
+-->
+<td style="width:50%">
+</td>
+</td>
+<td style="width:auto">
+<button
+ type="button"
+ onclick="Light_on_onclick()">
+Light-on
+</button>
+</td>
+<td style="width:auto">
+<button
+ type="button"
+ onclick="Light_off_onclick()">
+Light-off
+</button>
+</td>
+<td style="width:auto">
+<button
+ type="button"
+ onclick="Light_flash_onclick()">
+Light-flash
+</button>
+</td>
+<td style="width:50%">
+</td>
+</tr>
+</table>
+</div>
+</div>
+<hr></hr>
+<!--
+HX-2014-11: it must be the last one!
+-->
+<script src="light-demo.js"></script>
+</body>
+</html>
