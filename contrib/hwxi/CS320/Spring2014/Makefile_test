@@ -99,4 +99,11 @@ $(MAKE) -C lecture-03-04 -f Makefile testall
 
 ## ###### ###### ##
 
+# all:: \
+# lecture-03-20
+# lecture-03-20:: ; \
+# $(MAKE) -C lecture-03-20 -f Makefile testall
+
+## ###### ###### ##
+
 ## ###### end of [Makefile_test] ###### ##

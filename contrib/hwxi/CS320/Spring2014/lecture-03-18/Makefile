@@ -15,8 +15,7 @@ QueenPuzzle: \
   gtkcairotimer_toplevel.dats ; \
   $(PATSCC2) -D_GNU_SOURCE -DATS_MEMALLOC_LIBC -o $@ $^ $(GTKFLAGS) -lm -lrt
 #
-# regress QueenPuzzle; ./$<
-#
+regress QueenPuzzle; ./$<
 cleanall:: ; $(RMF) QueenPuzzle
 #
 testall:: all
