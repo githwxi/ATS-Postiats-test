@@ -15,13 +15,21 @@ cleanall::
 
 ######
 
-all:: mylist0_3
-regress:: mylist0_3; ./$<
-cleanall:: ; $(RMF) mylist0_3
+all:: btree
+regress:: btree; ./$<
+cleanall:: ; $(RMF) btree
 
-all:: higher-order
-regress:: higher-order; ./$<
-cleanall:: ; $(RMF) higher-order
+######
+
+all:: weekday
+regress:: weekday; ./$<
+cleanall:: ; $(RMF) weekday
+
+######
+
+all:: listprod
+regress:: listprod; ./$<
+cleanall:: ; $(RMF) listprod
 
 ######
 #
