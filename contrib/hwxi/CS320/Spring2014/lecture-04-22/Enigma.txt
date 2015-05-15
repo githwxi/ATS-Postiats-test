@@ -1,0 +1,28 @@
+######
+#
+# A short note on Enigma
+#
+######
+
+This is the fundamental mapping behind Enigma:
+
+x -> p^(R^(f(R(p(x)))))
+
+p (plugboard) is the inverse of itself
+f (reflector) is the inverse of itself
+R (rotor sequence) may not be the inverse of itself
+
+p^ is the inverse of p, which equals p
+R^ is the inverse of R, which may not equal R
+
+Let r0 be a rotor.
+
+Let r1 be r0 with its shift set to S. Then we have
+
+r1(x) = r0(x) + S
+r1^(x) = r0^(x - S)
+
+where r0^ and r1^ are the inverse mappings of r0 and r1,
+respectively.
+
+###### end of [Enigma.txt] ######

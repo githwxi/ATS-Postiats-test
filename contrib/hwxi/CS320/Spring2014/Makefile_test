@@ -130,4 +130,29 @@ $(MAKE) -C lecture-04-03 -f Makefile testall
 
 ## ###### ###### ##
 
+all:: \
+lecture-04-08
+lecture-04-08:: ; \
+$(MAKE) -C lecture-04-08 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-04-10
+lecture-04-10:: ; \
+$(MAKE) -C lecture-04-10 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-04-17
+lecture-04-17:: ; \
+$(MAKE) -C lecture-04-17 -f Makefile testall
+
+## ###### ###### ##
+#
+# lecture-04-22: Enigma.txt
+#
+## ###### ###### ##
+
 ## ###### end of [Makefile_test] ###### ##
