@@ -21,4 +21,10 @@ CS320:: ; $(MAKE) -C CS320 -f Makefile_test
 
 ## ###### ###### ##
 
+all:: \
+CS520
+CS520:: ; $(MAKE) -C CS520 -f Makefile_test
+
+## ###### ###### ##
+
 ## ###### end of [Makefile_test] ###### ##

@@ -1,0 +1,17 @@
+##
+## A Makefile for testing
+##
+
+## ###### ###### ##
+
+MAKE=make
+
+## ###### ###### ##
+
+all:: \
+Spring2015
+Spring2015:: ; $(MAKE) -C Spring2015 -f Makefile_test
+
+## ###### ###### ##
+
+## ###### end of [Makefile_test] ###### ##

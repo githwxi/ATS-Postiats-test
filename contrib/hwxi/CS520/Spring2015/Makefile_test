@@ -1,0 +1,18 @@
+##
+## A Makefile for testing
+##
+
+## ###### ###### ##
+
+MAKE=make
+
+## ###### ###### ##
+
+all:: \
+lecture-01-21
+lecture-01-21:: ; \
+$(MAKE) -C lecture-01-21 -f Makefile testall
+
+## ###### ###### ##
+
+## ###### end of [Makefile_test] ###### ##
