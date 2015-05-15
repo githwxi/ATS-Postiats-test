@@ -9,15 +9,9 @@ MAKE=make
 ## ###### ###### ##
 
 all:: \
-TEST00
-TEST00:: ; \
-$(MAKE) -C TEST00 -f Makefile testall
-
-## ###### ###### ##
-
-all:: \
-CS320
-CS320:: ; $(MAKE) -C CS320 -f Makefile_test
+lecture-05-20
+lecture-05-20:: ; \
+$(MAKE) -C lecture-05-20 -f Makefile testall
 
 ## ###### ###### ##
 
