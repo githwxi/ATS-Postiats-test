@@ -49,6 +49,8 @@ script:
   - make -C ${PATSHOME}/doc/DISTRIB atspackaging
   - make -C ${PATSHOME}/doc/DISTRIB atspacktarzvcf
   - make -C ${PATSHOME}/doc/DISTRIB cleanall
+  # Building atscc2js
+  - (cd ${PATSHOMERELOC}/projects/MEDIUM/CATS-parsemit/JavaScript && make all && mv -f atscc2js ${PATSHOME}/bin/.)
   # Regress test
   - export Makefile_test=Makefile_test
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export Makefile_test=Makefile_test_osx; fi
