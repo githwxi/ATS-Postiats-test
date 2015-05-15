@@ -61,9 +61,9 @@ RMF=rm -f
 
 ######
 
-clean:: ; rm -f *~
-clean:: ; rm -f *_?ats.c
-clean:: ; rm -f *_?ats.o
+clean:: ; $(RMF) *~
+clean:: ; $(RMF) *_?ats.c
+clean:: ; $(RMF) *_?ats.o
 
 ######
 
