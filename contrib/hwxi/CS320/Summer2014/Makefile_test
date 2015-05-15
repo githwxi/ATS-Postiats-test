@@ -15,4 +15,11 @@ $(MAKE) -C lecture-05-20 -f Makefile testall
 
 ## ###### ###### ##
 
+all:: \
+lecture-05-21
+lecture-05-21:: ; \
+$(MAKE) -C lecture-05-21 -f Makefile testall
+
+## ###### ###### ##
+
 ## ###### end of [Makefile_test] ###### ##
