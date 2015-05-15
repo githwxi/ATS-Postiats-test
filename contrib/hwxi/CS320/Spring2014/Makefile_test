@@ -21,12 +21,10 @@ lecture-01-21:: ; \
 $(MAKE) -C lecture-01-21 -f Makefile testall
 
 ## ###### ###### ##
-
-# all:: \
-# lecture-01-23
-# lecture-01-23:: ; \
-# $(MAKE) -C lecture-01-23 -f Makefile testall
-
+#
+# lecture-01-23::
+# Please see lecture-01-28
+#
 ## ###### ###### ##
 
 all:: \
@@ -103,6 +101,18 @@ $(MAKE) -C lecture-03-04 -f Makefile testall
 # lecture-03-20
 # lecture-03-20:: ; \
 # $(MAKE) -C lecture-03-20 -f Makefile testall
+
+## ###### ###### ##
+#
+# lecture-03-25::
+# Please see lecture-03-20
+#
+## ###### ###### ##
+
+all:: \
+lecture-03-27
+lecture-03-27:: ; \
+$(MAKE) -C lecture-03-27 -f Makefile testall
 
 ## ###### ###### ##
 
