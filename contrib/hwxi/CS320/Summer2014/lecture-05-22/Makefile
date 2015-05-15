@@ -10,6 +10,8 @@ PATSOPT=$(PATSHOME)/bin/patsopt
 ######
 
 all::
+regress::
+cleanall::
 
 ######
 
