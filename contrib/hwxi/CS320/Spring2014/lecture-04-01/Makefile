@@ -19,13 +19,11 @@ regress::
 cleanall::
 
 ######
-#
-all:: fact
-regress:: fact; ./$<
-cleanall:: ; $(RMF) fact
-#
-all:: ; $(PATSCC) -tcats Sierpinski.dats
-#
+
+all:: queens_lazy
+regress:: queens_lazy; ./$<
+cleanall:: ; $(RMF) queens_lazy
+
 ######
 #
 %: %.dats ; \

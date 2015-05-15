@@ -19,22 +19,21 @@ regress::
 cleanall::
 
 ######
-#
-all:: fact
-regress:: fact; ./$<
-cleanall:: ; $(RMF) fact
-#
-all:: ; $(PATSCC) -tcats Sierpinski.dats
-#
+
+all:: kbstream
+regress:: kbstream; ./$<
+cleanall:: ; $(RMF) kbstream
+
 ######
 #
 %: %.dats ; \
-$(PATSCC) -D_GNU_SOURCE -DATS_MEMALLOC_LIBC -O2 -o $@ $<
+$(PATSCC) -D_GNU_SOURCE \
+  -DATS_MEMALLOC_LIBC -O2 -o $@ $< -L$(PATSLIB) -latslib
 #
 #######
 #
 testall:: all
-testall:: regress
+# testall:: regress
 testall:: cleanall
 #
 #######
