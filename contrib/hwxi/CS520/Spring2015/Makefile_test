@@ -170,7 +170,7 @@ $(MAKE) -C Use-ATS-with-C -f Makefile testall
 ## ###### ###### ##
 
 all:: ; $(MAKE) -C final-abreen/dungeon testall
-all:: ; $(MAKE) -C final-knikolla/TypeInvaders/testall
+all:: ; $(MAKE) -C final-knikolla/TypeInvaders testall
 
 ## ###### ###### ##
 
