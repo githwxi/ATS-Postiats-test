@@ -162,4 +162,11 @@ $(MAKE) -C lecture-04-22 -f Makefile testall
 
 ## ###### ###### ##
 
+all:: \
+Use-ATS-with-C
+Use-ATS-with-C:: ; \
+$(MAKE) -C Use-ATS-with-C -f Makefile testall
+
+## ###### ###### ##
+
 ## ###### end of [Makefile_test] ###### ##
