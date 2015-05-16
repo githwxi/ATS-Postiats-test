@@ -1,0 +1,48 @@
+room
+spawn
+~
+gas_station_front
+~
+~
+Desert highway
+You are standing on the shoulder of a desert highway. The sun is high in the sky, and it's getting very hot. You can see an old gas station to the distant east.
+room
+gas_station_front
+store
+~
+~
+spawn
+Abandoned gas station
+You are standing outside a run-down gas station, which is advertising a price that indicates it closed long ago. The station contains a small convenience store, whose front door is hanging off its hinges.
+room
+store
+backroom
+~
+gas_station_front
+garage
+Convenience store
+You are inside the gas station's convenience store. The store's shelves are empty, apart from a couple of empty boxes. To the west, a doorframe into darkness. There's also a door with a metal knob to the north.
+room
+backroom
+~
+~
+store
+parking_lot
+Back room
+You are in the convenience store's back room. There are some empty shelves here and an old Commodore 64 on a desk. Through a screen door to your west you can see outside.
+room
+garage
+parking_lot
+store
+~
+~
+Garage
+A large, dark room with the tired husk of an old truck. It's the gas station's garage, and there's nothing but old pools of oil here. There's a garage door to your north that's halfway open.
+room
+parking_lot
+~
+backroom
+garage
+~
+Gas station's rear parking lot
+Where there used to be concrete and painted lines, there's crabgrass and a couple of shards of glass. Desert extends as far north and west as you can see. To your east, you can see the gas station's back room through the screen door. To your south, a half-open garage door.
