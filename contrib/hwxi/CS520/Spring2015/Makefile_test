@@ -134,4 +134,32 @@ $(MAKE) -C lecture-04-06 -f Makefile testall
 
 ## ###### ###### ##
 
+all:: \
+lecture-04-08
+lecture-04-08:: ; \
+$(MAKE) -C lecture-04-08 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-04-13
+lecture-04-13:: ; \
+$(MAKE) -C lecture-04-13 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-04-15
+lecture-04-15:: ; \
+$(MAKE) -C lecture-04-15 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-04-22
+lecture-04-22:: ; \
+$(MAKE) -C lecture-04-22 -f Makefile testall
+
+## ###### ###### ##
+
 ## ###### end of [Makefile_test] ###### ##
