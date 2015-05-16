@@ -9,10 +9,19 @@ PATSOPT=$(PATSHOME)/bin/patsopt
 
 ######
 
-all:: tally
-tally: tally.dats; $(PATSCC) -o $@ $<
-regress:: tally; ./$<
-cleanall:: ; rm -f tally
+all:: fib
+fib: fib.dats; \
+$(PATSCC) -DATS_MEMALLOC_LIBC -o $@ $<
+regress:: fib; ./$<
+cleanall:: ; rm -f fib
+
+######
+
+all:: ref
+ref: ref.dats; \
+$(PATSCC) -DATS_MEMALLOC_LIBC -o $@ $<
+regress:: ref; ./$<
+cleanall:: ; rm -f ref
 
 ######
 

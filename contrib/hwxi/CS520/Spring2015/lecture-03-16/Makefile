@@ -9,16 +9,14 @@ PATSOPT=$(PATSHOME)/bin/patsopt
 
 ######
 
-all:: tally
-tally: tally.dats; $(PATSCC) -o $@ $<
-regress:: tally; ./$<
-cleanall:: ; rm -f tally
+all:: \
+permute
+permute: \
+permute.dats; $(PATSCC) -tcats -o $@ $<
 
 ######
 
 testall:: all
-testall:: regress
-testall:: cleanall
 
 ######
 
