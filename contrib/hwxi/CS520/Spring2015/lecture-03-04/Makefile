@@ -28,13 +28,13 @@ cleanall:: ; rm -f mergesort
 
 ######
 
-all:: \
-mergesort-p
-mergesort-p: \
-mergesort-p.dats; \
-$(PATSCC) -D_GNU_SOURCE -DATS_MEMALLOC_LIBC -o $@ $< -lpthread
-regress:: mergesort-p; ./$<
-cleanall:: ; rm -f mergesort-p
+# all:: \
+# mergesort-p
+# mergesort-p: \
+# mergesort-p.dats; \
+# $(PATSCC) -D_GNU_SOURCE -DATS_MEMALLOC_LIBC -o $@ $< -lpthread
+# regress:: mergesort-p; ./$<
+# cleanall:: ; rm -f mergesort-p
 
 ######
 
