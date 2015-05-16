@@ -9,14 +9,16 @@ MAKE=make
 ## ###### ###### ##
 
 all:: \
-Fall2013
-Fall2013:: ; $(MAKE) -C Fall2013 -f Makefile_test
+lecture-09-03
+lecture-09-03:: ; \
+$(MAKE) -C lecture-09-03 -f Makefile testall
 
 ## ###### ###### ##
 
 all:: \
-Spring2015
-Spring2015:: ; $(MAKE) -C Spring2015 -f Makefile_test
+lecture-09-05
+lecture-09-05:: ; \
+$(MAKE) -C lecture-09-05 -f Makefile testall
 
 ## ###### ###### ##
 
