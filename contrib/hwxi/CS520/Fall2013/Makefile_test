@@ -85,4 +85,16 @@ $(MAKE) -C lecture-12-03 -f Makefile testall
 
 ## ###### ###### ##
 
+all:: \
+lambda
+lambda:: ; \
+$(MAKE) -C lambda -f Makefile testall
+
+all:: \
+lambda2
+lambda2:: ; \
+$(MAKE) -C lambda2 -f Makefile testall
+
+## ###### ###### ##
+
 ## ###### end of [Makefile_test] ###### ##
