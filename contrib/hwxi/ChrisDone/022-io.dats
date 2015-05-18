@@ -12,12 +12,16 @@ val _ =
   end
 
 (* A simple get line / output line loop. *)
-fun loop ():  void = let
+fun loop ():  void =
+if
+fileref_is_eof(stdin_ref)
+then ()
+else let
   val line = fileref_get_line_string (stdin_ref)
   val line = strptr2string(line)
   val ((*void*)) = (fileref_puts(stdout_ref,line);fileref_puts(stdout_ref,"\n"))
 in
-  if fileref_isnot_eof(stdin_ref) then loop ()
+  loop ()  
 end
 
 val _ = loop ()
