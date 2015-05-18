@@ -1,5 +1,8 @@
 (* Data types *)
 
+#include
+"share/atspre_staload.hats"
+
 (* A type like Maybe or Option *)
 datatype MaybeInt =
   | NothingInt of ()
@@ -53,15 +56,14 @@ val day =
     | JustInt i => Wednesday ()
     | _ => Friday ()
 val _ =
-  begin print! (case mint of
+  begin print! ((case mint of
                   | JustInt 0 => ~1
                   | JustInt i => i
-                  | _ => 0
+                  | _ => 0): int
                ,"\n");
-        case () of
-          () => print! ("Unit is unit!","\n");
+        case () of () => print! ("Unit is unit!","\n");
         print! (isWeekday day,"\n");
         print (isWeekday (Saturday ()))
   end
 
-implement main () = ()
+implement main0 () = ()

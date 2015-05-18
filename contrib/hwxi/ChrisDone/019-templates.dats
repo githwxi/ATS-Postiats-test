@@ -1,5 +1,7 @@
 (* Function templates *)
 
+#include "share/atspre_staload.hats"
+
 (* This function is polymorphic over the two types of the tuple. *)
 fun {a,b : t@ype} swap ((x,y) : (a,b)) = (y,x)
 (*         ^ That is the "sort" (in Haskell: kind, in Idris: type) of
@@ -11,7 +13,7 @@ fun {a,b : t@ype} swap ((x,y) : (a,b)) = (y,x)
 val ab = (10,"foo")
 
 (* Swapped tuple. *)
-val ba = swap ab
+val ba = swap<int,string> ab
 
 (* Compose two functions. *)
 typedef Compose (f : t@ype, g : t@ype) =
@@ -43,13 +45,11 @@ val times2 = lam (x : int) : int =<cloref1>
   x * 2
 
 (* Composition of two functions. *)
-val plus1ThenTimes2: Compose (int,int) =
-  compose (times2,plus1)
+val plus1ThenTimes2 = (compose(times2,plus1): Compose (int,int))
 
 (* Composition of two functions: visa-versa *)
 (* Alternate way of writing. *)
-val times2ThenPlus1: int -<cloref1> int =
-  compose (plus1,times2)
+val times2ThenPlus1 = (compose(plus1,times2): int -<cloref1> int)
 
 (* Demo of templates. *)
 val _ =
@@ -59,4 +59,4 @@ val _ =
     print! (times2ThenPlus1 5);
   end
 
-implement main () = ()
+implement main0 () = ()

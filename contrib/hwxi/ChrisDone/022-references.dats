@@ -1,5 +1,7 @@
 (* References *)
 
+#include "share/atspre_staload.hats"
+
 (* Import references lib. *)
 staload _(*anon*) = "prelude/DATS/reference.dats"
 
@@ -31,4 +33,4 @@ val _ =
   begin print! (i,"\n");
   end
 
-implement main () = ()
+implement main0 () = ()

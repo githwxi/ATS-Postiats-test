@@ -5,6 +5,8 @@
 
  *)
 
+#include "share/atspre_staload.hats"
+
 (* Use the cloref1 type to indicate that `loop` closes over `n'.
    Note that there is no space between : and <cloref1>.
  *)
@@ -33,4 +35,4 @@ val _ =
         print! (plus2 10,"\n");
   end
 
-implement main () = ()
+implement main0 () = ()

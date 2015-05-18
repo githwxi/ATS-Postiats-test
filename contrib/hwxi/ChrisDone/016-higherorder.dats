@@ -1,5 +1,7 @@
 (* Higher-order functions *)
 
+#include "share/atspre_staload.hats"
+
 (* Given a function from integers to integers, rtfind searches for the
    first natural number that is a root of the function. For instance,
    calling rtfind on the polynomial function lam x => x * x - x + 110
@@ -41,4 +43,4 @@ val _ =
         print! (sum 10,"\n");
   end
 
-implement main () = ()
+implement main0 () = ()

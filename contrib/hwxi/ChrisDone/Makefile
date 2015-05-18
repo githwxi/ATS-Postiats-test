@@ -75,6 +75,59 @@ all:: 014-mutualrecursive
 regress:: 014-mutualrecursive; ./$<
 cleanall:: ; $(RMF) 014-mutualrecursive
 
+all:: 015-closures
+regress:: 015-closures; ./$<
+cleanall:: ; $(RMF) 015-closures
+
+all:: 016-higherorder
+regress:: 016-higherorder; ./$<
+cleanall:: ; $(RMF) 016-higherorder
+
+all:: 017-currying
+regress:: 017-currying; ./$<
+cleanall:: ; $(RMF) 017-currying
+
+all:: 018-datatypes
+regress:: 018-datatypes; ./$<
+cleanall:: ; $(RMF) 018-datatypes
+
+all:: 019-templates
+regress:: 019-templates; ./$<
+cleanall:: ; $(RMF) 019-templates
+
+all:: 020-polymorphic
+regress:: 020-polymorphic; ./$<
+cleanall:: ; $(RMF) 020-polymorphic
+
+all:: 021-exceptions
+regress:: 021-exceptions; ./$<
+cleanall:: ; $(RMF) 021-exceptions
+
+all:: 022-io
+regress:: 022-io; \
+./022-io < ./022-io.dats > /dev/null
+cleanall:: ; $(RMF) 022-io
+
+all:: 022-references
+regress:: 022-references; ./$<
+cleanall:: ; $(RMF) 022-references
+
+all:: 023-arrays
+regress:: 023-arrays; ./$<
+cleanall:: ; $(RMF) 023-arrays
+
+all:: 023-macros
+regress:: 023-macros; ./$<
+cleanall:: ; $(RMF) 023-macros
+
+all:: 024-matrices
+regress:: 024-matrices; ./$<
+cleanall:: ; $(RMF) 024-matrices
+
+all:: 025-dependent-types
+regress:: 025-dependent-types; ./$<
+cleanall:: ; $(RMF) 025-dependent-types
+
 ## ###### ###### ##
 #
 %: %.dats ; \

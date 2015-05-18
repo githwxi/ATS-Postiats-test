@@ -1,5 +1,8 @@
 (* Exceptions *)
 
+#include
+"share/atspre_staload.hats"
+
 (* List data type. *)
 datatype List (a : t@ype) =
   | Nil (a) of ()
@@ -25,4 +28,4 @@ val _ =
   begin print! (listProd(Cons (1,Cons (2,Nil ()))),"\n");
   end
 
-implement main () = ()
+implement main0 () = ()

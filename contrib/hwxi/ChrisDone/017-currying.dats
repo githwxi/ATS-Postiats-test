@@ -1,5 +1,7 @@
 (* Currying *)
 
+#include "share/atspre_staload.hats"
+
 (* Uncurried Ackermann. *)
 fun acker1 (m: int, n: int): int =
   if m > 0 then
@@ -18,4 +20,4 @@ val _ =
         print! (acker2 2 2,"\n");
   end
 
-implement main () = ()
+implement main0 () = ()

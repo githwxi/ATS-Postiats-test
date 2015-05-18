@@ -1,14 +1,17 @@
 (* Arrays *)
 
-staload _(*anon*) = "prelude/DATS/array.dats"
-staload _(*anon*) = "prelude/DATS/array0.dats"
+#include "share/atspre_staload.hats"
+
+staload "libats/ML/SATS/basis.sats"
+staload "libats/ML/SATS/array0.sats"
+staload _ = "libats/ML/DATS/array0.dats"
 
 (* Insertion sort. *)
 fun {a : t@ype} insertionSort (array : array0 (a),cmp : (a,a) -> int) : void =
   go 1
   where {
-    val arraySize = array0_size array
-    val length = int_of_size arraySize
+    val arraySize = array.size()
+    val length = g0u2i(arraySize)
     fun ins (x : a,i : int) :<cloref1> void =
       if i >= 0
          then
@@ -26,4 +29,4 @@ fun {a : t@ype} insertionSort (array : array0 (a),cmp : (a,a) -> int) : void =
          else ()
   }
 
-implement main () = ()
+implement main0 () = ()

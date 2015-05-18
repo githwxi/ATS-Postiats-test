@@ -1,5 +1,8 @@
 (* Dependent types *)
 
+#include
+"share/atspre_staload.hats"
+
 (* Define a sort. *)
 sortdef nat = {a: int | a >= 0}
 
@@ -13,10 +16,10 @@ val _ = 2 : Nat
 (* val _ = 5-2 : Nat *)
 
 (* Successor that only accepts integers i>=0 and must return i+1. *)
-fun {i : int | i >= 0} succ (i : int i) : int (i + 1) =
+fun succ{i : int | i >= 0} (i : int i) : int (i + 1) =
   i + 1
 
 (* Use of succ. *)
 val _ = succ (5-2)
 
-implement main () = ()
+implement main0 () = ()
