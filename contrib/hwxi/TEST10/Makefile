@@ -46,6 +46,16 @@ cleanall:: ; $(RMF) test12
 
 ## ###### ###### ##
 
+all:: \
+bternary
+bternary: \
+bternary.dats; \
+$(PATSCC) -DATS_MEMALLOC_LIBC -o $@ $<
+regress:: bternary; ./$<
+cleanall:: ; $(RMF) bternary
+
+## ###### ###### ##
+
 testall:: all
 testall:: regress
 testall:: cleanall
