@@ -1,5 +1,6 @@
 //
-#include"share/atspre_staload.hats"
+#include
+"share/atspre_staload.hats"
 //
 (* ****** ****** *)
 
@@ -8,18 +9,18 @@ staload "./DrawingAPI.sats"
 (* ****** ****** *)
 
 extern
-fun draw_Sierpinkski
+fun draw_Sierpinski
 (
   p1: point, p2: point, p3: point, c: color, n: int
-) : void // end of [draw_Sierpinkski]
+) : void // end of [draw_Sierpinski]
 
 (* ****** ****** *)
 
 implement
-draw_Sierpinkski
+draw_Sierpinski
   (p1, p2, p3, c, n) = let
 //
-macdef draw = draw_Sierpinkski
+macdef draw = draw_Sierpinski
 //
 in
 //
@@ -35,7 +36,7 @@ in
   // nothing
 end // end of [if]
 //
-end // end of [draw_Sierpinkski]
+end // end of [draw_Sierpinski]
 
 (* ****** ****** *)
 

@@ -9,7 +9,7 @@
 //
 (* ****** ****** *)
 
-extern
+static
 fun
 fib (n: uint): uint
 implement
