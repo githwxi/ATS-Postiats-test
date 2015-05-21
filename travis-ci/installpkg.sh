@@ -42,15 +42,15 @@ if
   expr ${is_linux} > 0
 then
 #
-  apt-get -qq -y update
-  apt-get -qq -y install libgc-dev
-  apt-get -qq -y install libgmp3-dev
+  sudo apt-get -qq -y update
+  sudo apt-get -qq -y install libgc-dev
+  sudo apt-get -qq -y install libgmp3-dev
 # For contrib/GTK/
-  apt-get -qq -y install libgtk-3-dev
+  sudo apt-get -qq -y install libgtk-3-dev
 # For contrib/libev/
-  apt-get -qq -y install libev-dev
+  sudo apt-get -qq -y install libev-dev
 # For contrib/jansson/
-  apt-get -qq -y install libjansson-dev
+  sudo apt-get -qq -y install libjansson-dev
 #
 fi
 
