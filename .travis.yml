@@ -11,9 +11,9 @@ before_install:
   - export ATSHOME=${HOME}/ats-lang-anairiats-0.2.12
   - export ATSHOMERELOC=ATS-0.2.12
   # Install pkgs
-  - ${TRAVIS_BUILD_DIR}/travis-ci/installpkg.sh
+  - sudo ${TRAVIS_BUILD_DIR}/travis-ci/installpkg.sh
   # Download ATS1
-  - ${TRAVIS_BUILD_DIR}/travis-ci/ats1_setup.sh 0.2.12
+  - sudo ${TRAVIS_BUILD_DIR}/travis-ci/ats1_setup.sh 0.2.12
   # Download ATS2
   - export PATSHOME=${HOME}/ATS-Postiats
   - git clone https://github.com/githwxi/ATS-Postiats.git ATS-Postiats
@@ -50,8 +50,9 @@ script:
   - make -C ${PATSHOME}/doc/DISTRIB atspacktarzvcf
   - make -C ${PATSHOME}/doc/DISTRIB cleanall
   # Building atscc2js
-  - (cd ${PATSHOMERELOC}/projects/MEDIUM/CATS-parsemit/JavaScript && make all && mv -f atscc2js ${PATSHOME}/bin/.)
-  # Regress test
+  - (cd ${PATSHOMERELOC}/projects/MEDIUM/CATS-atscc2js && make build && mv -f atscc2js ${PATSHOME}/bin/.)
+  # Running regress test
+  - cd ${TRAVIS_BUILD_DIR}
   - export Makefile_test=Makefile_test
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export Makefile_test=Makefile_test_osx; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export Makefile_test=Makefile_test_linux; fi
