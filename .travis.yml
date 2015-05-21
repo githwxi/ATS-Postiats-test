@@ -11,9 +11,9 @@ before_install:
   - export ATSHOME=${HOME}/ats-lang-anairiats-0.2.12
   - export ATSHOMERELOC=ATS-0.2.12
   # Install pkgs
-  - sudo ${TRAVIS_BUILD_DIR}/travis-ci/installpkg.sh
+  - sudo sh ${TRAVIS_BUILD_DIR}/travis-ci/installpkg.sh
   # Download ATS1
-  - sudo ${TRAVIS_BUILD_DIR}/travis-ci/ats1_setup.sh 0.2.12
+  - sudo sh ${TRAVIS_BUILD_DIR}/travis-ci/ats1_setup.sh 0.2.12
   # Download ATS2
   - export PATSHOME=${HOME}/ATS-Postiats
   - git clone https://github.com/githwxi/ATS-Postiats.git ATS-Postiats
