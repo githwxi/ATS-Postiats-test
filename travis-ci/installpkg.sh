@@ -42,6 +42,7 @@ if
   expr ${is_linux} > 0
 then
 #
+  su
   sudo apt-get -qq -y update
   sudo apt-get -qq -y install libgc-dev
   sudo apt-get -qq -y install libgmp3-dev
