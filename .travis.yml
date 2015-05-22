@@ -4,6 +4,7 @@ os:
 env:
   - CCATS2=GCC
   - CCATS2=CLANG
+sudo: required
 before_install:
   - date
   - cd ${HOME}
