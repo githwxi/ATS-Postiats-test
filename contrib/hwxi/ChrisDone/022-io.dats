@@ -3,7 +3,8 @@
 #include "share/atspre_staload.hats"
 
 (* Open a file *)
-val out = fileref_open_exn ("hello.txt",file_mode_w)
+val out =
+  fileref_open_exn("hello.txt",file_mode_w)
 
 (* Do some actions with the file *)
 val _ =

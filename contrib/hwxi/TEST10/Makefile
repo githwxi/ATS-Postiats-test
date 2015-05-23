@@ -56,6 +56,12 @@ cleanall:: ; $(RMF) bternary
 
 ## ###### ###### ##
 
+all:: \
+palindrome
+palindrome: ; $(PATSCC) -tcats palindrome.dats
+
+## ###### ###### ##
+
 testall:: all
 testall:: regress
 testall:: cleanall

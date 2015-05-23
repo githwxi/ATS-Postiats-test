@@ -147,6 +147,7 @@ clean:: ; $(RMF) *_?ats.c
 ## ###### ###### ##
 
 cleanall:: clean
+cleanall:: ; $(RMF) ./hello.txt
 
 ## ###### ###### ##
 
