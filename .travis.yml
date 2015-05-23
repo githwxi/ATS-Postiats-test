@@ -50,6 +50,8 @@ script:
   - make -C ${PATSHOME}/doc/DISTRIB atspackaging
   - make -C ${PATSHOME}/doc/DISTRIB atspacktarzvcf
   - make -C ${PATSHOME}/doc/DISTRIB cleanall
+  # Building parsemit
+  - (cd ${PATSHOMERELOC}/projects/MEDIUM/CATS-parsemit && make all)
   # Building atscc2js
   - (cd ${PATSHOMERELOC}/projects/MEDIUM/CATS-atscc2js && make build && mv -f atscc2js ${PATSHOME}/bin/.)
   # Running regress test
