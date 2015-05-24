@@ -51,8 +51,7 @@ lemma_apprev_pal
 //
 prval pf1 = lemma_rev_rev{xs}()
 prval pf1 = ILISTEQ_leibniz{xs,rev(rev(xs))}{lam(XS)=>append(XS, rev(xs))}(pf1)
-prval pf2 = lemma_rev_append{xs,rev(xs)}()
-prval pf2 = ILISTEQ_symm(pf2)
+prval pf2 = ILISTEQ_symm(lemma_rev_append{xs,rev(xs)}())
 //
 in
   ILISTEQ_tran(pf1, pf2)
