@@ -59,6 +59,9 @@ cleanall:: ; $(RMF) bternary
 all:: \
 palindrome
 palindrome: ; $(PATSCC) -tcats palindrome.dats
+all:: \
+palindrome2
+palindrome2: ; $(PATSCC) -tcats palindrome2.dats
 
 ## ###### ###### ##
 
