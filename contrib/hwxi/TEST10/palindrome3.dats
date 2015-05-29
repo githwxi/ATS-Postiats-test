@@ -64,8 +64,8 @@ case+ pf2 of
   end // end of [APPENDnil()]
 | APPENDcons(pf2) => let
     prval (pfrev, pfsnoc) = lemma2_reverse_scons(pf1)
-    prval (pfapp2, pfsnoc2) = lemma2_append_scons(pf2, pfsnoc)
-    prval pfpal = mylemma(pfrev, pfapp2)
+    prval (pfapp, pfsnoc2) = lemma2_append_scons(pf2, pfsnoc)
+    prval pfpal = mylemma(pfrev, pfapp)
   in
     PALcons (pfpal, pfsnoc2)
   end // end of [APPENDcons]
