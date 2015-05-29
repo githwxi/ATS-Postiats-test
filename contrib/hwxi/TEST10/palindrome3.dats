@@ -65,7 +65,7 @@ case+ pf2 of
 | APPENDcons(pf2) => let
     prval (pfrev, pfsnoc) = lemma2_reverse_scons(pf1)
     prval (pfapp, pfsnoc2) = lemma2_append_scons(pf2, pfsnoc)
-    prval pfpal = mylemma(pfrev, pfapp)
+    prval pfpal = mylemma(pfrev, pfapp) // HX: induction hypothesis
   in
     PALcons (pfpal, pfsnoc2)
   end // end of [APPENDcons]
