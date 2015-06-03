@@ -167,9 +167,11 @@ else 0 // no solution is found
 (* ****** ****** *)
 
 fun
-puzzle_solve() = let
+queen_puzzle_solve
+  ((*void*)) = let
 //
 val bd = board_make()
+//
 fun
 loop (): void = let
 //
@@ -201,7 +203,7 @@ end // end of [loop2]
 //
 in
   loop()
-end // end of [puzzle_solve]
+end // end of [queen_puzzle_solve]
 
 (* ****** ****** *)
 
@@ -211,7 +213,7 @@ implement main0 () =
 val () =
 println! ("Hello from [queens]!")
 //
-val () = puzzle_solve()
+val () = queen_puzzle_solve((*void*))
 //
 } (* end of [main0] *)
 
