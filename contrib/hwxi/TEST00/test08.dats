@@ -33,6 +33,10 @@ fact10 =
 val () = println! ("fact(10) = ", fact10)
 //
 (* ****** ****** *)
+
+val () = println! ("12 * \"a\" = ", (12).foldleft(TYPE{string})("", lam(res, _) => "a"+res))
+
+(* ****** ****** *)
 //
 // HX-2015-03-24:
 // print out the multiplication table
