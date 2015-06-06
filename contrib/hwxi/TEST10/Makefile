@@ -74,6 +74,9 @@ palindrome2: ; $(PATSCC) -tcats palindrome2.dats
 all:: \
 palindrome3
 palindrome3: ; $(PATSCC) -tcats palindrome3.dats
+all:: \
+palindrome4
+palindrome4: ; $(PATSCC) -tcats palindrome4.dats
 
 ## ###### ###### ##
 
