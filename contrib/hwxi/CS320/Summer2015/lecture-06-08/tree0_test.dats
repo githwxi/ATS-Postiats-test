@@ -49,7 +49,7 @@ tree0_depth(xs) =
 (
 case+ xs of
 | tree0_nil() => 0
-| tree0_cons(xs_l, _, xs_r) => 1+max(tree0_size(xs_l), tree0_size(xs_r))
+| tree0_cons(xs_l, _, xs_r) => 1+max(tree0_depth(xs_l), tree0_depth(xs_r))
 )
 
 (* ****** ****** *)
@@ -60,7 +60,7 @@ tree0_depth_min(xs) =
 (
 case+ xs of
 | tree0_nil() => 0
-| tree0_cons(xs_l, _, xs_r) => 1+min(tree0_size(xs_l), tree0_size(xs_r))
+| tree0_cons(xs_l, _, xs_r) => 1+min(tree0_depth_min(xs_l), tree0_depth_min(xs_r))
 )
 
 (* ****** ****** *)
