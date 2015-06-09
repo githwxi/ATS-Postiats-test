@@ -31,9 +31,8 @@ show
 (
   list0_foreach<int>
   ( list0_reverse(board)
-  , lam(n) => ((N).foreach()(lam(i) => print_string(if i = n then " Q" else " _")); print_newline())
-  ) ;
-  print_newline()
+  , lam(n) => ((N).foreach()(lam(i) => print_string(if i = n then " Q" else " _")); print '\n')
+  ) ; print_newline()
 )
 //
 fun
@@ -44,8 +43,10 @@ safe
 (
   case+ xs of
   | nil0() => true
-  | cons0(x, xs) => x != i && x != j && x != k && safe(i, j+1, k-1, xs)
-)
+  | cons0(x, xs) =>
+      x != i && x != j && x != k && safe(i, j+1, k-1, xs)
+    // end of [cons0]
+) (* safe *)
 //
 fun
 loop
@@ -54,6 +55,7 @@ loop
 ) : void =
 (N).foreach()
 (
+//
 lam(i) =>
 if
 safe(i, i+1, i-1, xs)
@@ -62,7 +64,8 @@ then let
 in
   if col = N then show(xs) else loop(col+1, xs)
 end // end of [then]
-)
+//
+) (* foreach() *)
 //
 in
   loop(1, nil0())
