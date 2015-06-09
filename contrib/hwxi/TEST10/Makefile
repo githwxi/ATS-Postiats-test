@@ -66,6 +66,16 @@ cleanall:: ; $(RMF) bternary
 ## ###### ###### ##
 
 all:: \
+queens
+queens: \
+queens.dats; \
+$(PATSCC) -DATS_MEMALLOC_LIBC -o $@ $<
+regress:: queens; ./queens > /dev/null
+cleanall:: ; $(RMF) queens
+
+## ###### ###### ##
+
+all:: \
 palindrome
 palindrome: ; $(PATSCC) -tcats palindrome.dats
 all:: \
