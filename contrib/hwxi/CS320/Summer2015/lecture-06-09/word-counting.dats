@@ -47,7 +47,8 @@ val c = char_get()
 //
 in
   if isalpha(c)
-    then loop(cons0(int2char0(c), cs)) else string_implode(cs)
+    then loop(cons0(int2char0(c), cs))
+    else string_implode(list0_reverse(cs))
   // end of [if]
 end // end of [loop]
 //
