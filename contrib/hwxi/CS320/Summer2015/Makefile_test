@@ -85,4 +85,32 @@ $(MAKE) -C lecture-06-09 -f Makefile testall
 
 ## ###### ###### ##
 
+all:: \
+lecture-06-10
+lecture-06-10:: ; \
+$(MAKE) -C lecture-06-10 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-15
+lecture-06-15:: ; \
+$(MAKE) -C lecture-06-15 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-16
+lecture-06-16:: ; \
+$(MAKE) -C lecture-06-16 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-17
+lecture-06-17:: ; \
+$(MAKE) -C lecture-06-17 -f Makefile testall
+
+## ###### ###### ##
+
 ## ###### end of [Makefile_test] ###### ##
