@@ -1,5 +1,5 @@
 (*
-** Explicitly boxed types
+** Polymorphism
 *)
 
 (* ****** ****** *)
@@ -12,38 +12,33 @@
 staload UN = $UNSAFE
 
 (* ****** ****** *)
+
+typedef boxstr = boxed(string)
+
+(* ****** ****** *)
 //
-fun
-list_length_boxed
-  {a:type}{n:int}
-  (xs: list(a, n)): int(n) = list_length<a> (xs)
+fun swap_boxed{a,b:type} (xy: (a, b)): (b, a) = (xy.1, xy.0)
+//
+val AB = (box("A"), box("B"))
+val BA1 = swap_boxed{boxstr,boxstr} (AB)
+val BA2 = swap_boxed (AB) // omitting type arguments may be fine
 //
 (* ****** ****** *)
 //
-implement
-main0() =
-{
-#define N 26
+fun swap2_boxed{a:type}{b:type} (xy: (a, b)): (b, a) = (xy.1, xy.0)
 //
-val xs1 =
-list_tabulate_fun<ptr>
-(
-  N, lam(i) => $UN.int2ptr(i)
-) (* end of [val] *)
-val xs1 = list_vt2t(xs1)
+val AB = (box("A"), box("B"))
+val BA1 = swap2_boxed (AB) // both static arguments to be synthesized
+val BA2 = swap2_boxed{...} (AB) // both static arguments to be synthesized
+val BA3 = swap2_boxed{..}{boxstr} (AB) // 1st static argument to be synthesized
+val BA4 = swap2_boxed{boxstr}{..} (AB) // 2nd static argument to be synthesized
+val BA5 = swap2_boxed{..}{..} (AB) // both static arguments to be synthesized
+val BA6 = swap2_boxed{boxstr}{boxstr} (AB) // both static arguments are provided
 //
-val xs2 =
-list_tabulate_fun<string>
-(
-  N, lam(i) => $UN.castvwtp0{string}(string_sing($UN.cast{charNZ}('A' + i)))
-) (* end of [val] *)
-val xs2 = list_vt2t(xs2)
-//
-val () = assertloc(list_length_boxed(xs1) = N)
-val () = assertloc(list_length_boxed(xs2) = N)
-//
-} (* end of [main0] *)
-//
+(* ****** ****** *)
+
+implement main0 () = ()
+
 (* ****** ****** *)
 
 (* end of [test02.dats] *)
