@@ -56,6 +56,15 @@ cleanall:: ; $(RMF) test13
 ## ###### ###### ##
 
 all:: \
+test14
+test14: \
+test14.dats; $(PATSCC) -o $@ $<
+regress:: test14; ./test14
+cleanall:: ; $(RMF) test14
+
+## ###### ###### ##
+
+all:: \
 bternary
 bternary: \
 bternary.dats; \
