@@ -1,7 +1,19 @@
+(* ****** ****** *)
+//
+// HX-2015-07-24
+// For answering the question:
+// https://groups.google.com/forum/?fromgroups=#!topic/ats-lang-users/lklEDjj0XpE
+//
+(* ****** ****** *)
+
 #include "share/atspre_define.hats"
 #include "share/atspre_staload.hats"
 
+(* ****** ****** *)
+
 #define N 3
+
+(* ****** ****** *)
 
 implement
 main0 () = {
@@ -20,4 +32,7 @@ val () = fprint(stdout_ref, "arr(aft) = ")
 val () = (fprint(stdout_ref, arr, i2sz(N)); fprint_newline(stdout_ref))
 //
 } (* end of [main] *)
-            
+
+(* ****** ****** *)
+
+(* end of [test04.dats] *)
