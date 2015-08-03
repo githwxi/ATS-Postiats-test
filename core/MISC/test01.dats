@@ -56,7 +56,7 @@ fact{n:nat}
   var res: int = 1
   val () =
   while*
-  {n:nat}(n:int(n)) =>
+  {n:nat} .<n>. (n:int(n)) =>
     (n > 0) (res := res * n; n := n - 1)
   // end of [val]
 }
@@ -75,7 +75,7 @@ fact{n:nat}
   var res: int = 1
   val () =
   for*
-  {i:nat | i <= n}(i: int(i)) =>
+  {i:nat | i <= n} .<n-i>. (i: int(i)) =>
     (i := 0; i < n; i := i+1) (res := res * (i+1))
   // end of [val]
 }
