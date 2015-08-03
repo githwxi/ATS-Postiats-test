@@ -35,7 +35,7 @@ fun
 fact
 (
   n: int
-) : int= res where
+) : int = res where
 {
   var i: int
   var res: int = 1
@@ -45,8 +45,46 @@ fact
 val () = assertloc(fact(10)=1*2*3*4*5*6*7*8*9*10)
 //
 (* ****** ****** *)
+//
+fun
+fact{n:nat}
+(
+  n: int(n)
+) : int= res where
+{
+  var n: int = n
+  var res: int = 1
+  val () =
+  while*
+  {n:nat}(n:int(n)) =>
+    (n > 0) (res := res * n; n := n - 1)
+  // end of [val]
+}
+//
+val () = assertloc(fact(10)=1*2*3*4*5*6*7*8*9*10)
+//
+(* ****** ****** *)
+//
+fun
+fact{n:nat}
+(
+  n: int(n)
+) : int= res where
+{
+  var i: int
+  var res: int = 1
+  val () =
+  for*
+  {i:nat | i <= n}(i: int(i)) =>
+    (i := 0; i < n; i := i+1) (res := res * (i+1))
+  // end of [val]
+}
+//
+val () = assertloc(fact(10)=1*2*3*4*5*6*7*8*9*10)
+//
+(* ****** ****** *)
 
-implement main0() = ()
+implement main0() = ((*void*))
 
 (* ****** ****** *)
 
