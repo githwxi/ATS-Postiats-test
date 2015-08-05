@@ -28,6 +28,28 @@ val () = assertloc(x*x*x*x = x**2 * x**2)
 
 (* ****** ****** *)
 
+val x = 10.0
+
+(* ****** ****** *)
+//
+#define EPSILON 1E-6
+//
+fun
+double_equal
+  (x:double, y:double): bool = abs(x-y) < EPSILON
+//
+overload = with double_equal of 1000
+//
+(* ****** ****** *)
+
+val () = assertloc(1.0 = x**0)
+val () = assertloc(1*x = x**1)
+val () = assertloc(~x**2 < 0.0)
+val () = assertloc(2*x*x*x = 2*x**3)
+val () = assertloc(x*x*x*x = x**2 * x**2)
+
+(* ****** ****** *)
+
 implement main0() = ((*void*))
 
 (* ****** ****** *)
