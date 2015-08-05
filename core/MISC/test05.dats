@@ -13,15 +13,22 @@ staload
 STDLIB = "libc/SATS/stdlib.sats"
 //
 (* ****** ****** *)
+
+#define N 100
+
+(* ****** ****** *)
 //
 implement
 grandom_int<> () =
-  $UNSAFE.cast{int}($STDLIB.random()) % 10
+  $UNSAFE.cast{int}($STDLIB.random()) % N
 //
 (* ****** ****** *)
-
+//
+// HX-2015-08:
+// using the current time as the randomization seed
+//
 val () = $STDLIB.srandom($UNSAFE.cast($TIME.time()))
-
+//
 (* ****** ****** *)
 //
 val xs = grandom_list<int>(10)
@@ -34,7 +41,7 @@ val () = assertloc(length(xs)+length(ys) = length(list_append(xs, ys)))
 //
 (* ****** ****** *)
 //
-typedef n = intBtw(0,10)
+typedef n = intBtw(0,N)
 //
 val ns = grandom_list<int>(10)
 val ns = $UNSAFE.cast{List(n)}(ns)
