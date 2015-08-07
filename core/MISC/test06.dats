@@ -1,5 +1,18 @@
+(*
+** HX-2015-08-07:
+** Based on one by deech
+*)
+
+(* ****** ****** *)
+//
+// How to compile and test: 
+// patscc -DATS_MEMALLOC_LIBC -o test06 test06.dats && ./test06
+//
+(* ****** ****** *)
 
 #include "share/atspre_staload.hats"
+
+(* ****** ****** *)
 
 fun
 {a:t@ype}
@@ -24,3 +37,7 @@ main0() = {
   val () = println! ("b = ", b)
   val () = list_vt_free(a) and () = list_vt_free(b)
 }
+
+(* ****** ****** *)
+
+(* end of [test06.dats] *)
