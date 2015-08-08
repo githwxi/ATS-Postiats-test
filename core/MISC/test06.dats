@@ -29,6 +29,50 @@ list_vt_filter
   | list_vt_cons (x, xs) => list_vt_filter (xs, f)
 )
 
+(* ****** ****** *)
+
+fun
+{a:t@ype}
+list_vt_filter
+  {n:nat}
+(
+  l: !list_vt (a, n), f: a -> bool
+) : listLte_vt (a, n) = let
+//
+fun
+loop{n:nat}
+(
+  l: !list_vt(a, n)
+, res: &ptr? >> listLte_vt(a, n)
+) : void =
+(
+  case+ l of
+  | list_vt_nil() =>
+      res := list_vt_nil()
+  | list_vt_cons(x, xs) =>
+    if f (x)
+      then let
+        val () =
+        res :=
+          list_vt_cons{a}{0}(x, _)
+        // end of [val]
+        val+
+        list_vt_cons(_, res1) = res
+      in
+        loop (xs, res1); fold@ (res)
+      end // end of [then]
+      else loop (xs, res)
+    // end of [if]
+)
+//
+var res: ptr
+//
+in
+  loop(l, res); res
+end // end of [list_vt_filter]
+
+(* ****** ****** *)
+
 implement
 main0() = {
   val a = list_make_intrange(0,10)
@@ -36,7 +80,7 @@ main0() = {
   val () = println! ("a = ", a)
   val () = println! ("b = ", b)
   val () = list_vt_free(a) and () = list_vt_free(b)
-}
+} (* end of [main0] *)
 
 (* ****** ****** *)
 
