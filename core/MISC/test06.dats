@@ -30,7 +30,11 @@ list_vt_filter
 )
 
 (* ****** ****** *)
-
+//
+// HX-2015-08-07:
+// A tail-recursive version
+// for the reference purpose:
+//
 fun
 {a:t@ype}
 list_vt_filter
@@ -70,7 +74,7 @@ var res: ptr
 in
   loop(l, res); res
 end // end of [list_vt_filter]
-
+//
 (* ****** ****** *)
 
 implement
