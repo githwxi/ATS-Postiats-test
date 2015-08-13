@@ -24,9 +24,9 @@ list_vt_filter
 (
   case+ l of
   | list_vt_nil() => list_vt_nil()
-  | list_vt_cons (x, xs) when f (x) =>
-      list_vt_cons (x, list_vt_filter(xs,f))
-  | list_vt_cons (x, xs) => list_vt_filter (xs, f)
+  | list_vt_cons(x, xs) when f(x) =>
+      list_vt_cons(x, list_vt_filter(xs,f))
+  | list_vt_cons(x, xs) => list_vt_filter(xs, f)
 )
 
 (* ****** ****** *)
