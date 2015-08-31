@@ -98,6 +98,16 @@ cleanall:: ; $(RMF) test07
 
 ## ###### ###### ##
 
+all:: \
+test08
+test08: \
+test08.dats; \
+$(PATSCC) -D_GNU_SOURCE -DATS_MEMALLOC_LIBC -o $@ $<
+regress:: test08; ./test08
+cleanall:: ; $(RMF) test08
+
+## ###### ###### ##
+
 testall:: all
 testall:: regress
 testall:: cleanall

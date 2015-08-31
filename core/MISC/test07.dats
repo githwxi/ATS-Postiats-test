@@ -6,7 +6,7 @@
 (* ****** ****** *)
 //
 // How to compile and test: 
-// patscc -DATS_MEMALLOC_LIBC -o test06 test06.dats && ./test06
+// patscc -DATS_MEMALLOC_LIBC -o test07 test07.dats && ./test07
 //
 (* ****** ****** *)
 
@@ -112,3 +112,7 @@ implement main0 () = {
   // Finish array
   prval () = $UN.castview0(pfarr)
 }
+
+(* ****** ****** *)
+
+(* end of [test07.dats] *)
