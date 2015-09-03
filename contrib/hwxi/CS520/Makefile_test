@@ -10,13 +10,22 @@ MAKE=make
 
 all:: \
 Fall2013
-Fall2013:: ; $(MAKE) -C Fall2013 -f Makefile_test
+Fall2013:: ; \
+$(MAKE) -C Fall2013 -f Makefile_test
 
 ## ###### ###### ##
 
 all:: \
 Spring2015
-Spring2015:: ; $(MAKE) -C Spring2015 -f Makefile_test
+Spring2015:: ; \
+$(MAKE) -C Spring2015 -f Makefile_test
+
+## ###### ###### ##
+
+all:: \
+Fall2015
+Fall2015:: ; \
+$(MAKE) -C Fall2015 -f Makefile_test
 
 ## ###### ###### ##
 
