@@ -15,7 +15,7 @@ deMorgan_disj{A,B:prop}(pf: ~(A || B)): ~A && ~B
 
 (* ****** ****** *)
 
-primplement
+primplmnt
 deMorgan_disj
   {A,B}(pf) =
 (
@@ -62,7 +62,7 @@ LEM{A:prop}(): A || ~A
 
 (* ****** ****** *)
 
-primplement
+primplmnt
 deMorgan_conj
   {A,B}(pf) =
 (
