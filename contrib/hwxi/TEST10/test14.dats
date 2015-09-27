@@ -35,4 +35,4 @@ val () = (fprint(stdout_ref, arr, i2sz(N)); fprint_newline(stdout_ref))
 
 (* ****** ****** *)
 
-(* end of [test04.dats] *)
+(* end of [test14.dats] *)

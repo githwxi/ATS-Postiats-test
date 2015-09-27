@@ -63,6 +63,13 @@ regress:: test14; ./test14
 cleanall:: ; $(RMF) test14
 
 ## ###### ###### ##
+#
+all:: \
+test15
+test15: \
+test15.dats; $(PATSCC) -tcats $<
+#
+## ###### ###### ##
 
 all:: \
 bternary
