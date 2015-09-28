@@ -77,7 +77,7 @@ light_off
   val () = $UN.castview2void{light_off}(pf) // fake it!
 in
   // nothing
-end // end of [light_on1]
+end // end of [light_off]
 
 (* ****** ****** *)
 //
