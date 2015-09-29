@@ -70,6 +70,13 @@ test15: \
 test15.dats; $(PATSCC) -tcats $<
 #
 ## ###### ###### ##
+#
+all:: \
+test16
+test16: \
+test16.dats; $(PATSCC) -tcats $<
+#
+## ###### ###### ##
 
 all:: \
 bternary
