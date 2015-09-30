@@ -81,7 +81,8 @@ test16.dats; $(PATSCC) -tcats $<
 all:: \
 test17
 test17: \
-test17.dats; $(PATSCC) -o $@ $<
+test17.dats; \
+$(PATSCC) -D_GNU_SOURCE -o $@ $<
 regress:: test17; ./test17
 cleanall:: ; $(RMF) test17
 #

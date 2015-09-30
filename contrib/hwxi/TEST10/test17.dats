@@ -16,6 +16,11 @@ UN = "prelude/SATS/unsafe.sats"
 //
 (* ****** ****** *)
 
+staload "libc/SATS/time.sats"
+staload "libc/SATS/stdlib.sats"
+
+(* ****** ****** *)
+
 macdef i8(x) = $UN.cast{int8}(,(x))
 macdef u8(x) = $UN.cast{uint8}(,(x))
 macdef u16(x) = $UN.cast{uint16}(,(x))
@@ -38,10 +43,13 @@ implement
 i2c_start(err) =
   println! ("i2c_start: err = ", err)
 implement
-i2c_write(data, err) =
-(
-  println! ("i2c_write: err = ", err)  
-)
+i2c_write
+  (data, err) = let
+  val n = $UN.cast{int}(random())
+  val ec = (if n % 9 != 5 then 0 else 1): int
+in
+  err := ec; println! ("i2c_write: err = ", err)
+end // end of [i2c_write]
 //
 (* ****** ****** *)
 //
@@ -122,9 +130,13 @@ implement
 main0 () =
 {
 //
+val () = srandom($UN.cast(time()))
+//
 var err: int = 0
 //
 val _ = i2c_read_word_data(u8(0), u8(0), err)
+//
+val () = println! ("i2c_read_word_data: err = ", err) 
 //
 } (* end of [main0] *)
   
