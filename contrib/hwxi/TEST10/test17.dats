@@ -6,6 +6,11 @@
 //
 (* ****** ****** *)
 //
+#include
+"share/atspre_staload.hats"
+//
+(* ****** ****** *)
+//
 staload
 UN = "prelude/SATS/unsafe.sats"
 //
@@ -22,69 +27,107 @@ fun ra (addr:uint8) : uint8 = (addr << 1) + u8(1)
 //
 (* ****** ****** *)
 //
-extern fun i2c_start(): int8
-extern fun i2c_read(uint8): uint8
-extern fun i2c_write(uint8): int8
+extern
+fun i2c_start(err: &int >> _): void
+extern
+fun i2c_write(uint8, err: &int >> _): void
 //
 (* ****** ****** *)
 //
-extern fun{} i2c_get_err(): int
-extern fun{} i2c_set_err(int): void
-//
-(* ****** ****** *)
-//
-fun{}
-i2c_start_if
-  (err: int): void =
-if iseqz(i2c_get_err())
-  then let
-    val r = i2c_start()
-  in
-    if isneqz(r) then i2c_set_err(err)
-  end // end of [then]
-//
-fun{}
-i2c_write_if
+implement
+i2c_start(err) =
+  println! ("i2c_start: err = ", err)
+implement
+i2c_write(data, err) =
 (
-  data: uint8, err: int
-) : void =
-if iseqz(i2c_get_err())
-  then let
-    val r = i2c_write(data)
-  in
-    if isneqz(r) then i2c_set_err(err)
-  end // end of [then]
+  println! ("i2c_write: err = ", err)  
+)
 //
 (* ****** ****** *)
 //
 extern
 fun
 i2c_read_word_data
-  (uint8, uint8) : (int8, uint16)
+  (uint8, uint8, err: &int >> _) : uint16
+//
+(* ****** ****** *)
+//
+(*
+implement
+i2c_read_word_data
+  (addr, command, err) = let
+//
+val () = err := 0
+//
+val () =
+if iseqz(err) then i2c_start(err)
+val () = if err != 0 then err := 1
+//
+val () =
+if iseqz(err) then i2c_write(wa addr, err)
+val () = if err != 0 then err := 2
+//
+val () =
+if iseqz(err) then i2c_write(command, err)
+val () = if err != 0 then err := 3
+//
+val () =
+if iseqz(err) then i2c_start(err)
+val () = if err != 0 then err := 4
+//
+val () =
+if iseqz(err) then i2c_write(ra addr, err)
+val () = if err != 0 then err := 5
+//
+in
+  u16(0)
+end // end of [i2c_read_word_data]
+*)
+//
+(* ****** ****** *)
+//
+macdef
+ifnerr(x, err, ec) =
+(
+if
+(,(err)=0)
+then let
+  val () = ,(x)
+in
+  if ,(err) != 0 then ,(err) := ,(ec)
+end // end of [then]
+)
 //
 (* ****** ****** *)
 //
 implement
 i2c_read_word_data
-  (addr, command) = let
+  (addr, command, err) = let
 //
-var r: int = 0
+val () = err := 0
 //
-implement
-i2c_get_err<> () = $UN.ptr0_get<int>(addr@r)
-implement
-i2c_set_err<> (err) = $UN.ptr0_set<int>(addr@r, err)
-//
-val () = i2c_start_if(1)
-val () = i2c_write_if(wa addr, 2)
-val () = i2c_write_if(command, 3)
-val () = i2c_start_if(4)
-val () = i2c_write_if(ra addr, 5)
+val () = ifnerr(i2c_start(err), err, 1)
+val () = ifnerr(i2c_write(wa addr, err), err, 2)
+val () = ifnerr(i2c_write(command, err), err, 3)
+val () = ifnerr(i2c_start(err), err, 4)
+val () = ifnerr(i2c_write(ra addr, err), err, 5)
 //
 in
-  (i8(r), u16(0))
+  u16(0)
 end // end of [i2c_read_word_data]
 
 (* ****** ****** *)
 
-(* end of [test16.dats] *)
+implement
+main0 () =
+{
+//
+var err: int = 0
+//
+val _ = i2c_read_word_data(u8(0), u8(0), err)
+//
+} (* end of [main0] *)
+  
+(* ****** ****** *)
+
+(* end of [test17.dats] *)

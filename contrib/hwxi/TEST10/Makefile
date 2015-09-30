@@ -81,7 +81,9 @@ test16.dats; $(PATSCC) -tcats $<
 all:: \
 test17
 test17: \
-test17.dats; $(PATSCC) -tcats $<
+test17.dats; $(PATSCC) -o $@ $<
+regress:: test17; ./test17
+cleanall:: ; $(RMF) test17
 #
 ## ###### ###### ##
 
