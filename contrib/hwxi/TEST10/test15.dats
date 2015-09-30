@@ -2,7 +2,7 @@
 //
 // HX-2015-09-27
 // For answering the question:
-// // https://groups.google.com/forum/#!topic/ats-lang-users/S36pxm7XntI
+// https://groups.google.com/forum/#!topic/ats-lang-users/S36pxm7XntI
 //
 (* ****** ****** *)
 //
