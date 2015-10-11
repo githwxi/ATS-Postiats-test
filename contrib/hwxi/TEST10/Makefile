@@ -87,6 +87,16 @@ regress:: test17; ./test17
 cleanall:: ; $(RMF) test17
 #
 ## ###### ###### ##
+#
+all:: \
+test18
+test18: \
+test18.dats; \
+$(PATSCC) -D_GNU_SOURCE -o $@ $<
+regress:: test18; ./test18
+cleanall:: ; $(RMF) test18
+#
+## ###### ###### ##
 
 all:: \
 bternary
