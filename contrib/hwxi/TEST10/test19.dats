@@ -55,7 +55,7 @@ fun
 pec_add (old: uint8, new: uint8): uint8
 
 implement
-pec_add(old, new) = theCrcLookupTable[old] lxor theCrcLookupTable[new]
+pec_add(old, new) = theCrcLookupTable[old lxor new]
 
 (* ****** ****** *)
 
