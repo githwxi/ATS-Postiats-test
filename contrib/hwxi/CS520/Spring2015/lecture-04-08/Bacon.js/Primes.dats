@@ -50,7 +50,7 @@ fopr
 }
 //
 in
-  EStream_map{a,b}(xs, lam(x) => fopr(x))
+  EStream_map{a}{b}(xs, lam(x) => fopr(x))
 end // end of [EStream_map_stream]
 
 (* ****** ****** *)
