@@ -31,6 +31,15 @@ fun wa (addr:uint8) : uint8 = addr << 1
 fun ra (addr:uint8) : uint8 = (addr << 1) + u8(1)
 //
 (* ****** ****** *)
+
+(*
+extern
+fun wa2 {i:nat | i <= 127} (addr:uint8(i)): uint8(2*i)
+extern
+fun ra2 {i:nat | i <= 127} (addr:uint8(i)): uint8(2*i+1)
+*)
+
+(* ****** ****** *)
 //
 extern
 fun i2c_start(err: &int >> _): void

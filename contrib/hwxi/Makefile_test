@@ -23,6 +23,13 @@ $(MAKE) -C TEST10 -f Makefile testall
 ## ###### ###### ##
 
 all:: \
+TEST20
+TEST20:: ; \
+$(MAKE) -C TEST20 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
 CS320
 CS320:: ; $(MAKE) -C CS320 -f Makefile_test
 
