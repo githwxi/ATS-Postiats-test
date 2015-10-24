@@ -28,9 +28,9 @@ typedef rps = [x:rps] rps(x)
 #define p_rps 1
 #define s_rps 2
 //
-#define is_r(x) (x == r_rps)
-#define is_p(x) (x == p_rps)
-#define is_s(x) (x == s_rps)
+#define is_r_rps(x) (x == r_rps)
+#define is_p_rps(x) (x == p_rps)
+#define is_s_rps(x) (x == s_rps)
 //
 %} // end of [{%^]
 //
@@ -42,9 +42,9 @@ and s: rps(s) = "mac#s_rps"
 (* ****** ****** *)
 
 extern
-fun is_r : rps -> bool = "mac#"
-and is_p : rps -> bool = "mac#"
-and is_s : rps -> bool = "mac#"
+fun is_r : rps -> bool = "mac#is_r_rps"
+and is_p : rps -> bool = "mac#is_p_rps"
+and is_s : rps -> bool = "mac#is_s_rps"
 
 (* ****** ****** *)
 //
