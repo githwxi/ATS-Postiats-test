@@ -39,13 +39,11 @@ val r: rps(r) = "mac#r_rps"
 and p: rps(p) = "mac#p_rps"
 and s: rps(s) = "mac#s_rps"
 //
-(* ****** ****** *)
-
 extern
 fun is_r : rps -> bool = "mac#is_r_rps"
 and is_p : rps -> bool = "mac#is_p_rps"
 and is_s : rps -> bool = "mac#is_s_rps"
-
+//
 (* ****** ****** *)
 //
 extern
