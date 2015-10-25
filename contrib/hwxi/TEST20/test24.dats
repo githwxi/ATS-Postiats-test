@@ -18,13 +18,36 @@ staload
 UN = "prelude/SATS/unsafe.sats"
 
 (* ****** ****** *)
+//
+extern
+fun
+{a:t@ype}
+arrayref_get_subarray
+{n:int}
+{i,j:nat|i+j <= n}
+(
+  A: arrayref(a, n), size_t(i)
+) :
+[
+  l:addr
+] (
+  array_v(a, l, j), array_v(a, l, j) -<lin,prf> void | ptr(l)
+) (* end of [arrayref_get_subarray] *)
+//
+implement
+{a}(*tmp*)
+arrayref_get_subarray
+  (A, i) = $UN.castvwtp0(ptr_add<a>(arrayref2ptr(A), i))
+//
+(* ****** ****** *)
 
 implement
 main0() = () where
 {
 //
-#define N 10
-#define N2 6
+#define N 9
+#define I 2
+#define J 5
 #define T int
 //
 val A =
@@ -37,11 +60,9 @@ val () =
 val () = fprint (out, A, i2sz(N))
 val () = fprintln! (out, "}")
 //
-val p0 = arrayref2ptr(A)
-val p1 = ptr_add<T>(p0, 2)
-val (pf, fpf | p1) = $UN.ptr_vtake{@[T][N2]}(p1)
+val (pf, fpf | p1) = arrayref_get_subarray(A, i2sz(I))
 //
-val () = array_foreach_fun(!p1, i2sz(N2), lam(x) =<1> x := 1)
+val () = array_foreach_fun(!p1, i2sz(J), lam(x) =<1> x := 1)
 //
 prval ((*pf-return*)) = fpf(pf)
 //
