@@ -86,7 +86,7 @@ in
 end // end of [then]
 else false // [else]
 //
-) (* end of [read_fram_count] *)
+) (* end of [read_frame_count] *)
 
 (* ****** ****** *)
 
