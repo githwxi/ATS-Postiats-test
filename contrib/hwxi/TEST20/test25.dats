@@ -6,7 +6,7 @@
 // rock, paper, scissors
 //
 // For answering the following question:
-// https://groups.google.com/forum/#!topic/ats-lang-users/iM6S1KBlQF0
+// https://groups.google.com/forum/#!topic/ats-lang-users/YcdEzhJdJzs
 //
 *)
 
@@ -45,23 +45,47 @@ case+ x of
 )
 
 (* ****** ****** *)
+
+stacst
+rps_win : (rps, rps) -> bool
+
+(* ****** ****** *)
 //
 extern
+praxi
+rps_win_r_s(): [rps_win(r, s)] void
+extern
+praxi
+rps_win_p_r(): [rps_win(p, r)] void
+extern
+praxi
+rps_win_s_p(): [rps_win(s, p)] void
+//
+(* ****** ****** *)
+
 fun
-rps_compare : (rps, rps) -> Sgn
-//
-implement
-rps_compare
-  (x, y) =
+rps_win
+  {x1:rps}
 (
-  case+ x of
-  | r() => (case+ y of r() =>  0 | p() => ~1 | s() =>  1)
-  | p() => (case+ y of r() =>  1 | p() =>  0 | s() => ~1)
-  | s() => (case+ y of r() => ~1 | p() =>  1 | s() =>  0)
-)
+  x1: rps (x1)
+) :
+[ x2:rps
+| rps_win(x2, x1)
+] rps (x2) = let
 //
-overload compare with rps_compare
+prval () = rps_win_r_s()
+prval () = rps_win_p_r()
+prval () = rps_win_s_p()
 //
+in
+//
+case+ x1 of
+| r() => p()
+| p() => s()
+| s() => r()
+//
+end (* end of [rps_win] *)
+
 (* ****** ****** *)
 
 implement
@@ -72,15 +96,12 @@ val () = println!("r is ", r)
 val () = println!("p is ", p)
 val () = println!("s is ", s)
 //
-val () = assertloc (compare(r, p) < 0)
-val () = assertloc (compare(r, s) > 0)
-val () = assertloc (compare(p, r) > 0)
-val () = assertloc (compare(p, s) < 0)
-val () = assertloc (compare(s, r) < 0)
-val () = assertloc (compare(s, p) > 0)
+val () = println!("win(r) is ", rps_win(r))
+val () = println!("win(p) is ", rps_win(p))
+val () = println!("win(s) is ", rps_win(s))
 //
 } (* end of [main0] *)
 
 (* ****** ****** *)
 
-(* end of [test20.dats] *)
+(* end of [test25.dats] *)
