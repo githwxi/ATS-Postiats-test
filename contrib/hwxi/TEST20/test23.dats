@@ -1,3 +1,14 @@
+(*
+//
+// HX-2015-10-24:
+// For answering the following question:
+//
+// https://groups.google.com/forum/#!topic/ats-lang-users/dVRNZpbQm94
+//
+*)
+
+(* ****** ****** *)
+
 staload "prelude/SATS/unsafe.sats"
 
 macdef u8(x) = cast{uint8}(,(x))
