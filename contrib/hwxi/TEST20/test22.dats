@@ -7,7 +7,7 @@
 
 datatype
 bool(bool) =
-  True(true) | False(false)
+  | False(false) | True(true)
 typedef bool = [b:bool] bool(b)
 
 (* ****** ****** *)
