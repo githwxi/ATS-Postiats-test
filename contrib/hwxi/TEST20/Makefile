@@ -53,6 +53,16 @@ test23.dats; $(PATSCC) -tcats $<
 
 ## ###### ###### ##
 
+all:: \
+test24
+test24: \
+test24.dats; \
+$(PATSCC) -DATS_MEMALLOC_LIBC -o $@ $<
+regress:: test22; ./test24
+cleanall:: ; $(RMF) test24
+
+## ###### ###### ##
+
 testall:: all
 testall:: regress
 testall:: cleanall

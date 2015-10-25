@@ -4,12 +4,17 @@
 "share/atspre_staload.hats"
 //
 (* ****** ****** *)
-
+//
+// HX-2015-10-24:
+//
+// Note that
+// False/True is mapped to 0/1
+//
 datatype
 bool(bool) =
   | False(false) | True(true)
 typedef bool = [b:bool] bool(b)
-
+//
 (* ****** ****** *)
 
 #define true True()

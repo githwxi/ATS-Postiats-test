@@ -9,9 +9,14 @@
 
 (* ****** ****** *)
 
-staload "prelude/SATS/unsafe.sats"
+staload
+UN = "prelude/SATS/unsafe.sats"
 
-macdef u8(x) = cast{uint8}(,(x))
+(* ****** ****** *)
+
+macdef u8(x) = $UN.cast{uint8}(,(x))
+
+(* ****** ****** *)
 
 macdef packetIn =
   $extval(arrayref(uint8, 127),"packetIn")
@@ -28,7 +33,7 @@ extern
 fun{}
 n7 (x: uint8): natLte(127)
 implement{}
-n7 (x)  = cast{natLte(127)}(x land u8(0x7F))
+n7 (x)  = $UN.cast{natLte(127)}(x land u8(0x7F))
 
 (* ****** ****** *)
 

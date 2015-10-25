@@ -1,6 +1,12 @@
 (*
-** RPS:
-** rock, paper, scissors
+// HX-2015-10-14:
+//
+// RPS:
+// rock, paper, scissors
+//
+// For answering the following question:
+// https://groups.google.com/forum/#!topic/ats-lang-users/iM6S1KBlQF0
+//
 *)
 
 (* ****** ****** *)
