@@ -29,7 +29,7 @@ intBtwe2(i1:int, j1:int, i2:int, j2:int) =
 
 (* ****** ****** *)
 
-typedef hex = intBtwe2(0x30, 0x39, 0x41, 0x46)
+typedef hex = intBtwe2('0', '9', 'A', 'F')
 
 (* ****** ****** *)
 
@@ -37,8 +37,10 @@ fun
 int2hex
   (i:int): hex = let
   val i = g1ofg0(i)
-  val _0_ = 0x30 and _9_ = 0x39
-  val _A_ = 0x41 and _F_ = 0x46
+  val _0_ = char2int1('0')
+  and _9_ = char2int1('9')
+  val _A_ = char2int1('A')
+  and _F_ = char2int1('F')
 in
   if i < _0_
     then _0_
@@ -55,20 +57,20 @@ implement
 main0 () =
 {
 //
-val a = char2int0('0')
-val b = char2int0('1')
-val A = char2int0('A')
-val B = char2int0('B')
-val C = char2int0('C')
-val D = char2int0('D')
-val E = char2int0('E')
-val F = char2int0('F')
-val G = char2int0('G')
-val () = assertloc(int2hex(a) = a)
-val () = assertloc(int2hex(b) = b)
-val () = assertloc(int2hex(A) = A)
-val () = assertloc(int2hex(B) = B)
-val () = assertloc(int2hex(G) = 0x30)
+val _0_ = char2int1('0')
+val _1_ = char2int1('1')
+val _A_ = char2int1('A')
+val _B_ = char2int1('B')
+val _C_ = char2int1('C')
+val _D_ = char2int1('D')
+val _E_ = char2int1('E')
+val _F_ = char2int1('F')
+val _G_ = char2int1('G')
+val () = assertloc(int2hex(_0_) = _0_)
+val () = assertloc(int2hex(_1_) = _1_)
+val () = assertloc(int2hex(_A_) = _A_)
+val () = assertloc(int2hex(_B_) = _B_)
+val () = assertloc(int2hex(_G_) = _0_)
 //
 } (* end of [main0] *)
 
