@@ -72,6 +72,15 @@ cleanall:: ; $(RMF) test25
 
 ## ###### ###### ##
 
+all:: \
+test26
+test26: \
+test26.dats; $(PATSCC) -o $@ $<
+regress:: test26; ./test26
+cleanall:: ; $(RMF) test26
+
+## ###### ###### ##
+
 testall:: all
 testall:: regress
 testall:: cleanall

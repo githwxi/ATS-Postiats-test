@@ -64,7 +64,7 @@ then let
 //
 fun
 loop
-  {n:nat | n0-2 >= n}
+  {n:nat | n0-2 >= n} .<n>.
   (n: int(n), cksum: uint8): uint8 =
   if n > 0
     then let
