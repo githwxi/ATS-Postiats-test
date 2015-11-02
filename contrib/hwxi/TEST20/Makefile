@@ -80,6 +80,25 @@ regress:: test26; ./test26
 cleanall:: ; $(RMF) test26
 
 ## ###### ###### ##
+#
+all:: \
+test27_tmp
+test27_tmp: \
+test27.dats; $(PATSCC) -o $@ $<
+#
+all:: \
+test27_fun
+test27_fun: \
+test27.dats; \
+$(PATSCC) -DATS FOO_FUNCTION -o $@ $<
+#
+regress:: test27_tmp; ./$<
+regress:: test27_fun; ./$<
+#
+cleanall:: ; $(RMF) test27_tmp
+cleanall:: ; $(RMF) test27_fun
+#
+## ###### ###### ##
 
 testall:: all
 testall:: regress
