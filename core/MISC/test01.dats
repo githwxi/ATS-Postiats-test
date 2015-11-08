@@ -113,6 +113,15 @@ fix f(n:int): int => if n > 0 then n*f(n-1) else 1
 val () = assertloc(fact(10)=1*2*3*4*5*6*7*8*9*10)
 //
 (* ****** ****** *)
+//
+val
+fact =
+fix f: int -> int =>
+  lam (x) => if x >= 1 then x * f(x-1) else 1
+//
+val () = assertloc(fact(10)=1*2*3*4*5*6*7*8*9*10)
+//
+(* ****** ****** *)
 
 implement main0() = ((*void*))
 
