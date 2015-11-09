@@ -109,6 +109,15 @@ cleanall:: ; $(RMF) test28
 
 ## ###### ###### ##
 
+all:: \
+test29
+test29: \
+test29.dats; $(PATSCC) -o $@ $<
+regress:: test29; /bin/echo 135 246 | ./test29
+cleanall:: ; $(RMF) test29
+
+## ###### ###### ##
+
 testall:: all
 testall:: regress
 testall:: cleanall
