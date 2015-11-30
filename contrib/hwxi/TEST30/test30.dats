@@ -34,11 +34,11 @@ implement
 main0 () = () where
 {
 //
-var x2: int2 = @(0, 0)
+var x2: int2 = @(0, 1)
 //
 val ((*void*)) = fprintln! (stdout_ref, "x2 = ", x2)
 //
-val ((*1,1*)) = foo2(x2)
+val ((*1,2*)) = foo2(x2)
 //
 val ((*void*)) = fprintln! (stdout_ref, "x2 = ", x2)
 //
