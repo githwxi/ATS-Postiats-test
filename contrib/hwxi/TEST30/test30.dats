@@ -23,10 +23,8 @@ fun foo2 (x2: &int2): void = (foo(x2.0); foo(x2.1))
 //
 (* ****** ****** *)
 //
-fun
-fprint_int2
-  : fprint_type(int2) =
-  lam(out, x) => fprint_val<int2>(out, x)
+val
+fprint_int2 = fprint_val<int2>
 //
 overload fprint with fprint_int2
 //
