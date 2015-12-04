@@ -41,9 +41,16 @@ val-GVint(2) = state["test_arg2"]
 val-GVbool(false) = state["passwd_passed"]
 //
 (* ****** ****** *)
+//
+val-GVint(1) =
+  gvhashtbl_exch_atkey(state, "test_arg1", GVint(2))
+val-GVint(2) =
+  gvhashtbl_exch_atkey(state, "test_arg1", GVint(1))
+//
+(* ****** ****** *)
 
 implement main0() = ()
 
 (* ****** ****** *)
 
-(* end of [test09.dats] *)
+(* end of [test10.dats] *)
