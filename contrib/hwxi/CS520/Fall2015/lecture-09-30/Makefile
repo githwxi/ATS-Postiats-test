@@ -12,8 +12,11 @@ PATSOLVE=$(PATSHOME)/bin/patsolve_z3
 ######
 
 all:: fact
+
+######
+
 all:: word_count
-regress:: word_count; ./word_count
+regress:: word_count; $(CAT) ./word_count.dats | ./$< 
 cleanall:: ; $(RMF) word_count
 
 ######
@@ -39,6 +42,7 @@ theGetter_sats.o: ; \
 #
 ######
 
+CAT=cat
 RMF=rm -f
 
 ######
