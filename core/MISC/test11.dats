@@ -54,4 +54,4 @@ implement main0() = ()
 
 (* ****** ****** *)
 
-(* end of [test10.dats] *)
+(* end of [test11.dats] *)
