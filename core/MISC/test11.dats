@@ -36,7 +36,7 @@ macdef
 println_mac (x) =
 ,(
   if islist! (x)
-    then auxlist (x, `(print_newline())) else `(print ,(x))
+    then auxlist (x, `(print_newline())) else `(println ,(x))
   // end of [if]
 ) // end of [println_mac]
 
