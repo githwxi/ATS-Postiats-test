@@ -27,16 +27,16 @@ else y // end of [if]
 in (* in of [local] *)
 
 macdef
-print_mac (x) =
+print_mac(x) =
 ,(
   if islist! (x) then auxlist (x, `()) else `(print ,(x))
 ) // end of [print_mac]
 
 macdef
-println_mac (x) =
+println_mac(x) =
 ,(
   if islist! (x)
-    then auxlist (x, `(print_newline())) else `(println ,(x))
+    then auxlist (x, `(print_newline())) else `(print ,(x); print_newline())
   // end of [if]
 ) // end of [println_mac]
 
@@ -44,8 +44,13 @@ end // end of [local]
 
 (* ****** ****** *)
 
-val recursive_macro = "recursive macro"
+val () = println_mac 0
+val () = println_mac 1
+val () = println_mac 2
 
+(* ****** ****** *)
+
+val recursive_macro = "recursive macro"
 val () = println_mac("This", ' ', "is", ' ', "a", ' ', "test for", ' ', recursive_macro, "!")
 
 (* ****** ****** *)
