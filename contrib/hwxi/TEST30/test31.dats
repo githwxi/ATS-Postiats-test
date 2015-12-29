@@ -20,8 +20,7 @@ fun ifold2
     
 (* ****** ****** *)
 
-(*
-fun
+fun{}
 sqrmodsum
   (n: int, d: int): int =
 (
@@ -33,12 +32,11 @@ ifold2
 , 0
 ) (* ifold2 *)
 ) (* end of [sqrmodsum] *)
-*)
 
 (* ****** ****** *)
 
-fun
-sqrmodsum
+fun{}
+sqrmodsum2
   (n: int, d: int): int = let
 //
 var
@@ -48,11 +46,17 @@ lam@(res: int, x: int): int =<clo1>
 //
 in
   ifold2(10, $UNSAFE.cast(addr@fopr), 0)
-end // end of [sqrmodsum]
+end // end of [sqrmodsum2]
 
 (* ****** ****** *)
 
+(*
+//
+// This one calls 'malloc':
+//
 val () = println! ("sqrmodsum(10, 2) = ", sqrmodsum(10, 2))
+*)
+val () = println! ("sqrmodsum2(10, 2) = ", sqrmodsum2(10, 2))
 
 (* ****** ****** *)
 
