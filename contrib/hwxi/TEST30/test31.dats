@@ -11,11 +11,12 @@
 //
 (* ****** ****** *)
 
-fun ifold2
+fun
+ifold2
 (
   n: int, f: (int, int) -<cloref1> int, ini: int
 ) : int =
-  if n > 0 then f (ifold2 (n-1, f, ini), n) else ini
+  if n > 0 then f(ifold2 (n-1, f, ini), n) else ini
 // end of [ifold2]
     
 (* ****** ****** *)
@@ -35,8 +36,18 @@ ifold2
 
 (* ****** ****** *)
 
+fun
+ifold2_
+(
+  n: int, f: &(int, int) -<clo1> int, ini: int
+) : int =
+  if n > 0 then f(ifold2_ (n-1, f, ini), n) else ini
+// end of [ifold2]
+    
+(* ****** ****** *)
+
 fun{}
-sqrmodsum2
+sqrmodsum_
   (n: int, d: int): int = let
 //
 var
@@ -45,7 +56,7 @@ lam@(res: int, x: int): int =<clo1>
   if x mod d = 0 then res + x * x else res
 //
 in
-  ifold2(10, $UNSAFE.cast(addr@fopr), 0)
+  ifold2_(10, fopr, 0)
 end // end of [sqrmodsum2]
 
 (* ****** ****** *)
@@ -55,8 +66,12 @@ end // end of [sqrmodsum2]
 // This one calls 'malloc':
 //
 val () = println! ("sqrmodsum(10, 2) = ", sqrmodsum(10, 2))
+//
 *)
-val () = println! ("sqrmodsum2(10, 2) = ", sqrmodsum2(10, 2))
+
+(* ****** ****** *)
+
+val () = println! ("sqrmodsum_(10, 2) = ", sqrmodsum_(10, 2))
 
 (* ****** ****** *)
 
