@@ -37,6 +37,16 @@ cleanall:: ; $(RMF) test31
 
 ## ###### ###### ##
 
+all:: \
+test32
+test32: \
+test32.dats; \
+$(PATSCC) -DATS_MEMALLOC_LIBC -o $@ $<
+regress:: test32; ./test32
+cleanall:: ; $(RMF) test32
+
+## ###### ###### ##
+
 testall:: all
 testall:: regress
 testall:: cleanall
