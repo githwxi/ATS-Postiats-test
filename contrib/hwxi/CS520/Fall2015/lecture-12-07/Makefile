@@ -12,10 +12,6 @@ $(PATSHOME)/share/atsmake-pre.mk
 CFLAGS += -O2
 
 ######
-
-LDFLAGS :=
-
-######
 #
 MALLOCFLAG := -DATS_MEMALLOC_LIBC
 #
