@@ -14,11 +14,18 @@ CFLAGS += -O2
 ######
 
 LDFLAGS :=
-LDFLAGS += -lgc
 
 ######
+#
+MALLOCFLAG := -DATS_MEMALLOC_LIBC
+#
+# MALLOCFLAG := -DATS_MEMALLOC_GCBDW
+#
+######
 
-MALLOCFLAG := -DATS_MEMALLOC_GCBDW
+ifeq ($(MALLOCFLAG), -DATS_MEMALLOC_GCBDW)
+LDFLAGS += -lgc
+endif # end of [ifeq]
 
 ######
 
