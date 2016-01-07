@@ -20,8 +20,10 @@ cleanall::
 
 ######
 
-all:: queens_lazy
-regress:: queens_lazy; ./$<
+all:: \
+queens_lazy
+regress:: \
+queens_lazy; ./$< > /dev/null
 cleanall:: ; $(RMF) queens_lazy
 
 ######

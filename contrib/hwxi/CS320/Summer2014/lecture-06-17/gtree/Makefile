@@ -16,12 +16,16 @@ cleanall::
 
 ######
 
-all:: queen-puzzle
-regress:: queen-puzzle; ./$<
+all:: \
+queen-puzzle
+regress:: \
+queen-puzzle; ./$< > /dev/null
 cleanall:: ; $(RMF) queen-puzzle
 
-all:: queen-puzzle2
-regress:: queen-puzzle2; ./$<
+all:: \
+queen-puzzle2
+regress:: \
+queen-puzzle2; ./$< > /dev/null
 cleanall:: ; $(RMF) queen-puzzle2
 
 ######

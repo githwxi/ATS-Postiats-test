@@ -15,7 +15,7 @@ queens
 queens: \
 queens.dats; \
 $(PATSCC) -DATS_MEMALLOC_LIBC -o $@ $<
-regress:: queens; ./queens
+regress:: queens; ./queens > /dev/null
 cleanall:: ; rm -f queens
 
 ######
