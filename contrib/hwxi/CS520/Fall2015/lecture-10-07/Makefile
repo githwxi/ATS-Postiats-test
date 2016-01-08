@@ -32,7 +32,6 @@ RMF=rm -f
 ######
 
 testall:: all
-testall:: regress
 testall:: cleanall
 
 ######
