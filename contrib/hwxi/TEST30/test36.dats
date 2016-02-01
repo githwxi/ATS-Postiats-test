@@ -42,7 +42,7 @@ end;
 //
 let fun loop (i: int): void =
 (
-if i <= level
+if i <= 2*level-1
 then (print! ("*"); loop (i + 1))
 else ()
 )
@@ -63,10 +63,20 @@ end;
 println!();
 ) (* end of [else] *)
 
+(* ****** ****** *)
+//
 implement
-show_triangle(level) = show_triangle_aux(level, level)
+show_triangle(level) =
+  show_triangle_aux(level, level)
+//
+(* ****** ****** *)
 
-implement main0() = show_triangle(5)
+implement
+main0() =
+{
+  val () = show_triangle(3)
+  val () = show_triangle(5)
+}
 
 (* ****** ****** *)
 
