@@ -57,6 +57,35 @@ cleanall:: ; $(RMF) test33
 
 ## ###### ###### ##
 
+all:: \
+test34
+test34: \
+test34.dats; \
+$(PATSCC) -DATS_MEMALLOC_LIBC -o $@ $<
+regress:: test34; ./test34
+cleanall:: ; $(RMF) test34
+
+## ###### ###### ##
+
+all:: \
+test35
+test35: \
+test35.dats; \
+$(PATSCC) -DATS_MEMALLOC_LIBC -o $@ $<
+regress:: test35; ./test35
+cleanall:: ; $(RMF) test35
+
+## ###### ###### ##
+
+all:: \
+test36
+test36: \
+test36.dats; $(PATSCC) -o $@ $<
+regress:: test36; ./test36
+cleanall:: ; $(RMF) test36
+
+## ###### ###### ##
+
 testall:: all
 testall:: regress
 testall:: cleanall
