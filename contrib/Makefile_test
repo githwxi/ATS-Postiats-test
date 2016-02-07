@@ -18,12 +18,5 @@ hwxi:: ; \
 $(MAKE) -C hwxi -f Makefile_test
 #
 ######
-#
-all:: \
-bbarker
-bbarker:: ; \
-$(MAKE) -C bbarker -f Makefile_test
-#
-######
 
 ###### end of [Makefile_test] ######

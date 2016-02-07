@@ -21,6 +21,7 @@ ifold2
     
 (* ****** ****** *)
 
+(*
 fun{}
 sqrmodsum
   (n: int, d: int): int =
@@ -33,7 +34,26 @@ ifold2
 , 0
 ) (* ifold2 *)
 ) (* end of [sqrmodsum] *)
+*)
 
+(* ****** ****** *)
+//
+// HX-2015-12-31:
+// this one need a cast:
+//
+fun{}
+sqrmodsum
+  (n: int, d: int): int = let
+//
+var
+fopr =
+lam@(res: int, x: int): int =<clo1>
+  if x mod d = 0 then res + x * x else res
+//
+in
+  ifold2(10, $UNSAFE.cast(addr@fopr), 0)
+end // end of [sqrmodsum]
+//
 (* ****** ****** *)
 
 fun
@@ -57,20 +77,12 @@ lam@(res: int, x: int): int =<clo1>
 //
 in
   ifold2_(10, fopr, 0)
-end // end of [sqrmodsum2]
+end // end of [sqrmodsum_]
 
 (* ****** ****** *)
 
-(*
-//
-// This one calls 'malloc':
-//
+
 val () = println! ("sqrmodsum(10, 2) = ", sqrmodsum(10, 2))
-//
-*)
-
-(* ****** ****** *)
-
 val () = println! ("sqrmodsum_(10, 2) = ", sqrmodsum_(10, 2))
 
 (* ****** ****** *)
