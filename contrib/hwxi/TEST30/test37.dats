@@ -31,8 +31,17 @@ chss_iclass =
 //
 (* ****** ****** *)
 //
+(*
 dataprop
 chss_p(int) = {s:int | s <= 7} CHSS(s) of ()
+*)
+//
+stacst chss_p: int -> bool
+//
+extern
+praxi
+lemma_chss_p
+  {s:int | s <= 7}(): [chss_p(s)] void
 //
 (* ****** ****** *)
 //
@@ -41,8 +50,8 @@ abst@ype event_source_t
 extern
 fun
 chEvtObjectInit
-  {s:int}
-  (!chss(s), chss_p(s) | cPtr0(event_source_t)): void = "mac#"
+  {s:int | chss_p(s)}
+  (!chss(s) | cPtr0(event_source_t)): void = "mac#"
 //
 (* ****** ****** *)
 
