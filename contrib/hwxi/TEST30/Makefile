@@ -88,8 +88,19 @@ cleanall:: ; $(RMF) test36
 #
 all:: \
 test37
-test37: test37.dats; $(PATSCC) -tcats $<
+test37: \
+test37.dats; $(PATSCC) -tcats $<
 #
+## ###### ###### ##
+
+all:: \
+test38
+test38: \
+test38.dats; \
+$(PATSCC) -DATS_MEMALLOC_LIBC -o $@ $<
+regress:: test38; ./test38
+cleanall:: ; $(RMF) test38
+
 ## ###### ###### ##
 
 testall:: all
