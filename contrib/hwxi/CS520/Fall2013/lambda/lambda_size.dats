@@ -25,7 +25,7 @@ case+ t0 of
 | TMfix (_, _, t) => 1 + size (t)
 | TMapp (t1, t2) => 1 + size (t1) + size (t2)
 | TMopr (opr, ts) =>
-    list0_foldleft<term><int> (ts, 1, lam (res, t) => res + size (t))
+    list0_foldleft<int><term> (ts, 1, lam (res, t) => res + size (t))
 | TMifnz (t1, t2, t3) => 1 + size (t1) + size (t2) + size (t3)
 )
 
