@@ -1,6 +1,7 @@
 (* ****** ****** *)
 (*
-** For testing ATSLIB/prelude
+** For testing
+** ATSLIB/prelude/list
 *)
 (* ****** ****** *)
 (*
@@ -34,6 +35,10 @@
 //
 (* ****** ****** *)
 //
+#if
+undefined(TEST_INCLUDE)
+#then
+//
 #include
 "share/atspre_define.hats"
 //
@@ -42,62 +47,64 @@
 #include
 "share/HATS/atspre_staload_libats_ML.hats"
 //
-(* ****** ****** *)
-//
-staload UN = $UNSAFE
-//
-staload
-TIME = "libc/SATS/time.sats"
-staload
-STDLIB = "libc/SATS/stdlib.sats"
+#endif // end of [TEST_INCLUDE]
 //
 (* ****** ****** *)
-
-#define TEST_INCLUDE 1
-
-(* ****** ****** *)
 //
-val () =
-$STDLIB.srandom
-(
-  $UN.cast{uint}($TIME.time_get())
-) (* $STDLIB.srandom *)
+macdef
+INTMAX =
+$UNSAFE.cast
+  {intGte(1)}((1 << 31) + (1 << 31 - 1))
 //
 (* ****** ****** *)
-
-local
-#include
-"test_bool.dats"
-in (* nothing *) end
-
+//
+macdef int() = randint(INTMAX)
+//
 (* ****** ****** *)
-
-local
-#include
-"test_integer.dats"
-in (* nothing *) end
-
-(* ****** ****** *)
-
-local
-#include "test_list.dats"
-in (* nothing *) end
-
-(* ****** ****** *)
+//
+extern
+fun{}
+intlist(n: intGte(0)): List0(int)
 //
 implement
-main0
+{}(*tmp*)
+intlist(n) =
+list_vt2t
 (
-// argless
-) =
+stream_take_exn
+(
+stream_vt2t
+(
+stream_vt_tabulate<int>() where
 {
-val() =
-println!
-(
-  "ATS-Postiate-test/core/ATSLIB/prelude: Testing has passed!"
-) (* println! *)
-} (* end of [main0] *)
+//
+implement
+stream_vt_tabulate$fopr<int>(_) = int()
+//
+} (* end of [intlist] *)
+) (* end of [stream_vt2t] *)
+,
+n
+) (* end of [stream_take_exn] *)
+) (* end of [list_vt2t] *)
+//
+(* ****** ****** *)
+//
+macdef
+reverse(xs) = list_vt2t(list_reverse(,(xs)))
 //
 (* ****** ****** *)
 
-(* end of [test_prelude.dats] *)
+val () =
+{
+//
+val xs = intlist(randint(10))
+val ys = intlist(randint(10))
+//
+val () = assertloc(reverse(xs+ys) = reverse(ys)+reverse(xs))
+//
+} (* end of [val] *)
+
+(* ****** ****** *)
+
+(* end of [test_list.dats] *)
