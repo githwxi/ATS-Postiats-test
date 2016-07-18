@@ -116,9 +116,19 @@ val LN = 1000
 val xs = intlist(LN)
 val ys = intlist(LN)
 //
-val () = assertloc(reverse(zip(xs, ys)) = zip(reverse(xs), reverse(ys)))
+val () =
+assertloc
+  (reverse(zip(xs, ys)) = zip(reverse(xs), reverse(ys)))
 //
 } (* end of [val] *)
+
+(* ****** ****** *)
+
+val() =
+println!
+(
+  "ATS-Postiate-test/core/ATSLIB/prelude: test_list is done!
+) (* println! *)
 
 (* ****** ****** *)
 
