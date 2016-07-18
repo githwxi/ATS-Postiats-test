@@ -110,7 +110,8 @@ repeat (
 val () =
 repeat (
   N
-, $delay (
+, $delay
+  (
     let val x = int()
         and y = int() in
         assertloc((x-y)*(x-y) = x*x-2*x*y+y*y) end
@@ -121,13 +122,22 @@ val () =
 repeat (
   N
 , $delay
-  (
-    let val x = int()
-        and y = ckastloc_gintGte(int(), 1) in assertloc(x = (x/y)*y+(x%y)) end
+  ( let
+    val x = int()
+    and y = g1ofg0(int())
+    val _ = assertloc(y >= 1) in assertloc(x=(x/y)*y+(x%y)) end
   ) (* $ldelay *)
 ) (* repeat *)
 //
 } (* end of [val] *)
+
+(* ****** ****** *)
+
+val () =
+println!
+(
+  "ATS-Postiate-test/core/ATSLIB/prelude: test_integer is done!"
+) (* println! *)
 
 (* ****** ****** *)
 

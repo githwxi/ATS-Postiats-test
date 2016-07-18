@@ -192,4 +192,12 @@ val () = assertloc(compare(f, f) = 0)
 
 (* ****** ****** *)
 
+val () =
+println!
+(
+  "ATS-Postiate-test/core/ATSLIB/prelude: test_bool is done!"
+) (* println! *)
+
+(* ****** ****** *)
+
 (* end of [test_bool.dats] *)

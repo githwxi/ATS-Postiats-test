@@ -124,10 +124,10 @@ assertloc
 
 (* ****** ****** *)
 
-val() =
+val () =
 println!
 (
-  "ATS-Postiate-test/core/ATSLIB/prelude: test_list is done!
+  "ATS-Postiate-test/core/ATSLIB/prelude: test_list is done!"
 ) (* println! *)
 
 (* ****** ****** *)
