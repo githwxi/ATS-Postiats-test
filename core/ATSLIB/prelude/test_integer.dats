@@ -35,18 +35,73 @@ $UNSAFE.cast
   {intGte(1)}((1 << 31) + (1 << 31 - 1))
 //
 (* ****** ****** *)
+//
+macdef int() = randint(INTMAX)
+//
+(* ****** ****** *)
+//
+val () =
+{
+//
+val () = let
+//
+val x = int()
+//
+in
+//
+assertloc
+(
+  x =
+  g0string2int(strptr2string(g0int2string(x)))
+) (* assertloc *)
+//
+end // end of [val]
+//
+} (* end of [val] *)
+
+(* ****** ****** *)
 
 val () =
 {
 //
-macdef int() = randint(INTMAX)
+val
+N = 10
 //
-val N = 10
-val () = repeat
-(
+val () =
+repeat (
   N
 , $delay (
-    let val x = int() and y = int() in assertloc(x+y = y+x) end
+    let val x = int()
+        and y = int() in assertloc(x+y = y+x) end
+  ) (* $ldelay *)
+) (* repeat *)
+//
+val () =
+repeat (
+  N
+, $delay (
+    let val x = int()
+        and y = int() in assertloc(x*y = y*x) end
+  ) (* $ldelay *)
+) (* repeat *)
+//
+val () =
+repeat (
+  N
+, $delay (
+    let val x = int()
+        and y = int() in
+        assertloc((x-y)*(x-y) = x*x-2*x*y+y*y) end
+  ) (* $ldelay *)
+) (* repeat *)
+//
+val () =
+repeat (
+  N
+, $delay
+  (
+    let val x = int()
+        and y = ckastloc_gintGte(int(), 1) in assertloc(x = (x/y)*y+(x%y)) end
   ) (* $ldelay *)
 ) (* repeat *)
 //

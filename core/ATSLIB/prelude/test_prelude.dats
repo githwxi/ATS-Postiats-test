@@ -20,11 +20,15 @@
 
 (* ****** ****** *)
 
+local
 #include "test_bool.dats"
+in (* nothing *) end
 
 (* ****** ****** *)
 
+local
 #include "test_integer.dats"
+in (* nothing *) end
 
 (* ****** ****** *)
 //
