@@ -71,35 +71,26 @@ implement
 intlist(n) =
 list_vt2t
 (
-stream_take_exn
-(
-stream_vt2t
-(
-stream_vt_tabulate<int>() where
-{
-//
-implement
-stream_vt_tabulate$fopr<int>(_) = int()
-//
-} (* end of [intlist] *)
-) (* end of [stream_vt2t] *)
-,
-n
-) (* end of [stream_take_exn] *)
-) (* end of [list_vt2t] *)
+ list_tabulate<int>(n)
+ where { implement list_tabulate$fopr<int>(_) = int() }
+) (* end of [intlist] *)
 //
 (* ****** ****** *)
 //
 macdef
-reverse(xs) = list_vt2t(list_reverse(,(xs)))
+reverse(xs) =
+list_vt2t(list_reverse(,(xs)))
 //
 (* ****** ****** *)
 
 val () =
 {
 //
-val xs = intlist(randint(10))
-val ys = intlist(randint(10))
+val LN =
+$UNSAFE.cast{intGte(1)}(1E3)
+//
+val xs = intlist(randint(LN))
+val ys = intlist(randint(LN))
 //
 val () = assertloc(reverse(xs+ys) = reverse(ys)+reverse(xs))
 //
