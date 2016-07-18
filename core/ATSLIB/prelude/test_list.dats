@@ -50,6 +50,10 @@ undefined(TEST_INCLUDE)
 #endif // end of [TEST_INCLUDE]
 //
 (* ****** ****** *)
+
+staload UN = $UNSAFE
+
+(* ****** ****** *)
 //
 macdef
 INTMAX =
@@ -82,17 +86,37 @@ reverse(xs) =
 list_vt2t(list_reverse(,(xs)))
 //
 (* ****** ****** *)
+//
+macdef
+zip(xs, ys) =
+list_vt2t(list_zip(,(xs), ,(ys)))
+//
+(* ****** ****** *)
 
 val () =
 {
 //
 val LN =
-$UNSAFE.cast{intGte(1)}(1E3)
+$UN.cast{intGte(1)}(1E3)
 //
 val xs = intlist(randint(LN))
 val ys = intlist(randint(LN))
 //
 val () = assertloc(reverse(xs+ys) = reverse(ys)+reverse(xs))
+//
+} (* end of [val] *)
+
+(* ****** ****** *)
+
+val () =
+{
+//
+val LN = 1000
+//
+val xs = intlist(LN)
+val ys = intlist(LN)
+//
+val () = assertloc(reverse(zip(xs, ys)) = zip(reverse(xs), reverse(ys)))
 //
 } (* end of [val] *)
 
