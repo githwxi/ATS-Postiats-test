@@ -12,8 +12,9 @@ all::
 
 ######
 #
-all:: prelude
-MISC:: ; \
+all:: \
+prelude
+prelude:: ; \
 $(MAKE) -C prelude -f Makefile testall
 #
 ######
