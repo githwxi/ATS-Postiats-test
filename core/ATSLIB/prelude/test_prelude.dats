@@ -23,6 +23,10 @@
 #include "test_bool.dats"
 
 (* ****** ****** *)
+
+#include "test_integer.dats"
+
+(* ****** ****** *)
 //
 implement
 main0

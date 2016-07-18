@@ -18,15 +18,17 @@ regress::
 cleanall::
 
 ## ###### ###### ##
-
+#
 all:: \
 test_prelude
 test_prelude: \
 test_prelude.dats; \
-$(PATSCC) -DATS_MEMALLOC_LIBC -O2 -o $@ $<
-regress:: test_prelude; ./test_prelude
+$(PATSCC) -D_GNU_SOURCE -DATS_MEMALLOC_LIBC -O2 -o $@ $<
+#
+regress:: \
+test_prelude; ./test_prelude
 cleanall:: ; $(RMF) test_prelude
-
+#
 ## ###### ###### ##
 
 testall:: all
