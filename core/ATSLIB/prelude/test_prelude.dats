@@ -33,7 +33,7 @@ main0
 val() =
 println!
 (
-  "ATS-Postiate-test/core/ATSLIB/prelude: testing is done!"
+  "ATS-Postiate-test/core/ATSLIB/prelude: Testing has passed!"
 ) (* println! *)
 } (* end of [main0] *)
 //

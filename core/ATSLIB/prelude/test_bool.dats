@@ -67,4 +67,107 @@ assertloc(bool2int1(false) = 0)
 //
 (* ****** ****** *)
 
+val () =
+{
+//
+val t = true
+val f = false
+//
+val () = assertloc((t || t) = t)
+val () = assertloc((t || f) = t)
+val () = assertloc((f || t) = t)
+val () = assertloc((f || f) = f)
+//
+val () = assertloc((t && t) = t)
+val () = assertloc((t && f) = f)
+val () = assertloc((f && t) = f)
+val () = assertloc((f && f) = f)
+//
+} (* end of [val] *)
+
+(* ****** ****** *)
+
+val () =
+{
+//
+val t = true
+val f = false
+//
+val () = assertloc(~(t) = f)
+val () = assertloc(~(f) = t)
+//
+val () = assertloc((t + t) = t)
+val () = assertloc((t + f) = t)
+val () = assertloc((f + t) = t)
+val () = assertloc((f + f) = f)
+//
+val () = assertloc((t * t) = t)
+val () = assertloc((t * f) = f)
+val () = assertloc((f * t) = f)
+val () = assertloc((f * f) = f)
+//
+val () = assertloc((t = t) = t)
+val () = assertloc((t = f) = f)
+val () = assertloc((f = t) = f)
+val () = assertloc((f = f) = t)
+//
+val () = assertloc((t != t) = f)
+val () = assertloc((t != f) = t)
+val () = assertloc((f != t) = t)
+val () = assertloc((f != f) = f)
+//
+val () = assertloc((t xor t) = f)
+val () = assertloc((t xor f) = t)
+val () = assertloc((f xor t) = t)
+val () = assertloc((f xor f) = f)
+//
+} (* end of [val] *)
+
+(* ****** ****** *)
+
+val () =
+{
+//
+val t = true
+val f = false
+//
+val () = assertloc((t < t) = f)
+val () = assertloc((t < f) = f)
+val () = assertloc((f < t) = t)
+val () = assertloc((f < f) = f)
+//
+val () = assertloc((t <= t) = t)
+val () = assertloc((t <= f) = f)
+val () = assertloc((f <= t) = t)
+val () = assertloc((f <= f) = t)
+//
+val () = assertloc((t > t) = f)
+val () = assertloc((t > f) = t)
+val () = assertloc((f > t) = f)
+val () = assertloc((f > f) = f)
+//
+val () = assertloc((t >= t) = t)
+val () = assertloc((t >= f) = t)
+val () = assertloc((f >= t) = f)
+val () = assertloc((f >= f) = t)
+//
+} (* end of [val] *)
+
+(* ****** ****** *)
+
+val () =
+{
+//
+val t = true
+val f = false
+//
+val () = assertloc(compare(t, t) = 0)
+val () = assertloc(compare(t, f) = 1)
+val () = assertloc(compare(f, t) = ~1)
+val () = assertloc(compare(f, f) = 0)
+//
+} (* end of [val] *)
+
+(* ****** ****** *)
+
 (* end of [test_bool.dats] *)
