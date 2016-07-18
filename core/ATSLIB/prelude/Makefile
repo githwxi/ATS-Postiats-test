@@ -23,7 +23,7 @@ all:: \
 test_prelude
 test_prelude: \
 test_prelude.dats; \
-$(PATSCC) -D_GNU_SOURCE -DATS_MEMALLOC_GCBDW -O2 -o $@ $< -lgc
+$(PATSCC) -D_GNU_SOURCE -DATS_MEMALLOC_LIBC -O2 -o $@ $<
 #
 regress:: \
 test_prelude; ./test_prelude

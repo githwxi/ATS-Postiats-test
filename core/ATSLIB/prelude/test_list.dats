@@ -5,7 +5,6 @@
 *)
 (* ****** ****** *)
 (*
-**
 ** Permission is hereby granted, free of charge, to any person
 ** obtaining a copy of this software and associated documentation
 ** files (the "Software"), to deal in the Software without
@@ -103,6 +102,39 @@ val xs = intlist(randint(LN))
 val ys = intlist(randint(LN))
 //
 val () = assertloc(reverse(xs+ys) = reverse(ys)+reverse(xs))
+//
+} (* end of [val] *)
+
+(* ****** ****** *)
+
+val () =
+{
+//
+val LN = 1000
+//
+val xs = intlist(LN)
+//
+val ys =
+list_map<int><int>
+  (xs) where
+{
+implement
+list_map$fopr<int><int>(x) = x + 1
+} (* end of [val] *)
+//
+val ys = list_vt2t(ys)
+//
+val zs =
+list_map<int><int>
+  (ys) where
+{
+implement
+list_map$fopr<int><int>(x) = x - 1
+} (* end of [val] *)
+//
+val zs = list_vt2t(zs)
+//
+val () = assertloc (xs = zs)
 //
 } (* end of [val] *)
 
