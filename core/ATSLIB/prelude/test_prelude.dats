@@ -83,6 +83,12 @@ local
 in (* nothing *) end
 
 (* ****** ****** *)
+
+local
+#include "test_list_vt.dats"
+in (* nothing *) end
+
+(* ****** ****** *)
 //
 implement
 main0
