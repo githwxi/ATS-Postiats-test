@@ -89,6 +89,12 @@ local
 in (* nothing *) end
 
 (* ****** ****** *)
+
+local
+#include "test_array.dats"
+in (*nothing*) end // local
+
+(* ****** ****** *)
 //
 implement
 main0

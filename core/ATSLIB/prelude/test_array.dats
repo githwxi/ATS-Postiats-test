@@ -1,7 +1,7 @@
 (* ****** ****** *)
 (*
 ** For testing
-** ATSLIB/prelude/list_vt
+** ATSLIB/prelude/array
 *)
 (* ****** ****** *)
 (*
@@ -60,110 +60,13 @@ $UNSAFE.cast
   {intGte(1)}((1 << 31) + (1 << 31 - 1))
 //
 (* ****** ****** *)
-//
-macdef int() = randint(INTMAX)
-//
-(* ****** ****** *)
-//
-extern
-fun{}
-intlist(n: intGte(0)): List0_vt(int)
-//
-implement
-{}(*tmp*)
-intlist(n) =
-(
- list_tabulate<int>(n)
- where { implement list_tabulate$fopr<int>(_) = int() }
-) (* end of [intlist] *)
-//
-(* ****** ****** *)
-//
-extern
-fun{a:t@ype}
-list_vt_eqfree
-(
-  List_vt(INV(a)), List_vt(a)
-) : bool // end-of-function
-//
-overload eqfree with list_vt_eqfree
-//
-implement
-{a}(*tmp*)
-list_vt_eqfree
-  (xs, ys) =
-  loop(xs, ys) where
-{
-//
-fun
-loop
-(
-  xs: List_vt(a)
-, ys: List_vt(a)
-) : bool =
-(
-  case+ xs of
-  | ~list_vt_nil() =>
-    (
-      case+ ys of
-      | ~list_vt_nil() => true
-      | ~list_vt_cons(_, ys) => (free(ys); false)
-    )
-  | ~list_vt_cons(x, xs) =>
-    (
-      case+ ys of
-      | ~list_vt_nil() =>
-          (free xs; false)
-      | ~list_vt_cons(y, ys) =>
-        (
-          if gequal_val_val<a>(x, y)
-            then loop(xs, ys) else (free(xs); free(ys); false)
-          // end of [if]
-        ) (* end of [list_vt_cons] *)
-          
-    )
-) (* end of [loop] *)
-//
-} (* end of [list_vt_eqfree] *)
-//
-(* ****** ****** *)
-//
-macdef
-append(xs, ys) =
-list_vt_append(,(xs), ,(ys))
-//
-macdef
-reverse(xs) = list_vt_reverse(,(xs))
-//
-(* ****** ****** *)
-
-val () =
-{
-//
-val LN = 1000
-val xs = intlist(LN)
-val ys = intlist(LN)
-//
-val xs2 = copy(xs)
-val ys2 = copy(ys)
-//
-val () = assertloc
-(
-eqfree(
-  reverse(append(xs, ys)), append(reverse(ys2), reverse(xs2))
-)
-) (* end of [assertloc] *)
-//
-} (* end of [val] *)
-
-(* ****** ****** *)
 
 val () =
 println!
 (
-  "ATS-Postiate-test/core/ATSLIB/prelude: test_list_vt is done!"
+  "ATS-Postiate-test/core/ATSLIB/prelude: test_array is done!"
 ) (* println! *)
 
 (* ****** ****** *)
 
-(* end of [test_list_vt.dats] *)
+(* end of [test_array.dats] *)
