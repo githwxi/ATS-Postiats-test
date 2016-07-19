@@ -60,6 +60,57 @@ $UNSAFE.cast
   {intGte(1)}((1 << 31) + (1 << 31 - 1))
 //
 (* ****** ****** *)
+//
+macdef int() = randint(INTMAX)
+//
+(* ****** ****** *)
+//
+extern
+fun{}
+intlist{n:nat}(int(n)): list_vt(int, n)
+//
+implement
+{}(*tmp*)
+intlist(n) =
+(
+ list_tabulate<int>(n)
+ where { implement list_tabulate$fopr<int>(_) = int() }
+) (* end of [intlist] *)
+//
+(* ****** ****** *)
+
+val () =
+{
+//
+val N = 100
+//
+val
+(pf, pf_gc | p) = 
+array_ptr_alloc<int>(i2sz(N))
+//
+val xs = intlist(N)
+//
+val () =
+array_copy_from_list_vt
+  (!p, copy(xs))
+//
+val ys =
+array_copy_to_list_vt<int>
+  (!p, i2sz(N))
+//
+val () =
+assertloc
+(
+  $UN.list_vt2t(xs) = $UN.list_vt2t(ys)
+) (* end of [val] *)
+//
+val () = free(xs) and () = free(ys)
+//
+val () = array_ptr_free(pf, pf_gc | p)
+//
+} (* end-of-val *)
+
+(* ****** ****** *)
 
 val () =
 println!
