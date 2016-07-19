@@ -1,7 +1,7 @@
 (* ****** ****** *)
 (*
 ** For testing
-** ATSLIB/prelude/array
+** ATSLIB/prelude/arrayref
 *)
 (* ****** ****** *)
 (*
@@ -82,60 +82,15 @@ intlist(n) =
 val () =
 {
 //
-val N = 100
-//
-val
-(pf, pf_gc | p) = 
-array_ptr_alloc<int>(i2sz(N))
-//
-val xs = intlist(N)
-//
-val () =
-array_copy_from_list_vt
-  (!p, copy(xs))
-//
-val ys =
-array_copy_to_list_vt(!p, i2sz(N))
-//
-val () =
-assertloc
-(
-  $UN.list_vt2t(xs) = $UN.list_vt2t(ys)
-) (* end of [val] *)
-//
-val () = free(xs) and () = free(ys)
-//
-val () = array_ptr_free(pf, pf_gc | p)
-//
-} (* end-of-val *)
-
-(* ****** ****** *)
-
-val () =
-{
-//
-val N = 100
-//
-val
-(pf, pf_gc | p) = 
-array_ptr_tabulate<int>(i2sz(N))
-where {
-implement
-array_tabulate$fopr<int>(x) = sz2i(x)+1
-} (* where *)
-//
-var env: int = 0
-val asz =
-array_foreach_env<int><int>(!p, i2sz(N), env)
-where {
+val LN = 10
+val A0 = arrayref_make_intrange(0, LN)
+var tally: int = 0
+val _asz_ =
+arrayref_foreach_env<int><int>(A0, i2sz(LN), tally)
+where{
 implement
 array_foreach$fwork<int><int>(x, env) = env := env + x
-} (* where *)
-//
-val () = assertloc(asz = N)
-val () = assertloc(env = N*(N+1)/2)
-//
-val () = array_ptr_free(pf, pf_gc | p)
+} (* end of [where] *)
 //
 } (* end-of-val *)
 
@@ -144,9 +99,9 @@ val () = array_ptr_free(pf, pf_gc | p)
 val () =
 println!
 (
-  "ATS-Postiate-test/core/ATSLIB/prelude: test_array is done!"
+  "ATS-Postiate-test/core/ATSLIB/prelude: test_arrayref is done!"
 ) (* println! *)
 
 (* ****** ****** *)
 
-(* end of [test_array.dats] *)
+(* end of [test_arrayref.dats] *)

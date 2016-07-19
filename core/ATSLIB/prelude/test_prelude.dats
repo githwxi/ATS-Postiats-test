@@ -93,6 +93,9 @@ in (* nothing *) end
 local
 #include "test_array.dats"
 in (*nothing*) end // local
+local
+#include "test_arrayref.dats"
+in (*nothing*) end // local
 
 (* ****** ****** *)
 //
