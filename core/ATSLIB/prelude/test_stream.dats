@@ -1,6 +1,7 @@
 (* ****** ****** *)
 (*
-** For testing ATSLIB/prelude
+** For testing
+** ATSLIB/prelude/stream
 *)
 (* ****** ****** *)
 (*
@@ -33,6 +34,10 @@
 //
 (* ****** ****** *)
 //
+#if
+undefined(TEST_INCLUDE)
+#then
+//
 #include
 "share/atspre_define.hats"
 //
@@ -41,83 +46,56 @@
 #include
 "share/HATS/atspre_staload_libats_ML.hats"
 //
-(* ****** ****** *)
+#endif // end of [TEST_INCLUDE]
 //
+(* ****** ****** *)
+
 staload UN = $UNSAFE
-//
-staload
-TIME = "libc/SATS/time.sats"
-staload
-STDLIB = "libc/SATS/stdlib.sats"
-//
-(* ****** ****** *)
-
-#define TEST_INCLUDE 1
 
 (* ****** ****** *)
 //
+macdef
+INTMAX =
+$UNSAFE.cast
+  {intGte(1)}((1 << 31) + (1 << 31 - 1))
+//
+(* ****** ****** *)
+//
+macdef int() = randint(INTMAX)
+//
+(* ****** ****** *)
+
 val () =
-$STDLIB.srandom
-(
-  $UN.cast{uint}($TIME.time_get())
-) (* $STDLIB.srandom *)
-//
-(* ****** ****** *)
-
-local
-#include
-"test_bool.dats"
-in (* nothing *) end
-
-(* ****** ****** *)
-
-local
-#include
-"test_integer.dats"
-in (* nothing *) end
-
-(* ****** ****** *)
-
-local
-#include "test_list.dats"
-in (* nothing *) end
-
-(* ****** ****** *)
-
-local
-#include "test_list_vt.dats"
-in (* nothing *) end
-
-(* ****** ****** *)
-
-local
-#include "test_array.dats"
-in (*nothing*) end // local
-local
-#include "test_arrayref.dats"
-in (*nothing*) end // local
-
-(* ****** ****** *)
-
-local
-#include "test_stream.dats"
-in (* nothing *) end
-
-(* ****** ****** *)
-//
-implement
-main0
-(
-// argless
-) =
 {
-val() =
+//
+val xs =
+stream_tabulate<int>()
+where {
+implement
+stream_tabulate$fopr<int>(i) = i+1
+} (* end of [where] *)
+//
+val N = 10
+val xs = stream_take_exn(xs, N)
+//
+val tally =
+(fix
+ f(xs: List_vt(int)): int =>
+  case+ xs of
+  | ~list_vt_nil() => 0 | ~list_vt_cons(x, xs) => x + f(xs))(xs)
+//
+ val () = assertloc(tally = N * (N+1) / 2)
+//
+} (* end of [val] *)
+
+(* ****** ****** *)
+
+val () =
 println!
 (
-  "ATS-Postiate-test/core/ATSLIB/prelude: Testing has passed!"
+  "ATS-Postiate-test/core/ATSLIB/prelude: test_stream is done!"
 ) (* println! *)
-} (* end of [main0] *)
-//
+
 (* ****** ****** *)
 
-(* end of [test_prelude.dats] *)
+(* end of [test_stream.dats] *)
