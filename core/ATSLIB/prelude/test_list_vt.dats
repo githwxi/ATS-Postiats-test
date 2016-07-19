@@ -159,6 +159,26 @@ eqfree(
 (* ****** ****** *)
 
 val () =
+{
+//
+val LN = 1000
+val xs = intlist(LN)
+val ys = copy(xs)
+//
+val xs =
+list_vt_mapfree<int><int>(xs)
+where { implement list_vt_mapfree$fopr<int><int>(x) = x + 1 }
+val xs =
+list_vt_mapfree<int><int>(xs)
+where { implement list_vt_mapfree$fopr<int><int>(x) = x - 1 }
+//
+val () = assertloc(eqfree(xs, ys))
+//
+} (* end of [val] *)
+
+(* ****** ****** *)
+
+val () =
 println!
 (
   "ATS-Postiate-test/core/ATSLIB/prelude: test_list_vt is done!"
