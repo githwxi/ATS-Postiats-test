@@ -95,8 +95,7 @@ array_copy_from_list_vt
   (!p, copy(xs))
 //
 val ys =
-array_copy_to_list_vt<int>
-  (!p, i2sz(N))
+array_copy_to_list_vt(!p, i2sz(N))
 //
 val () =
 assertloc
@@ -105,6 +104,34 @@ assertloc
 ) (* end of [val] *)
 //
 val () = free(xs) and () = free(ys)
+//
+val () = array_ptr_free(pf, pf_gc | p)
+//
+} (* end-of-val *)
+
+(* ****** ****** *)
+
+val () =
+{
+//
+val N = 100
+//
+val
+(pf, pf_gc | p) = 
+array_ptr_tabulate<int>(i2sz(N))
+where {
+implement array_tabulate$fopr<int>(x) = sz2i(x)+1
+} (* where *)
+//
+var env: int = 0
+val asz =
+array_foreach_env<int><int>(!p, i2sz(N), env)
+where {
+implement
+array_foreach$fwork<int><int>(x, env) = env := env + x
+} (* where *)
+//
+val () = assertloc(env = N*(N+1)/2)
 //
 val () = array_ptr_free(pf, pf_gc | p)
 //
