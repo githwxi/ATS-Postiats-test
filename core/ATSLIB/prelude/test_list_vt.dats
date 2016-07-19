@@ -67,7 +67,7 @@ macdef int() = randint(INTMAX)
 //
 extern
 fun{}
-intlist(n: intGte(0)): List0_vt(int)
+intlist{n:nat}(int(n)): list_vt(int, n)
 //
 implement
 {}(*tmp*)
