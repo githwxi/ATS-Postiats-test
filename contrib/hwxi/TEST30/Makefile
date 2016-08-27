@@ -112,6 +112,15 @@ cleanall:: ; $(RMF) test39
 
 ## ###### ###### ##
 
+all:: \
+struct
+struct: \
+struct.dats; $(PATSCC) -o $@ $<
+regress:: struct; ./struct
+cleanall:: ; $(RMF) struct
+
+## ###### ###### ##
+
 testall:: all
 testall:: regress
 testall:: cleanall
