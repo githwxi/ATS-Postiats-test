@@ -1,3 +1,12 @@
+(* ****** ****** *)
+
+(*
+Please see the discussion at the following link:
+https://groups.google.com/forum/?fromgroups=#!topic/ats-lang-users/H0JJ4bwLn6A
+*)
+
+(* ****** ****** *)
+
 #include "share/atspre_define.hats"
 #include "share/atspre_staload.hats"
 
