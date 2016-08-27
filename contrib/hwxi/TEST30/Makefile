@@ -113,11 +113,18 @@ cleanall:: ; $(RMF) test39
 ## ###### ###### ##
 
 all:: \
-struct
-struct: \
-struct.dats; $(PATSCC) -o $@ $<
-regress:: struct; ./struct
-cleanall:: ; $(RMF) struct
+struct0
+struct0: \
+struct0.dats; $(PATSCC) -o $@ $<
+regress:: struct0; ./struct0
+cleanall:: ; $(RMF) struct0
+
+all:: \
+struct1
+struct1: \
+struct1.dats; $(PATSCC) -o $@ $<
+regress:: struct1; ./struct1
+cleanall:: ; $(RMF) struct1
 
 ## ###### ###### ##
 

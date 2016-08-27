@@ -88,4 +88,4 @@ main0 () = {
 
 (* ****** ****** *)
 
-(* end of [struct.dats] *)
+(* end of [struct0.dats] *)
