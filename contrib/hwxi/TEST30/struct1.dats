@@ -15,15 +15,19 @@ struct foo {
   struct bar **pp;
 };
 
-
 int
 struct_foo_ptr_get_x (struct foo *obj) { return obj->x ; }
+void
+struct_foo_ptr_set_x (struct foo *obj, int x) { obj->x = x; return; }
 void*
 struct_foo_ptr_get_p (struct foo *obj) { return obj->p ; }
 void*
 struct_foo_ptr_get_pp (struct foo *obj) { return obj->pp ; }
+
 int
 struct_bar_ptr_get_x (struct bar *obj) { return obj->x ; }
+void
+struct_bar_ptr_set_x (struct bar *obj, int x) { obj->x = x; return; }
 void*
 struct_bar_ptr_get_p (struct bar *obj) { return obj->p ; }
 
@@ -32,20 +36,20 @@ struct_bar_ptr_get_p (struct bar *obj) { return obj->p ; }
 (* ****** ****** *)
 
 vtypedef
-struct_foo = $extype_struct
-"struct foo" of
+struct_foo =
+$extype_struct "struct foo" of
 {
   x= int
-, p= Ptr0
-, pp= Ptr0
+, p= ptr
+, pp= ptr
 }
 
 vtypedef
-struct_bar = $extype_struct
-"struct bar" of
+struct_bar =
+$extype_struct "struct bar" of
 {
   x= int
-, p= Ptr0
+, p= ptr
 }
 
 (* ****** ****** *)
@@ -56,6 +60,10 @@ struct_foo_ptr_get_x
   : (!aPtr1(struct_foo)) -> int = "mac#"
 extern
 fun
+struct_foo_ptr_set_x
+  : (!aPtr1(struct_foo), int) -> void = "mac#"
+extern
+fun
 struct_foo_ptr_get_p
   : (!aPtr1(struct_foo)) -> aPtr0(struct_bar) = "mac#"
 extern
@@ -64,6 +72,7 @@ struct_foo_ptr_get_pp
   : (!aPtr1(struct_foo)) -> aPtr0(aPtr0(struct_bar)) = "mac#"
 //
 overload .x with struct_foo_ptr_get_x
+overload .x with struct_foo_ptr_set_x
 overload .p with struct_foo_ptr_get_p
 overload .pp with struct_foo_ptr_get_pp
 //
@@ -75,10 +84,15 @@ struct_bar_ptr_get_x
   : (!aPtr1(struct_bar)) -> int = "mac#"
 extern
 fun
+struct_bar_ptr_set_x
+  : (!aPtr1(struct_bar), int) -> void = "mac#"
+extern
+fun
 struct_bar_ptr_get_p
   : (!aPtr1(struct_bar)) -> aPtr0(struct_foo) = "mac#"
 //
 overload .x with struct_bar_ptr_get_x
+overload .x with struct_bar_ptr_set_x
 overload .p with struct_bar_ptr_get_p
 //
 (* ****** ****** *)
@@ -93,19 +107,32 @@ main0 () = {
   val () = vfoo.p := addr@vbar
   val () = vfoo.pp := addr@(vfoo.p)
 //
-  val () = vbar.x := 1
+  val () = vbar.x := 0
   val () = vbar.p := addr@vfoo
 //
   val pfoo = $UN.castvwtp0{aPtr1(struct_foo)}(addr@vfoo)
   val pbar = $UN.castvwtp0{aPtr1(struct_foo)}(addr@vbar)
 //
-  val () = println! ("foo.x = ", pfoo.x())
+  val () =
+  println! ("foo.x = ", pfoo.x())
+//
   val pfoo_p = pfoo.p()
   val () = assertloc(isneqz(pfoo_p))
-  val () = println! ("foo.p.x = ", pfoo_p.x())
+  val () = pfoo_p.x(1)
   prval () = $UN.cast2void(pfoo_p)
+  val () =
+  println! ("bar.x = ", pbar.x())
 //
-  val () = println! ("bar.x = ", pbar.x())
+  val pfoo_pp = pfoo.pp()
+  val () = assertloc(isneqz(pfoo_pp))
+  val (fpf | pfoo_pp_) = vtget(pfoo_pp)
+  val () = assertloc(isneqz(pfoo_pp_))
+  val () = pfoo_pp_.x(2)
+  prval () = minus_addback(fpf, pfoo_pp_ | pfoo_pp)
+  prval () = $UN.cast2void(pfoo_pp)
+  val () =
+  println! ("bar.x = ", pbar.x())
+//
   val pbar_p = pbar.p()
   val () = assertloc(isneqz(pbar_p))
   val () = println! ("bar.p.x = ", pbar_p.x())
