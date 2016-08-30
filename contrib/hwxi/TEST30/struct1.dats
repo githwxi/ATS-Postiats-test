@@ -134,7 +134,7 @@ main0 () = {
 //
   val pfoo_pp = pfoo.pp()
   val () = assertloc(isneqz(pfoo_pp))
-  val (fpf | pfoo_pp_) = vtget(pfoo_pp)
+  val (fpf | pfoo_pp_) = vtget1(pfoo_pp)
   val () = assertloc(isneqz(pfoo_pp_))
   val () = pfoo_pp_.x(2)
   prval () = minus_addback(fpf, pfoo_pp_ | pfoo_pp)
