@@ -62,9 +62,11 @@ in (* in-of-local *)
 implement
 {}(*tmp*)
 myrec$make
-  (a, b, c) = ref(@{a=a, b=b, c=c})
+(
+  a, b, c
+) = ref(@{a=a, b=b, c=c})
   //
-implement{} myrec$get_a(x) = $effmask_ref(x->a)
+implement{} myrec$get_a(x) = x->a
 implement{} myrec$set_a(x, a) = x->a := a
 //
 implement{} myrec$get_b(x) = x->b
