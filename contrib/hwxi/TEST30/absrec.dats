@@ -5,7 +5,7 @@
 (* ****** ****** *)
 //
 #staload
-"prelude/codegen.sats"
+"prelude/codegen2.sats"
 //
 (* ****** ****** *)
 
@@ -57,7 +57,7 @@ d= getref(VT0)
 (* ****** ****** *)
 //
 #ifdef
-CODEGEN2
+CODEGEN
 #then
 vtypedef
 myarr_t
@@ -79,13 +79,14 @@ _linear_ = unit_vt(*void*)
 } // end of [myarr_t]
 #codegen2
 (
-  absrec, myarr_t, myarr$
+absrec, myarr_t, myarr$
 ) (* #codegen2 *)
 #else
 //
-#include "./absrec_codegen2.hats"
+#include
+"./absrec_codegen2.hats"
 //
-#endif // ifdef(CODEGEN2)
+#endif // ifdef(CODEGEN)
 //
 (* ****** ****** *)
 //
@@ -114,7 +115,7 @@ prval () = fpf(pf)
 val () = myarr_free{int}(A)
 //
 } (* end of [test] *)
-#endif // end of [if]
+#endif // end of [if(COMPILE)]
 
 (* ****** ****** *)
 

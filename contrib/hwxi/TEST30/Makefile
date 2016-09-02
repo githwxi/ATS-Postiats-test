@@ -135,7 +135,7 @@ absrec.dats \
 absrec_codegen2.hats; \
 $(PATSCC) -tcats -DATS COMPILE absrec.dats
 absrec_codegen2.hats: absrec.dats; \
-$(PATSOPT) --codegen-2 -DATS CODEGEN2 -o $@ -d absrec.dats
+$(PATSOPT) --codegen-2 -DATS CODEGEN -o $@ -d absrec.dats
 cleanall:: ; $(RMF) absrec_codegen2.hats
 
 ## ###### ###### ##
