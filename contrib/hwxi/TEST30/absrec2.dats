@@ -1,5 +1,6 @@
 (*
-** For ATS2TUTORIAL
+** HX:
+** For testing absrec
 *)
 
 (* ****** ****** *)
@@ -81,11 +82,6 @@ _linear_ = unit_vt(*void*)
 (
 absrec, myarr_t, myarr$
 ) (* #codegen2 *)
-#else
-//
-#include
-"./absrec_codegen2.hats"
-//
 #endif // ifdef(CODEGEN)
 //
 (* ****** ****** *)
@@ -99,6 +95,10 @@ absrec, myarr_t, myarr$
 #if
 defined(COMPILE)
 #then
+//
+#include
+"./absrec2_codegen2.hats"
+//
 fun
 test() = () where
 {
@@ -119,4 +119,4 @@ val () = myarr_free{int}(A)
 
 (* ****** ****** *)
 
-(* end of [absrec.sats] *)
+(* end of [absrec2.sats] *)
