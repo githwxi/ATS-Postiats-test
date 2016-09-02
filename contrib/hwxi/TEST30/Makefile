@@ -138,6 +138,7 @@ $(PATSCC) -DATS COMPILE \
 absrec1_codegen.hats: absrec1.dats; \
 $(PATSOPT) --codegen-2 -DATS CODEGEN -o $@ -d absrec1.dats
 regress:: absrec1; ./absrec1
+cleanall:: ; $(RMF) absrec1
 cleanall:: ; $(RMF) absrec1_codegen.hats
 #
 all:: \
