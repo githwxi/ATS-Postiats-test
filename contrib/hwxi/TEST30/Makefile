@@ -132,24 +132,25 @@ all:: \
 absrec1
 absrec1: \
 absrec1.dats \
-absrec1_codegen2.hats; \
+absrec1_codegen.hats; \
 $(PATSCC) -DATS COMPILE \
   -DATS_MEMALLOC_LIBC -o $@ absrec1.dats 
-absrec1_codegen2.hats: absrec1.dats; \
+absrec1_codegen.hats: absrec1.dats; \
 $(PATSOPT) --codegen-2 -DATS CODEGEN -o $@ -d absrec1.dats
 regress:: absrec1; ./absrec1
-cleanall:: ; $(RMF) absrec1_codegen2.hats
-
+cleanall:: ; $(RMF) absrec1_codegen.hats
+#
 all:: \
 absrec2
 absrec2: \
 absrec2.dats \
-absrec2_codegen2.hats; \
+absrec2_codegen.hats; \
 $(PATSCC) -tcats -DATS COMPILE absrec2.dats
-absrec2_codegen2.hats: absrec2.dats; \
+#
+absrec2_codegen.hats: absrec2.dats; \
 $(PATSOPT) --codegen-2 -DATS CODEGEN -o $@ -d absrec2.dats
-cleanall:: ; $(RMF) absrec2_codegen2.hats
-
+cleanall:: ; $(RMF) absrec2_codegen.hats
+#
 ## ###### ###### ##
 
 testall:: all

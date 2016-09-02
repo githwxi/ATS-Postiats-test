@@ -97,7 +97,7 @@ defined(COMPILE)
 #then
 //
 #include
-"./absrec2_codegen2.hats"
+"./absrec2_codegen.hats"
 //
 fun
 test() = () where
