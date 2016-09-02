@@ -169,6 +169,15 @@ regress:: dotoverld; ./$<
 cleanall:: ; $(RMF) dotoverld
 #
 ## ###### ###### ##
+#
+all:: \
+integers
+integers: integers.dats; $(PATSCC) -o $@ $<
+#
+regress:: integers; ./$<
+cleanall:: ; $(RMF) integers
+#
+## ###### ###### ##
 
 testall:: all
 testall:: regress

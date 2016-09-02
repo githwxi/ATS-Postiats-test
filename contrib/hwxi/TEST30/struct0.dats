@@ -6,11 +6,13 @@ https://groups.google.com/forum/?fromgroups=#!topic/ats-lang-users/H0JJ4bwLn6A
 *)
 
 (* ****** ****** *)
-
+//
 #include "share/atspre_define.hats"
 #include "share/atspre_staload.hats"
-
-staload UN = "prelude/SATS/unsafe.sats"
+//
+#staload UN = "prelude/SATS/unsafe.sats"
+//
+(* ****** ****** *)
 
 %{^
 struct foo;

@@ -128,6 +128,18 @@ cleanall:: ; $(RMF) struct1
 
 ## ###### ###### ##
 
+all:: \
+absrec
+absrec: \
+absrec.dats \
+absrec_codegen2.hats; \
+$(PATSCC) -tcats -DATS COMPILE absrec.dats
+absrec_codegen2.hats: absrec.dats; \
+$(PATSOPT) --codegen-2 -DATS CODEGEN2 -o $@ -d absrec.dats
+cleanall:: ; $(RMF) absrec_codegen2.hats
+
+## ###### ###### ##
+
 testall:: all
 testall:: regress
 testall:: cleanall
