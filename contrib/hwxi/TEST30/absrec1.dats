@@ -48,7 +48,7 @@ defined(COMPILE)
 #then
 //
 #include
-"./absrec1_codegen2.hats"
+"./absrec1_codegen.hats"
 //
 local
 //
