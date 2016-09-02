@@ -65,14 +65,14 @@ myrec$make
 (
   a, b, c
 ) = ref(@{a=a, b=b, c=c})
-  //
+//
 implement{} myrec$get_a(x) = x->a
+implement{} myrec$get_b(x) = x->b
+implement{} myrec$get_c(x) = x->c
+//
+implement{} myrec$set_b(x, b) = x->b := b
 implement{} myrec$set_a(x, a) = x->a := a
 //
-implement{} myrec$get_b(x) = x->b
-implement{} myrec$set_b(x, b) = x->b := b
-//
-implement{} myrec$get_c(x) = x->c
 (*
 //
 // there is no update for the c-field:
