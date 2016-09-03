@@ -15,15 +15,16 @@ https://groups.google.com/forum/?fromgroups=#!topic/ats-lang-users/H0JJ4bwLn6A
 (* ****** ****** *)
 
 %{^
-struct foo;
-struct bar {
-  int x;
-  struct foo *p;
-};
+struct bar;
 struct foo {
   int x;
   struct bar *p;
   struct bar **pp;
+};
+struct bar {
+  int x;
+  struct foo f;
+  struct foo *p;
 };
 
 int
@@ -41,6 +42,8 @@ void
 struct_bar_ptr_set_x (struct bar *obj, int x) { obj->x = x; return; }
 void*
 struct_bar_ptr_get_p (struct bar *obj) { return obj->p ; }
+void*
+struct_bar_ptr_getref_f (struct bar *obj) { return &(obj->f) ; }
 
 %}
 
@@ -61,6 +64,7 @@ $extype_struct "struct bar" of
 {
   x= int
 , p= ptr
+, f= struct_foo
 }
 
 (* ****** ****** *)
@@ -102,9 +106,15 @@ fun
 struct_bar_ptr_get_p
   : (!aPtr1(struct_bar)) -> aPtr0(struct_foo) = "mac#"
 //
+extern
+fun
+struct_bar_ptr_getref_f
+  : (!aPtr1(struct_bar)) -> aPtr1(struct_foo) = "mac#"
+//
 overload .x with struct_bar_ptr_get_x
 overload .x with struct_bar_ptr_set_x
 overload .p with struct_bar_ptr_get_p
+overload .f_ref with struct_bar_ptr_getref_f
 //
 (* ****** ****** *)
 
@@ -120,9 +130,10 @@ main0 () = {
 //
   val () = vbar.x := 0
   val () = vbar.p := addr@vfoo
+  val () = vbar.f := vfoo
 //
   val pfoo = $UN.castvwtp0{aPtr1(struct_foo)}(addr@vfoo)
-  val pbar = $UN.castvwtp0{aPtr1(struct_foo)}(addr@vbar)
+  val pbar = $UN.castvwtp0{aPtr1(struct_bar)}(addr@vbar)
 //
   val () =
   println! ("foo.x = ", pfoo.x())
@@ -148,6 +159,9 @@ main0 () = {
   val () = assertloc(isneqz(pbar_p))
   val () = println! ("bar.p.x = ", pbar_p.x())
   prval () = $UN.cast2void(pbar_p)
+  val pbar_f_ref = pbar.f_ref()
+  val () = println! ("bar.f.x = ", pbar_f_ref.x())
+  prval () = $UN.cast2void(pbar_f_ref)
 //
   prval () = $UN.cast2void(pfoo) and () = $UN.cast2void(pbar)
 //
