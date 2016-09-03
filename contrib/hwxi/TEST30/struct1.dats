@@ -42,6 +42,10 @@ void
 struct_bar_ptr_set_x (struct bar *obj, int x) { obj->x = x; return; }
 void*
 struct_bar_ptr_get_p (struct bar *obj) { return obj->p ; }
+int
+struct_bar_ptr_get_f_x (struct bar *obj) { return (obj->f).x ; }
+void
+struct_bar_ptr_set_f_x (struct bar *obj, int x) { (obj->f).x = x; return; }
 void*
 struct_bar_ptr_getref_f (struct bar *obj) { return &(obj->f) ; }
 
@@ -108,12 +112,22 @@ struct_bar_ptr_get_p
 //
 extern
 fun
+struct_bar_ptr_get_f_x
+  : (!aPtr1(struct_bar)) -> int = "mac#"
+extern
+fun
+struct_bar_ptr_set_f_x
+  : (!aPtr1(struct_bar), int) -> void = "mac#"
+extern
+fun
 struct_bar_ptr_getref_f
   : (!aPtr1(struct_bar)) -> aPtr1(struct_foo) = "mac#"
 //
 overload .x with struct_bar_ptr_get_x
 overload .x with struct_bar_ptr_set_x
 overload .p with struct_bar_ptr_get_p
+overload .f_x with struct_bar_ptr_get_x
+overload .f_x with struct_bar_ptr_set_x
 overload .f_ref with struct_bar_ptr_getref_f
 //
 (* ****** ****** *)
@@ -162,6 +176,8 @@ main0 () = {
   val pbar_f_ref = pbar.f_ref()
   val () = println! ("bar.f.x = ", pbar_f_ref.x())
   prval () = $UN.cast2void(pbar_f_ref)
+  val () = pbar.f_x(10)
+  val () = println! ("bar.f.x = ", pbar.f_x())
 //
   prval () = $UN.cast2void(pfoo) and () = $UN.cast2void(pbar)
 //
