@@ -151,9 +151,10 @@ else list0_nil()
 end // end of [node_get_children]
 
 (* ****** ****** *)
-
-staload "libc/SATS/stdlib.sats"
-
+//
+staload
+"libats/libc/SATS/stdlib.sats"
+//
 (* ****** ****** *)
 
 implement

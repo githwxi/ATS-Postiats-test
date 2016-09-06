@@ -56,7 +56,7 @@ in
 try
 //
 neg1(
-list0_foldleft<a><int>
+list0_foldleft<int><a>
 (
   xs, 0(*ini*)
 , lam(res, x) => if pred(x) then $raise Found(res) else res+1

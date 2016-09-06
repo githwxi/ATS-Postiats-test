@@ -9,7 +9,8 @@
 //
 (* ****** ****** *)
 
-staload "libc/SATS/time.sats"
+staload
+"libats/libc/SATS/time.sats"
 
 (* ****** ****** *)
 //

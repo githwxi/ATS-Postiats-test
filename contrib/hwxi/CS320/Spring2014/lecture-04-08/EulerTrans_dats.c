@@ -90,42 +90,42 @@ staload-prologues(beg)
 /cs/coursedata/cs320/ATS2-005/prelude/DATS/filebas.dats: 1745(line=56, offs=1) -- 1783(line=56, offs=39)
 */
 /*
-/cs/coursedata/cs320/ATS2-005/libc/SATS/stdio.sats: 1380(line=35, offs=1) -- 1418(line=37, offs=3)
+/cs/coursedata/cs320/ATS2-005/libats/libc/SATS/stdio.sats: 1380(line=35, offs=1) -- 1418(line=37, offs=3)
 */
 
-#include "libc/CATS/stdio.cats"
+#include "libats/libc/CATS/stdio.cats"
 /*
-/cs/coursedata/cs320/ATS2-005/libc/SATS/stdio.sats: 1855(line=57, offs=1) -- 1897(line=59, offs=27)
+/cs/coursedata/cs320/ATS2-005/libats/libc/SATS/stdio.sats: 1855(line=57, offs=1) -- 1897(line=59, offs=27)
 */
 /*
-/cs/coursedata/cs320/ATS2-005/libc/sys/SATS/types.sats: 1390(line=36, offs=1) -- 1432(line=38, offs=3)
+/cs/coursedata/cs320/ATS2-005/libats/libc/SATS/sys/types.sats: 1390(line=36, offs=1) -- 1432(line=38, offs=3)
 */
 
-#include "libc/sys/CATS/types.cats"
+#include "libats/libc/CATS/sys/types.cats"
 /*
 /cs/coursedata/cs320/ATS2-005/prelude/DATS/filebas.dats: 1839(line=58, offs=1) -- 1879(line=58, offs=41)
 */
 /*
-/cs/coursedata/cs320/ATS2-005/libc/SATS/string.sats: 1380(line=35, offs=1) -- 1419(line=37, offs=3)
+/cs/coursedata/cs320/ATS2-005/libats/libc/SATS/string.sats: 1380(line=35, offs=1) -- 1419(line=37, offs=3)
 */
 
-#include "libc/CATS/string.cats"
+#include "libats/libc/CATS/string.cats"
 /*
 /cs/coursedata/cs320/ATS2-005/prelude/DATS/filebas.dats: 13966(line=737, offs=1) -- 13996(line=737, offs=31)
 */
 /*
-/cs/coursedata/cs320/ATS2-005/libc/SATS/stdio.sats: 1380(line=35, offs=1) -- 1418(line=37, offs=3)
+/cs/coursedata/cs320/ATS2-005/libats/libc/SATS/stdio.sats: 1380(line=35, offs=1) -- 1418(line=37, offs=3)
 */
 
-#include "libc/CATS/stdio.cats"
+#include "libats/libc/CATS/stdio.cats"
 /*
-/cs/coursedata/cs320/ATS2-005/libc/SATS/stdio.sats: 1855(line=57, offs=1) -- 1897(line=59, offs=27)
+/cs/coursedata/cs320/ATS2-005/libats/libc/SATS/stdio.sats: 1855(line=57, offs=1) -- 1897(line=59, offs=27)
 */
 /*
-/cs/coursedata/cs320/ATS2-005/libc/sys/SATS/types.sats: 1390(line=36, offs=1) -- 1432(line=38, offs=3)
+/cs/coursedata/cs320/ATS2-005/libats/libc/SATS/sys/types.sats: 1390(line=36, offs=1) -- 1432(line=38, offs=3)
 */
 
-#include "libc/sys/CATS/types.cats"
+#include "libats/libc/CATS/sys/types.cats"
 /*
 /cs/coursedata/cs320/ATS2-005/prelude/DATS/list.dats: 1527(line=44, offs=1) -- 1566(line=44, offs=40)
 */
@@ -373,42 +373,42 @@ staload-prologues(beg)
 /cs/coursedata/cs320/ATS2-005/prelude/DATS/filebas.dats: 1745(line=56, offs=1) -- 1783(line=56, offs=39)
 */
 /*
-/cs/coursedata/cs320/ATS2-005/libc/SATS/stdio.sats: 1380(line=35, offs=1) -- 1418(line=37, offs=3)
+/cs/coursedata/cs320/ATS2-005/libats/libc/SATS/stdio.sats: 1380(line=35, offs=1) -- 1418(line=37, offs=3)
 */
 
-#include "libc/CATS/stdio.cats"
+#include "libats/libc/CATS/stdio.cats"
 /*
-/cs/coursedata/cs320/ATS2-005/libc/SATS/stdio.sats: 1855(line=57, offs=1) -- 1897(line=59, offs=27)
+/cs/coursedata/cs320/ATS2-005/libats/libc/SATS/stdio.sats: 1855(line=57, offs=1) -- 1897(line=59, offs=27)
 */
 /*
-/cs/coursedata/cs320/ATS2-005/libc/sys/SATS/types.sats: 1390(line=36, offs=1) -- 1432(line=38, offs=3)
+/cs/coursedata/cs320/ATS2-005/libats/libc/SATS/sys/types.sats: 1390(line=36, offs=1) -- 1432(line=38, offs=3)
 */
 
-#include "libc/sys/CATS/types.cats"
+#include "libats/libc/CATS/sys/types.cats"
 /*
 /cs/coursedata/cs320/ATS2-005/prelude/DATS/filebas.dats: 1839(line=58, offs=1) -- 1879(line=58, offs=41)
 */
 /*
-/cs/coursedata/cs320/ATS2-005/libc/SATS/string.sats: 1380(line=35, offs=1) -- 1419(line=37, offs=3)
+/cs/coursedata/cs320/ATS2-005/libats/libc/SATS/string.sats: 1380(line=35, offs=1) -- 1419(line=37, offs=3)
 */
 
-#include "libc/CATS/string.cats"
+#include "libats/libc/CATS/string.cats"
 /*
 /cs/coursedata/cs320/ATS2-005/prelude/DATS/filebas.dats: 13966(line=737, offs=1) -- 13996(line=737, offs=31)
 */
 /*
-/cs/coursedata/cs320/ATS2-005/libc/SATS/stdio.sats: 1380(line=35, offs=1) -- 1418(line=37, offs=3)
+/cs/coursedata/cs320/ATS2-005/libats/libc/SATS/stdio.sats: 1380(line=35, offs=1) -- 1418(line=37, offs=3)
 */
 
-#include "libc/CATS/stdio.cats"
+#include "libats/libc/CATS/stdio.cats"
 /*
-/cs/coursedata/cs320/ATS2-005/libc/SATS/stdio.sats: 1855(line=57, offs=1) -- 1897(line=59, offs=27)
+/cs/coursedata/cs320/ATS2-005/libats/libc/SATS/stdio.sats: 1855(line=57, offs=1) -- 1897(line=59, offs=27)
 */
 /*
-/cs/coursedata/cs320/ATS2-005/libc/sys/SATS/types.sats: 1390(line=36, offs=1) -- 1432(line=38, offs=3)
+/cs/coursedata/cs320/ATS2-005/libats/libc/SATS/sys/types.sats: 1390(line=36, offs=1) -- 1432(line=38, offs=3)
 */
 
-#include "libc/sys/CATS/types.cats"
+#include "libats/libc/CATS/sys/types.cats"
 /*
 /cs/coursedata/cs320/ATS2-005/libats/ML/DATS/filebas.dats: 2011(line=64, offs=1) -- 2046(line=64, offs=36)
 */
@@ -446,12 +446,12 @@ staload-prologues(beg)
 /cs/coursedata/cs320/ATS2-005/libats/ML/DATS/stdlib.dats: 1392(line=36, offs=1) -- 1432(line=37, offs=33)
 */
 /*
-/cs/coursedata/cs320/ATS2-005/libc/SATS/stdlib.sats: 1389(line=36, offs=1) -- 1428(line=38, offs=3)
+/cs/coursedata/cs320/ATS2-005/libats/libc/SATS/stdlib.sats: 1389(line=36, offs=1) -- 1428(line=38, offs=3)
 */
 
-#include "libc/CATS/stdlib.cats"
+#include "libats/libc/CATS/stdlib.cats"
 /*
-/cs/coursedata/cs320/ATS2-005/libc/SATS/stdlib.sats: 1824(line=55, offs=1) -- 1864(line=56, offs=33)
+/cs/coursedata/cs320/ATS2-005/libats/libc/SATS/stdlib.sats: 1824(line=55, offs=1) -- 1864(line=56, offs=33)
 */
 /*
 /cs/coursedata/cs320/ATS2-005/libats/ML/DATS/stdlib.dats: 1455(line=41, offs=1) -- 1490(line=41, offs=36)

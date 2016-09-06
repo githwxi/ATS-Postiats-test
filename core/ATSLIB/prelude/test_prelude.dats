@@ -46,9 +46,11 @@
 staload UN = $UNSAFE
 //
 staload
-TIME = "libc/SATS/time.sats"
+TIME =
+"libats/libc/SATS/time.sats"
 staload
-STDLIB = "libc/SATS/stdlib.sats"
+STDLIB =
+"libats/libc/SATS/stdlib.sats"
 //
 (* ****** ****** *)
 

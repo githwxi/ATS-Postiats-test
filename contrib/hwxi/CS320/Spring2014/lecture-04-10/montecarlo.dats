@@ -54,13 +54,13 @@ staload "libats/ML/SATS/basis.sats"
 
 (* ****** ****** *)
 
-staload MATH = "libc/SATS/math.sats"
-staload _(*MATH*) = "libc/DATS/math.dats"
+staload MATH = "libats/libc/SATS/math.sats"
+staload _(*MATH*) = "libats/libc/DATS/math.dats"
 
 (* ****** ****** *)
 
-staload TIME = "libc/SATS/time.sats"
-staload STDLIB = "libc/SATS/stdlib.sats"
+staload TIME = "libats/libc/SATS/time.sats"
+staload STDLIB = "libats/libc/SATS/stdlib.sats"
 
 (* ****** ****** *)
 

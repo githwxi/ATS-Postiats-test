@@ -148,7 +148,7 @@ case+ opt of
 end // end of [wordmap_insert]
 
 implement
-wordmap_listize(map) = list0_of_list(map.listize())
+wordmap_listize(map) = map.listize()
 
 end // end of [local]
 
