@@ -12,7 +12,7 @@ staload UN = $UNSAFE
 (* ****** ****** *)
 //
 staload
-"libc/SATS/string.sats"
+"libats/libc/SATS/string.sats"
 //
 (* ****** ****** *)
 
