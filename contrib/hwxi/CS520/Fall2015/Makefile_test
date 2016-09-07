@@ -79,6 +79,41 @@ $(MAKE) -C lecture-10-07 -f Makefile testall
 ## ###### ###### ##
 
 all:: \
+lecture-10-13
+lecture-10-13:: ; \
+$(MAKE) -C lecture-10-13 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-10-14
+lecture-10-14:: ; \
+$(MAKE) -C lecture-10-14 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-10-19
+lecture-10-19:: ; \
+$(MAKE) -C lecture-10-19 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-10-21
+lecture-10-21:: ; \
+$(MAKE) -C lecture-10-21 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-10-26
+lecture-10-26:: ; \
+$(MAKE) -C lecture-10-26 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
 lecture-12-07
 lecture-12-07:: ; \
 $(MAKE) -C lecture-12-07 -f Makefile testall
