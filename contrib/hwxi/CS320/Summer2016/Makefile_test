@@ -106,10 +106,10 @@ $(MAKE) -C lecture-06-16 -f Makefile testall
 
 ## ###### ###### ##
 
-all:: \
-lecture-06-20
-lecture-06-20:: ; \
-$(MAKE) -C lecture-06-20 -f Makefile testall
+# all:: \
+# lecture-06-20
+# lecture-06-20:: ; \
+# $(MAKE) -C lecture-06-20 -f Makefile testall
 
 ## ###### ###### ##
 

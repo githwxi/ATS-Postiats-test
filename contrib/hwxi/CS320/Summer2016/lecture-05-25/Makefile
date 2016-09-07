@@ -12,7 +12,7 @@ PATSCC=$(PATSHOME)/bin/patscc
 PATSOPT=$(PATSHOME)/bin/patsopt
 #
 ATSCC2PY=$(PATSHOME)/bin/atscc2py3
-LIBATSCC2PY=./../../mylib/libatscc2py3
+LIBATSCC2PY=./../mylib/libatscc2py3
 #
 ######
 
@@ -23,10 +23,10 @@ cleanall:: ; rm -f loops
 
 ######
 #
-all:: \
-pygame_test02_dats.py
-pygame_test02_dats.c: pygame_test02.dats; $(PATSOPT) -o $@ -d $<
-pygame_test02_dats.py: pygame_test02_dats.c; $(ATSCC2PY) -o $@ -i $<
+# all:: \
+# pygame_test02_dats.py
+# pygame_test02_dats.c: pygame_test02.dats; $(PATSOPT) -o $@ -d $<
+# pygame_test02_dats.py: pygame_test02_dats.c; $(ATSCC2PY) -o $@ -i $<
 #
 # regress:: \
 # pygame_test02_dats.py; $(PYTHON) $<
@@ -38,10 +38,10 @@ cleanall:: ; $(RMF) pygame_test02_dats.py
 #
 ######
 #
-all:: \
-pygame_sierpinski_dats.py
-pygame_sierpinski_dats.c: pygame_sierpinski.dats; $(PATSOPT) -o $@ -d $<
-pygame_sierpinski_dats.py: pygame_sierpinski_dats.c; $(ATSCC2PY) -o $@ -i $<
+# all:: \
+# pygame_sierpinski_dats.py
+# pygame_sierpinski_dats.c: pygame_sierpinski.dats; $(PATSOPT) -o $@ -d $<
+# pygame_sierpinski_dats.py: pygame_sierpinski_dats.c; $(ATSCC2PY) -o $@ -i $<
 #
 # regress:: \
 # pygame_sierpinski_dats.py; $(PYTHON) $<

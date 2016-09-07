@@ -12,7 +12,7 @@ PATSCC=$(PATSHOME)/bin/patscc
 PATSOPT=$(PATSHOME)/bin/patsopt
 #
 ATSCC2PY=$(PATSHOME)/bin/atscc2py3
-LIBATSCC2PY=./../../mylib/libatscc2py3
+LIBATSCC2PY=./../mylib/libatscc2py3
 #
 ######
 #

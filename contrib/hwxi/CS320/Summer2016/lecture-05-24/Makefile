@@ -12,7 +12,7 @@ PATSCC=$(PATSHOME)/bin/patscc
 PATSOPT=$(PATSHOME)/bin/patsopt
 #
 ATSCC2PY=$(PATSHOME)/bin/atscc2py3
-LIBATSCC2PY=./../../mylib/libatscc2py3
+LIBATSCC2PY=./../mylib/libatscc2py3
 #
 ######
 
@@ -30,10 +30,10 @@ cleanall:: ; rm -f quiz
 
 ######
 #
-all:: \
-pygame_test01_dats.py
-pygame_test01_dats.c: pygame_test01.dats; $(PATSOPT) -o $@ -d $<
-pygame_test01_dats.py: pygame_test01_dats.c; $(ATSCC2PY) -o $@ -i $<
+# all:: \
+# pygame_test01_dats.py
+# pygame_test01_dats.c: pygame_test01.dats; $(PATSOPT) -o $@ -d $<
+# pygame_test01_dats.py: pygame_test01_dats.c; $(ATSCC2PY) -o $@ -i $<
 #
 # regress:: \
 # pygame_test01_dats.py; $(PYTHON) $<
