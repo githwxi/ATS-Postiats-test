@@ -1,0 +1,144 @@
+##
+## A Makefile for testing
+##
+
+## ###### ###### ##
+
+MAKE=make
+
+## ###### ###### ##
+
+all:: \
+lecture-05-23
+lecture-05-23:: ; \
+$(MAKE) -C lecture-05-23 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-05-24
+lecture-05-24:: ; \
+$(MAKE) -C lecture-05-24 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-05-25
+lecture-05-25:: ; \
+$(MAKE) -C lecture-05-25 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-05-26
+lecture-05-26:: ; \
+$(MAKE) -C lecture-05-26 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-05-31
+lecture-05-31:: ; \
+$(MAKE) -C lecture-05-31 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-01
+lecture-06-01:: ; \
+$(MAKE) -C lecture-06-01 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-02
+lecture-06-02:: ; \
+$(MAKE) -C lecture-06-02 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-06
+lecture-06-06:: ; \
+$(MAKE) -C lecture-06-06 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-07
+lecture-06-07:: ; \
+$(MAKE) -C lecture-06-07 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-08
+lecture-06-08:: ; \
+$(MAKE) -C lecture-06-08 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-13
+lecture-06-13:: ; \
+$(MAKE) -C lecture-06-13 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-14
+lecture-06-14:: ; \
+$(MAKE) -C lecture-06-14 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-15
+lecture-06-15:: ; \
+$(MAKE) -C lecture-06-15 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-16
+lecture-06-16:: ; \
+$(MAKE) -C lecture-06-16 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-20
+lecture-06-20:: ; \
+$(MAKE) -C lecture-06-20 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-21
+lecture-06-21:: ; \
+$(MAKE) -C lecture-06-21 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-22
+lecture-06-22:: ; \
+$(MAKE) -C lecture-06-22 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-27
+lecture-06-27:: ; \
+$(MAKE) -C lecture-06-27 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+Wormlike
+Wormlike:: ; \
+$(MAKE) -C Wormlike -f Makefile testall
+
+## ###### ###### ##
+
+## ###### end of [Makefile_test] ###### ##

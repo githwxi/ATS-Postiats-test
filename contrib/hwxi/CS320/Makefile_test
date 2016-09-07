@@ -20,4 +20,16 @@ Summer2014:: ; $(MAKE) -C Summer2014 -f Makefile_test
 
 ## ###### ###### ##
 
+all:: \
+Summer2015
+Summer2015:: ; $(MAKE) -C Summer2015 -f Makefile_test
+
+## ###### ###### ##
+
+all:: \
+Summer2016
+Summer2016:: ; $(MAKE) -C Summer2016 -f Makefile_test
+
+## ###### ###### ##
+
 ## ###### end of [Makefile_test] ###### ##

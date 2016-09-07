@@ -1,0 +1,127 @@
+(* ****** ****** *)
+//
+// Trying libatscc2py/PYGAME
+//
+(* ****** ****** *)
+//
+#include
+"share/atspre_define.hats"
+#include
+"{$LIBATSCC2PY3}/staloadall.hats"
+//
+(* ****** ****** *)
+//
+staload"{$LIBATSCC2PY3}/SATS/PYGAME/pygame.sats"
+//
+(* ****** ****** *)
+//
+#define
+ATS_MAINATSFLAG 1
+#define
+ATS_DYNLOADNAME
+"pygame_test02_init"
+//
+(* ****** ****** *)
+//
+val BLACK = Color(0, 0, 0)
+val WHITE = Color(255, 255, 255)
+//
+val RED   = Color(255, 0, 0)
+val GREEN = Color(0, 255, 0)
+val BLUE  = Color(0, 0, 255)
+//
+#define GRAY(x) Color(x, x, x)
+//
+extern
+fun
+pygame_test02_main
+(
+// argless
+) : void = "mac#"
+//
+implement
+pygame_test02_main() =
+{
+//
+val npnf = pygame_init_ret()
+val ((*void*)) = println! ("np = ", npnf.0)
+val ((*void*)) = println! ("nf = ", npnf.1)
+//
+val res = $tup(500,500)
+val screen = display_set_mode(res)
+val _(*Rect*) = screen.fill(BLACK)
+//
+val screen2 = Surface(screen.get_size(), SRCALPHA, 32)
+//
+(*
+val () = println! ("screen2_width = ", screen2.get_width())
+val () = println! ("screen2_height = ", screen2.get_height())
+*)
+//
+val r0 = Rect(100, 100, 300, 300)
+//
+val _rect_ = screen2.fill(GRAY(255), r0, 0)
+//
+(*
+val _rect_ =
+  draw_circle(screen2, BLUE, $tup(250,250), 125)
+*)
+//
+#define :: list_cons
+//
+val p1 = $tup(250, 100)
+val p2 = $tup(100, 400)
+val p3 = $tup(400, 400)
+//
+val ps = PYlist_oflist{int2}(p1 :: p2 :: p3 :: nil())
+//
+val _rect_ =
+  draw_polygon(screen2, BLUE, ps)
+//
+val _rect_ =
+  screen.blit(screen2, $tup(0, 0))
+//
+val ((*void*)) = display_flip((*void*))
+//
+val () = loop() where
+{
+  fun
+  loop(): void = let
+    val e = event_wait()
+    val t = e.type()
+  in
+    if (t = QUIT)
+      then ()
+      else (
+        if (t = KEYDOWN) then () else loop()
+      ) (* end of [else] *)
+  end // end of [loop]
+}
+//
+val ((*void*)) = pygame_quit((*void*))
+//
+} (* end of [pygame_test02_main] *)
+//
+(* ****** ****** *)
+
+%{^
+######
+from libatscc2py_all import *
+######
+from ats2py_pygame_pyame_cats import *
+######
+sys.setrecursionlimit(1000000)
+######
+%} // end of [%{^]
+
+(* ****** ****** *)
+
+%{$
+if __name__ == '__main__':
+  pygame_test02_init()
+  pygame_test02_main()
+%} // end of [%{$]
+
+(* ****** ****** *)
+
+(* end of [pygame_test02.dats] *)
