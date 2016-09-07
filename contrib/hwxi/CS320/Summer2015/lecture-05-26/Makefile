@@ -23,7 +23,7 @@ cleanall:: ; rm -f intlist
 all:: intlist_sort
 intlist_sort: \
 intlist_sort.dats; \
-$(PATSCC) -DATS_MEMALLOC_GCBDW -o $@ $< -lgc
+$(PATSCC) -DATS_MEMALLOC_LIBC -o $@ $<
 regress:: intlist_sort; ./intlist_sort
 cleanall:: ; rm -f intlist_sort
 
