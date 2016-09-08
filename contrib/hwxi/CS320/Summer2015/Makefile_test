@@ -8,129 +8,133 @@ MAKE=make
 
 ## ###### ###### ##
 
+COMMAND=testall
+
+## ###### ###### ##
+
 all:: \
 lecture-05-19
 lecture-05-19:: ; \
-$(MAKE) -C lecture-05-19 -f Makefile testall
+$(MAKE) -C lecture-05-19 -f Makefile $(COMMAND)
 
 ## ###### ###### ##
 
 all:: \
 lecture-05-20
 lecture-05-20:: ; \
-$(MAKE) -C lecture-05-20 -f Makefile testall
+$(MAKE) -C lecture-05-20 -f Makefile $(COMMAND)
 
 ## ###### ###### ##
 
 all:: \
 lecture-05-21
 lecture-05-21:: ; \
-$(MAKE) -C lecture-05-21 -f Makefile testall
+$(MAKE) -C lecture-05-21 -f Makefile $(COMMAND)
 
 ## ###### ###### ##
 
 all:: \
 lecture-05-26
 lecture-05-26:: ; \
-$(MAKE) -C lecture-05-26 -f Makefile testall
+$(MAKE) -C lecture-05-26 -f Makefile $(COMMAND)
 
 ## ###### ###### ##
 
 all:: \
 lecture-05-27
 lecture-05-27:: ; \
-$(MAKE) -C lecture-05-27 -f Makefile testall
+$(MAKE) -C lecture-05-27 -f Makefile $(COMMAND)
 
 ## ###### ###### ##
 
 all:: \
 lecture-05-28
 lecture-05-28:: ; \
-$(MAKE) -C lecture-05-28 -f Makefile testall
+$(MAKE) -C lecture-05-28 -f Makefile $(COMMAND)
 
 ## ###### ###### ##
 
 all:: \
 lecture-06-01
 lecture-06-01:: ; \
-$(MAKE) -C lecture-06-01 -f Makefile testall
+$(MAKE) -C lecture-06-01 -f Makefile $(COMMAND)
 
 ## ###### ###### ##
 
 all:: \
 lecture-06-02
 lecture-06-02:: ; \
-$(MAKE) -C lecture-06-02 -f Makefile testall
+$(MAKE) -C lecture-06-02 -f Makefile $(COMMAND)
 
 ## ###### ###### ##
 
 all:: \
 lecture-06-03
 lecture-06-03:: ; \
-$(MAKE) -C lecture-06-03 -f Makefile testall
+$(MAKE) -C lecture-06-03 -f Makefile $(COMMAND)
 
 ## ###### ###### ##
 
 all:: \
 lecture-06-08
 lecture-06-08:: ; \
-$(MAKE) -C lecture-06-08 -f Makefile testall
+$(MAKE) -C lecture-06-08 -f Makefile $(COMMAND)
 
 ## ###### ###### ##
 
 all:: \
 lecture-06-09
 lecture-06-09:: ; \
-$(MAKE) -C lecture-06-09 -f Makefile testall
+$(MAKE) -C lecture-06-09 -f Makefile $(COMMAND)
 
 ## ###### ###### ##
 
 all:: \
 lecture-06-10
 lecture-06-10:: ; \
-$(MAKE) -C lecture-06-10 -f Makefile testall
+$(MAKE) -C lecture-06-10 -f Makefile $(COMMAND)
 
 ## ###### ###### ##
 
 all:: \
 lecture-06-15
 lecture-06-15:: ; \
-$(MAKE) -C lecture-06-15 -f Makefile testall
+$(MAKE) -C lecture-06-15 -f Makefile $(COMMAND)
 
 ## ###### ###### ##
 
 all:: \
 lecture-06-16
 lecture-06-16:: ; \
-$(MAKE) -C lecture-06-16 -f Makefile testall
+$(MAKE) -C lecture-06-16 -f Makefile $(COMMAND)
 
 ## ###### ###### ##
 
 all:: \
 lecture-06-17
 lecture-06-17:: ; \
-$(MAKE) -C lecture-06-17 -f Makefile testall
+$(MAKE) -C lecture-06-17 -f Makefile $(COMMAND)
 
 ## ###### ###### ##
 
 all:: \
 lecture-06-22
 lecture-06-22:: ; \
-$(MAKE) -C lecture-06-22 -f Makefile testall
+$(MAKE) -C lecture-06-22 -f Makefile $(COMMAND)
 
 ## ###### ###### ##
 
 all:: \
 lecture-06-23
 lecture-06-23:: ; \
-$(MAKE) -C lecture-06-23 -f Makefile testall
+$(MAKE) -C lecture-06-23 -f Makefile $(COMMAND)
 
 ## ###### ###### ##
 
 all:: \
 lecture-06-24
 lecture-06-24:: ; \
-$(MAKE) -C lecture-06-24 -f Makefile testall
+$(MAKE) -C lecture-06-24 -f Makefile $(COMMAND)
 
 ## ###### ###### ##
 
