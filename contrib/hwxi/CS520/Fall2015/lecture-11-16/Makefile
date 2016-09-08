@@ -9,9 +9,9 @@ PATSOPT=$(PATSHOME)/bin/patsopt
 
 ######
 
-all:: kfact
-regress:: kfact; ./kfact
-cleanall:: ; rm -f kfact
+all:: lambda
+regress:: lambda; ./lambda
+cleanall:: ; rm -f lambda
 
 ######
 

@@ -26,7 +26,6 @@ testall:: cleanall
 ######
 
 clean:: ; rm -f *~
-clean:: ; rm -f myfib.o
 clean:: ; rm -f *_dats.o
 clean:: ; rm -f *_dats.c
 
