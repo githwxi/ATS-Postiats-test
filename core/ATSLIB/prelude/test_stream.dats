@@ -83,10 +83,11 @@ val tally1 =
 (fix
  f(xs: List_vt(int)): int =>
   case+ xs of
-  | ~list_vt_nil() => 0 | ~list_vt_cons(x, xs) => x + f(xs))(xs1)
+  | ~list_vt_nil() => 0
+  | ~list_vt_cons(x, xs) => x + f(xs)
+)(xs1)
 //
-val
-tally2 =
+val tally2 =
 stream_vt_foldleft_cloptr<int><int>
   (stream_takeLte(xs, N), 0, lam(res, x) => res + x)
 //
