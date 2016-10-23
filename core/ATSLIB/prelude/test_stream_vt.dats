@@ -1,7 +1,7 @@
 (* ****** ****** *)
 (*
 ** For testing
-** ATSLIB/prelude/stream
+** ATSLIB/prelude/stream_vt
 *)
 (* ****** ****** *)
 (*
@@ -69,28 +69,21 @@ val () =
 {
 //
 val xs =
-stream_tabulate<int>()
+stream_vt_tabulate<int>()
 where {
 implement
-stream_tabulate$fopr<int>(i) = i+1
+stream_vt_tabulate$fopr<int>(i) = i+1
 } (* end of [where] *)
 //
 val N = 10
 //
-val xs1 = stream_take_exn(xs, N)
-//
-val tally1 =
-(fix
- f(xs: List_vt(int)): int =>
-  case+ xs of
-  | ~list_vt_nil() => 0 | ~list_vt_cons(x, xs) => x + f(xs))(xs1)
+val xs = stream_vt_takeLte(xs, N)
 //
 val
-tally2 =
-stream_vt_foldleft_cloptr<int><int>
-  (stream_takeLte(xs, N), 0, lam(res, x) => res + x)
+tally =
+stream_vt_foldleft_cloptr<int><int>(xs, 0, lam(res, x) => res + x)
 //
-val () = assertloc(tally1 = tally2)
+val () = assertloc(tally = N * (N+1) / 2)
 //
 } (* end of [val] *)
 
@@ -99,9 +92,9 @@ val () = assertloc(tally1 = tally2)
 val () =
 println!
 (
-  "ATS-Postiate-test/core/ATSLIB/prelude: test_stream is done!"
+  "ATS-Postiate-test/core/ATSLIB/prelude: test_stream_vt is done!"
 ) (* println! *)
 
 (* ****** ****** *)
 
-(* end of [test_stream.dats] *)
+(* end of [test_stream_vt.dats] *)

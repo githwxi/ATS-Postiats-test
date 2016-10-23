@@ -104,6 +104,9 @@ in (*nothing*) end // local
 local
 #include "test_stream.dats"
 in (* nothing *) end
+local
+#include "test_stream_vt.dats"
+in (* nothing *) end
 
 (* ****** ****** *)
 //

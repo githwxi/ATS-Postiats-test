@@ -183,14 +183,8 @@ val () =
 //
 val ds =
   listize_g0int_rep(12345, 10)
-val ((*void*)) =
-  fprint!(stdout_ref, "rep(12345)=")
-val ((*void*)) =
-  fprint_list_vt<int>(stdout_ref, ds)
 //
-val ((*void*)) = fprintln!(stdout_ref)
-//
-val ((*void*)) = list_vt_free(ds)
+val () = assertloc(list_vt_eqfree<int>(ds, list_make_intrange(1, 6)))
 //
 } (* end of [val] *)
 
