@@ -179,6 +179,24 @@ val () = assertloc(eqfree(xs, ys))
 (* ****** ****** *)
 
 val () =
+{
+//
+val ds =
+  listize_g0int_rep(12345, 10)
+val ((*void*)) =
+  fprint!(stdout_ref, "rep(12345)=")
+val ((*void*)) =
+  fprint_list_vt<int>(stdout_ref, ds)
+//
+val ((*void*)) = fprintln!(stdout_ref)
+//
+val ((*void*)) = list_vt_free(ds)
+//
+} (* end of [val] *)
+
+(* ****** ****** *)
+
+val () =
 println!
 (
   "ATS-Postiate-test/core/ATSLIB/prelude: test_list_vt is done!"
