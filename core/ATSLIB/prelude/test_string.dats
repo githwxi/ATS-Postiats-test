@@ -57,6 +57,9 @@ val alphabet = "abcdefghijklmnopqrstuvwxyz"
 val () =
 assertloc(length(streamize_string_char(alphabet)) = 26)
 //
+val () =
+assertloc(length(list_vt2t(stream2list_vt(streamize_string_char(alphabet)))) = 26)
+//
 (* ****** ****** *)
 
 val () =
