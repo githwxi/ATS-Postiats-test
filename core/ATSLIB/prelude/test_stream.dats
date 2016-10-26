@@ -77,15 +77,13 @@ stream_tabulate$fopr<int>(i) = i+1
 //
 val N = 10
 //
-val xs1 = stream_take_exn(xs, N)
-//
 val tally1 =
 (fix
  f(xs: List_vt(int)): int =>
   case+ xs of
   | ~list_vt_nil() => 0
   | ~list_vt_cons(x, xs) => x + f(xs)
-)(xs1)
+)(stream_take_exn(xs, N))
 //
 val tally2 =
 stream_vt_foldleft_cloptr<int><int>
