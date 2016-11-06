@@ -83,7 +83,7 @@ list0_find_eq(xs, x0, eq) = list0_find<a> (xs, lam (x) => eq(x0, x))
   
 (* ****** ****** *)
 
-val xs = (100).list_map(TYPE{int})(lam x => x*x)
+val xs = (100).list0_map(TYPE{int})(lam x => x*x)
 val ans = list0_find_eq<int>(xs, 71 * 71, lam(x, y) => x = y)
 
 (* ****** ****** *)
