@@ -74,8 +74,7 @@ end // end of [theFibs]
 //
 val
 theAutos =
-theAutos.scan
-  {bool,void}(false, lam(tf, _) =<cloref1> not(tf))
+scan{bool}(theAutos, false, lam(tf, _) =<cloref1> not(tf))
 //
 val
 theAutos = theAutos.sampledBy(Bacon_interval{int}(1000, 0))
@@ -121,7 +120,7 @@ f_theFibs =
   stream2cloref_exn(theFibs)
 //
 in
-  theNexts.map(lam _ =<cloref1> f_theFibs())
+  theNexts.map(TYPE{int})(lam _ =<cloref1> f_theFibs())
 end // end of [theFibs_next]
 //
 (* ****** ****** *)

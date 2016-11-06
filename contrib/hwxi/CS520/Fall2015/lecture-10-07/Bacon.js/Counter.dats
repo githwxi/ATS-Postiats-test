@@ -52,7 +52,7 @@ val theResets =
 //
 (* ****** ****** *)
 
-datatype action = Up | Down | Random | Reset
+datatype act = Up | Down | Random | Reset
 
 (* ****** ****** *)
 //
@@ -70,7 +70,7 @@ val theClicks = merge(theClicks, theResets)
 //
 val
 theCounts =
-scan{int,action}
+scan{int}{act}
 (
   theClicks, 0
 , lam(y, x) =<cloref1>

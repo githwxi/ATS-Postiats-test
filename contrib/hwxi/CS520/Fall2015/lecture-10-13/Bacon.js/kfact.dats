@@ -94,7 +94,7 @@ val theState_1 = $tup(~1, k1)
 
 val
 theStates =
-scan{state,void}
+scan{state}{void}
 (
   theClicks
 , theState_0

@@ -96,7 +96,7 @@ in
   mybus.push(n)
 end // end of [aux]
 //
-val () = theClicks.onValue(lam(x) =<cloref1> aux(x))
+val () = theClicks.onValue()(lam(x) =<cloref1> aux(x))
 //
 in
   mybus
