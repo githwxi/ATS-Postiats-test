@@ -62,7 +62,7 @@ val theEvents = merge(theEvents, theResets)
 //
 val
 theCounts =
-scan{int,act}
+scan{int}{act}
 (
   theEvents, 100
 , lam(y, x) =<cloref1> case+ x of Up() => y+1 | Down() => y-1 | Reset() => 100

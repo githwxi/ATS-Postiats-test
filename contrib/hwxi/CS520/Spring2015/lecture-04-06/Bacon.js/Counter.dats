@@ -49,7 +49,7 @@ val theUpDns = merge(theUps, theDns)
 //
 val
 theCounts =
-scan{int,int}(theUpDns, 100, lam(y, x) =<cloref1> (y + x))
+scan{int}{int}(theUpDns, 100, lam(y, x) =<cloref1> (y + x))
 //
 extvar "theCounts" = theCounts
 //

@@ -43,7 +43,7 @@ fun event_keycode(JSobj): int = "mac#"
 (* ****** ****** *)
 //
 val theKeyDowns = $extval(EStream(JSobj), "theKeyDowns")
-val theKeyCodes = theKeyDowns.map(lam(x) =<cloref1> event_keycode(x))
+val theKeyCodes = theKeyDowns.map(TYPE{int})(lam(x) =<cloref1> event_keycode(x))
 //
 extvar "theKeyCodes" = theKeyCodes
 //
