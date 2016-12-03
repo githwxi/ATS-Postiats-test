@@ -59,7 +59,7 @@ scan{state}{void}
 //
 val
 theFib1s_next =
-  map(theFib2s_next, lam(state: state): int =<cloref1> state.0)
+  Property_map(theFib2s_next, lam(state: state): int =<cloref1> state.0)
 //
 (* ****** ****** *)
 //

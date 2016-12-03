@@ -55,11 +55,15 @@ val theResets =
 datatype act = Up | Down | Random | Reset
 
 (* ****** ****** *)
+
+macdef ESmap = EStream_map
+
+(* ****** ****** *)
 //
-val theUps = map (theUps, lam(x) =<cloref1> Up())
-val theDowns = map (theDowns, lam(x) =<cloref1> Down())
-val theRandoms = map (theRandoms, lam(x) =<cloref1> Random())
-val theResets = map (theResets, lam(x) =<cloref1> Reset())
+val theUps = ESmap (theUps, lam(x) =<cloref1> Up())
+val theDowns = ESmap (theDowns, lam(x) =<cloref1> Down())
+val theRandoms = ESmap (theRandoms, lam(x) =<cloref1> Random())
+val theResets = ESmap (theResets, lam(x) =<cloref1> Reset())
 //
 val theClicks = theUps
 val theClicks = merge(theClicks, theDowns)
@@ -99,7 +103,7 @@ in
 end // end of [stringize]
 //
 in
-  map (theCounts, lam(x) =<cloref1> stringize(x))
+  Property_map (theCounts, lam(x) =<cloref1> stringize(x))
 end // end of [val]
 //
 extvar "theCounts" = theCounts

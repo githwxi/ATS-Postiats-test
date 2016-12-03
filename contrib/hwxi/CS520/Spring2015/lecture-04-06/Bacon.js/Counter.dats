@@ -42,8 +42,8 @@ val theUps =
 val theDns =
   $extval(EStream(void), "theDns")
 //
-val theUps = map (theUps, lam(x) =<cloref1> 1)
-val theDns = map (theDns, lam(x) =<cloref1> ~1)
+val theUps = EStream_map(theUps, lam(x) => 1)
+val theDns = EStream_map(theDns, lam(x) => ~1)
 //
 val theUpDns = merge(theUps, theDns)
 //

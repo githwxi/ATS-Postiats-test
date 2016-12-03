@@ -52,9 +52,9 @@ datatype act = Up | Down | Reset
 
 (* ****** ****** *)
 //
-val theUps = map (theUps, lam(x) =<cloref1> Up())
-val theDowns = map (theDowns, lam(x) =<cloref1> Down())
-val theResets = map (theResets, lam(x) =<cloref1> Reset())
+val theUps = EStream_map(theUps, lam(x) => Up())
+val theDowns = EStream_map(theDowns, lam(x) => Down())
+val theResets = EStream_map(theResets, lam(x) => Reset())
 //
 val theEvents = theUps
 val theEvents = merge(theEvents, theDowns)
