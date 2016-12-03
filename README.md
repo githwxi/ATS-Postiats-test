@@ -11,6 +11,6 @@ following directory:
 
 [https://github.com/githwxi/ATS-Postiats-test/tree/master/contrib](https://github.com/githwxi/ATS-Postiats-test/tree/master/contrib)
 
-Please do not submit anything that may (potentially) result in copyright infringement!
+Please do not submit anything that may (even potentially) result in copyright infringement!
 
 * [![Build Status](https://travis-ci.org/githwxi/ATS-Postiats-test.svg?branch=master)](https://travis-ci.org/githwxi/ATS-Postiats-test) Ubuntu

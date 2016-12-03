@@ -24,6 +24,7 @@ test_prelude
 test_prelude: \
 test_prelude.dats \
 test_bool.dats \
+test_char.dats \
 test_integer.dats \
 test_string.dats \
 test_list.dats \

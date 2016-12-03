@@ -1,6 +1,7 @@
 (* ****** ****** *)
 (*
-** For testing ATSLIB/prelude
+** For testing
+** ATSLIB/prelude/char
 *)
 (* ****** ****** *)
 (*
@@ -33,6 +34,10 @@
 //
 (* ****** ****** *)
 //
+#if
+undefined(TEST_INCLUDE)
+#then
+//
 #include
 "share/atspre_define.hats"
 //
@@ -41,102 +46,30 @@
 #include
 "share/HATS/atspre_staload_libats_ML.hats"
 //
-(* ****** ****** *)
+#endif // end of [TEST_INCLUDE]
 //
-staload UN = $UNSAFE
-//
-staload
-TIME =
-"libats/libc/SATS/time.sats"
-staload
-STDLIB =
-"libats/libc/SATS/stdlib.sats"
-//
-(* ****** ****** *)
-
-#define TEST_INCLUDE 1
-
 (* ****** ****** *)
 //
 val () =
-$STDLIB.srandom
-(
-  $UN.cast{uint}($TIME.time_get())
-) (* $STDLIB.srandom *)
-//
-(* ****** ****** *)
-
-local
-#include
-"test_bool.dats"
-in (* nothing *) end
-
-(* ****** ****** *)
-
-local
-#include
-"test_char.dats"
-in (* nothing *) end
-
-(* ****** ****** *)
-
-local
-#include
-"test_integer.dats"
-in (* nothing *) end
-
-(* ****** ****** *)
-
-local
-#include
-"test_string.dats"
-in (* nothing *) end
-
-(* ****** ****** *)
-
-local
-#include "test_list.dats"
-in (* nothing *) end
-
-(* ****** ****** *)
-
-local
-#include "test_list_vt.dats"
-in (* nothing *) end
-
-(* ****** ****** *)
-
-local
-#include "test_array.dats"
-in (*nothing*) end // local
-local
-#include "test_arrayref.dats"
-in (*nothing*) end // local
-
-(* ****** ****** *)
-
-local
-#include "test_stream.dats"
-in (* nothing *) end
-local
-#include "test_stream_vt.dats"
-in (* nothing *) end
-
-(* ****** ****** *)
-//
-implement
-main0
-(
-// argless
-) =
 {
-val() =
+//
+val N = 256
+//
+val () =
+assertloc(
+  N.forall()(lam(x) => char2int0(int2char0(x-128))+128 = x)
+)(*assertloc*)
+//
+} (* end of [val] *)
+//
+(* ****** ****** *)
+
+val () =
 println!
 (
-  "ATS-Postiate-test/core/ATSLIB/prelude: Testing has passed!"
+  "ATS-Postiate-test/core/ATSLIB/prelude: test_char is done!"
 ) (* println! *)
-} (* end of [main0] *)
-//
+
 (* ****** ****** *)
 
-(* end of [test_prelude.dats] *)
+(* end of [test_char.dats] *)
