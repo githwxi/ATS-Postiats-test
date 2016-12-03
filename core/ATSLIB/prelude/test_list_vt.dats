@@ -181,6 +181,29 @@ val () = assertloc(eqfree(xs, ys))
 val () =
 {
 //
+val LN = 1000
+val xs = intlist(LN)
+//
+val ys =
+list_vt_map<int><int>(xs)
+where
+{
+implement
+list_vt_map$fopr<int><int>(x) = x + 1
+}
+//
+val () =
+list_vt_foreach_cloref(xs, lam(x) =<cloref1> x := x+1)
+//
+val () = assertloc(eqfree(xs, ys))
+//
+} (* end of [val] *)
+
+(* ****** ****** *)
+
+val () =
+{
+//
 val ds =
   listize_g0int_rep(12345, 10)
 //

@@ -22,8 +22,17 @@ cleanall::
 all:: \
 test_prelude
 test_prelude: \
-test_prelude.dats; \
-$(PATSCC) -D_GNU_SOURCE -DATS_MEMALLOC_LIBC -O2 -o $@ $<
+test_prelude.dats \
+test_bool.dats \
+test_integer.dats \
+test_string.dats \
+test_list.dats \
+test_list_vt.dats \
+test_array.dats \
+test_arrayref.dats \
+test_stream.dats \
+test_stream_vt.dats \
+; $(PATSCC) -D_GNU_SOURCE -DATS_MEMALLOC_LIBC -O2 -o $@ $<
 #
 regress:: \
 test_prelude; ./test_prelude
