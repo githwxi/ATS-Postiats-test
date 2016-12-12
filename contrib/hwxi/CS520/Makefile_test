@@ -29,4 +29,11 @@ $(MAKE) -C Fall2015 -f Makefile_test
 
 ## ###### ###### ##
 
+all:: \
+Fall2016
+Fall2016:: ; \
+$(MAKE) -C Fall2016 -f Makefile_test
+
+## ###### ###### ##
+
 ## ###### end of [Makefile_test] ###### ##
