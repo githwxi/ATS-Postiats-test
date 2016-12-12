@@ -50,4 +50,11 @@ $(MAKE) -C lecture-09-28 -f Makefile testall
 
 ## ###### ###### ##
 
+all:: \
+lecture-10-03
+lecture-10-03:: ; \
+$(MAKE) -C lecture-10-03 -f Makefile testall
+
+## ###### ###### ##
+
 ## ###### end of [Makefile_test] ###### ##
