@@ -15,6 +15,9 @@ all:: lambda
 lambda: lambda.dats; \
 $(PATSCC) -DATS_MEMALLOC_LIBC -o $@ $<
 #
+regress:: lambda; ./$<
+cleanall:: ; $(RMF) lambda
+#
 ######
 #
 all:: testing
