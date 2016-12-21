@@ -1,6 +1,7 @@
 (* ****** ****** *)
 (*
-** For testing ATSLIB/libats/ML
+** For testing
+** ATSLIB/libats/ML/array0
 *)
 (* ****** ****** *)
 (*
@@ -33,6 +34,10 @@
 //
 (* ****** ****** *)
 //
+#if
+undefined(INCLUDED)
+#then
+//
 #include
 "share/atspre_define.hats"
 //
@@ -41,39 +46,88 @@
 #include
 "share/HATS/atspre_staload_libats_ML.hats"
 //
+#endif // end of [INCLUDED]
+//
 (* ****** ****** *)
-
-#define INCLUDED 1
-
+//
+macdef
+INTMAX =
+$UNSAFE.cast
+  {intGte(1)}((1 << 31) + (1 << 31 - 1))
+//
 (* ****** ****** *)
-
-local
-#include
-"libats_ML_list0.dats"
-in (* nothing *) end
-
+//
+macdef int() = randint(INTMAX)
+//
 (* ****** ****** *)
-
-local
-#include
-"libats_ML_array0.dats"
-in (* nothing *) end
-
-(* ****** ****** *)
+//
+extern
+fun{}
+intarray0{n:nat}(int(n)): array0(int)
 //
 implement
-main0
+{}(*tmp*)
+intarray0(n) =
+array0_make_list
 (
-// argless
-) =
-{
-val() =
-println!
+list0_of_list_vt
 (
-  "ATS-Postiate-test/core/ATSLIB/libats/ML: Testing is done successfully!"
-) (* println! *)
-} (* end of [main0] *)
+ list_tabulate<int>(n)
+ where
+ {
+   implement list_tabulate$fopr<int>(_) = int()
+ } (* end of [where] *)
+)
+) (* end of [intarray0] *)
 //
 (* ****** ****** *)
 
-(* end of [libats_ML.dats] *)
+val () =
+{
+//
+val N = 10
+//
+val () = assertloc(i2sz(N) = size(intarray0(N)))
+//
+} (* end of [val] *)
+
+(* ****** ****** *)
+
+val () =
+{
+//
+val N = 10
+//
+val xs = intarray0(N)
+val xs = xs.map(TYPE{int})(lam x => x % N)
+//
+val () = assertloc(xs.forall()(lam x => x < N))
+//
+} (* end of [val] *)
+
+(* ****** ****** *)
+
+val () =
+{
+//
+val N = 10
+//
+val A0 =
+array0_tabulate<int>(i2sz(N), lam i => sz2i(i))
+//
+val () = assertloc(A0.iforall()(lam(i, x) => i = x))
+val () = assertloc(~(A0.iexists()(lam(i, x) => i != x)))
+//
+} (* end of [val] *)
+
+(* ****** ****** *)
+
+val () =
+println!
+(
+  "ATS-Postiate-test/core/ATSLIB/prelude: libats_ML_array0 is done!"
+) (* println! *)
+
+(* ****** ****** *)
+
+(* end of [libats_ML_array0.dats] *)
