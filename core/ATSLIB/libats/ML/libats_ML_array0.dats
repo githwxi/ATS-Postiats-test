@@ -113,7 +113,15 @@ val () =
 val N = 10
 //
 val A0 =
-array0_tabulate<int>(i2sz(N), lam i => sz2i(i))
+array0_tabulate<int>
+(
+  i2sz(N), lam i => sz2i(i)
+) (* end of [val] *)
+//
+val () = assertloc(size(A0) = N)
+val () = assertloc(A0.size() = N)
+//
+val () = assertloc(size(append(A0, A0)) = 2*N)
 //
 val () = assertloc(A0.iforall()(lam(i, x) => i = x))
 val () = assertloc(~(A0.iexists()(lam(i, x) => i != x)))
