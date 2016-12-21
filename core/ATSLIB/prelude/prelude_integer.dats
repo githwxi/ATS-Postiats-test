@@ -1,7 +1,7 @@
 (* ****** ****** *)
 (*
 ** For testing
-** ATSLIB/prelude/stream
+** ATSLIB/prelude/integer
 *)
 (* ****** ****** *)
 (*
@@ -35,7 +35,7 @@
 (* ****** ****** *)
 //
 #if
-undefined(TEST_INCLUDE)
+undefined(INCLUDED)
 #then
 //
 #include
@@ -46,12 +46,8 @@ undefined(TEST_INCLUDE)
 #include
 "share/HATS/atspre_staload_libats_ML.hats"
 //
-#endif // end of [TEST_INCLUDE]
+#endif // end of [INCLUDED]
 //
-(* ****** ****** *)
-
-staload UN = $UNSAFE
-
 (* ****** ****** *)
 //
 macdef
@@ -64,32 +60,73 @@ $UNSAFE.cast
 macdef int() = randint(INTMAX)
 //
 (* ****** ****** *)
+//
+val () =
+{
+//
+val () = let
+//
+val x = int()
+//
+in
+//
+assertloc
+(
+  x =
+  g0string2int(strptr2string(g0int2string(x)))
+) (* assertloc *)
+//
+end // end of [val]
+//
+} (* end of [val] *)
+
+(* ****** ****** *)
 
 val () =
 {
 //
-val xs =
-stream_tabulate<int>()
-where {
-implement
-stream_tabulate$fopr<int>(i) = i+1
-} (* end of [where] *)
+val
+N = 10
 //
-val N = 10
+val () =
+repeat (
+  N
+, $delay (
+    let val x = int()
+        and y = int() in assertloc(x+y = y+x) end
+  ) (* $ldelay *)
+) (* repeat *)
 //
-val tally1 =
-(fix
- f(xs: List_vt(int)): int =>
-  case+ xs of
-  | ~list_vt_nil() => 0
-  | ~list_vt_cons(x, xs) => x + f(xs)
-)(stream_take_exn(xs, N))
+val () =
+repeat (
+  N
+, $delay (
+    let val x = int()
+        and y = int() in assertloc(x*y = y*x) end
+  ) (* $ldelay *)
+) (* repeat *)
 //
-val tally2 =
-stream_vt_foldleft_cloptr<int><int>
-  (stream_takeLte(xs, N), 0, lam(res, x) => res + x)
+val () =
+repeat (
+  N
+, $delay
+  (
+    let val x = int()
+        and y = int() in
+        assertloc((x-y)*(x-y) = x*x-2*x*y+y*y) end
+  ) (* $ldelay *)
+) (* repeat *)
 //
-val () = assertloc(tally1 = tally2)
+val () =
+repeat (
+  N
+, $delay
+  ( let
+    val x = int()
+    and y = g1ofg0(int())
+    val _ = assertloc(y >= 1) in assertloc(x=(x/y)*y+(x%y)) end
+  ) (* $ldelay *)
+) (* repeat *)
 //
 } (* end of [val] *)
 
@@ -98,9 +135,9 @@ val () = assertloc(tally1 = tally2)
 val () =
 println!
 (
-  "ATS-Postiate-test/core/ATSLIB/prelude: test_stream is done!"
+  "ATS-Postiate-test/core/ATSLIB/prelude: prelude_integer is done!"
 ) (* println! *)
 
 (* ****** ****** *)
 
-(* end of [test_stream.dats] *)
+(* end of [prelude_integer.dats] *)

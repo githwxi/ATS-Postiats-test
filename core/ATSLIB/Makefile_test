@@ -18,5 +18,19 @@ prelude:: ; \
 $(MAKE) -C prelude -f Makefile testall
 #
 ######
+#
+all:: \
+libats
+libats:: ; \
+$(MAKE) -C libats -f Makefile testall
+#
+######
+#
+all:: \
+libats_ML
+libats_ML:: ; \
+$(MAKE) -C libats/ML -f Makefile testall
+#
+######
 
 ###### end of [Makefile_test] ######

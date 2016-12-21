@@ -35,7 +35,7 @@
 (* ****** ****** *)
 //
 #if
-undefined(TEST_INCLUDE)
+undefined(INCLUDED)
 #then
 //
 #include
@@ -46,7 +46,7 @@ undefined(TEST_INCLUDE)
 #include
 "share/HATS/atspre_staload_libats_ML.hats"
 //
-#endif // end of [TEST_INCLUDE]
+#endif // end of [INCLUDED]
 //
 (* ****** ****** *)
 
@@ -216,9 +216,9 @@ val () = assertloc(list_vt_eqfree<int>(ds, list_make_intrange(1, 6)))
 val () =
 println!
 (
-  "ATS-Postiate-test/core/ATSLIB/prelude: test_list_vt is done!"
+  "ATS-Postiate-test/core/ATSLIB/prelude: prelude_list_vt is done!"
 ) (* println! *)
 
 (* ****** ****** *)
 
-(* end of [test_list_vt.dats] *)
+(* end of [prelude_list_vt.dats] *)

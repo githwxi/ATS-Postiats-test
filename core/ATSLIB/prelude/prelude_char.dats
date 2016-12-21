@@ -1,7 +1,7 @@
 (* ****** ****** *)
 (*
 ** For testing
-** ATSLIB/prelude/arrayref
+** ATSLIB/prelude/char
 *)
 (* ****** ****** *)
 (*
@@ -35,7 +35,7 @@
 (* ****** ****** *)
 //
 #if
-undefined(TEST_INCLUDE)
+undefined(INCLUDED)
 #then
 //
 #include
@@ -46,62 +46,30 @@ undefined(TEST_INCLUDE)
 #include
 "share/HATS/atspre_staload_libats_ML.hats"
 //
-#endif // end of [TEST_INCLUDE]
-//
-(* ****** ****** *)
-
-staload UN = $UNSAFE
-
-(* ****** ****** *)
-//
-macdef
-INTMAX =
-$UNSAFE.cast
-  {intGte(1)}((1 << 31) + (1 << 31 - 1))
+#endif // end of [INCLUDED]
 //
 (* ****** ****** *)
 //
-macdef int() = randint(INTMAX)
-//
-(* ****** ****** *)
-//
-extern
-fun{}
-intlist{n:nat}(int(n)): list_vt(int, n)
-//
-implement
-{}(*tmp*)
-intlist(n) =
-(
- list_tabulate<int>(n)
- where { implement list_tabulate$fopr<int>(_) = int() }
-) (* end of [intlist] *)
-//
-(* ****** ****** *)
-
 val () =
 {
 //
-val LN = 10
-val A0 = arrayref_make_intrange(0, LN)
-var tally: int = 0
-val _asz_ =
-arrayref_foreach_env<int><int>(A0, i2sz(LN), tally)
-where{
-implement
-array_foreach$fwork<int><int>(x, env) = env := env + x
-} (* end of [where] *)
+val N = 256
 //
-} (* end-of-val *)
-
+val () =
+assertloc(
+  N.forall()(lam(x) => char2int0(int2char0(x-128))+128 = x)
+)(*assertloc*)
+//
+} (* end of [val] *)
+//
 (* ****** ****** *)
 
 val () =
 println!
 (
-  "ATS-Postiate-test/core/ATSLIB/prelude: test_arrayref is done!"
+  "ATS-Postiate-test/core/ATSLIB/prelude: prelude_char is done!"
 ) (* println! *)
 
 (* ****** ****** *)
 
-(* end of [test_arrayref.dats] *)
+(* end of [prelude_char.dats] *)

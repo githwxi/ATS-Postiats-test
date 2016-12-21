@@ -1,7 +1,7 @@
 (* ****** ****** *)
 (*
 ** For testing
-** ATSLIB/prelude/list
+** ATSLIB/prelude/array
 *)
 (* ****** ****** *)
 (*
@@ -35,7 +35,7 @@
 (* ****** ****** *)
 //
 #if
-undefined(TEST_INCLUDE)
+undefined(INCLUDED)
 #then
 //
 #include
@@ -46,7 +46,7 @@ undefined(TEST_INCLUDE)
 #include
 "share/HATS/atspre_staload_libats_ML.hats"
 //
-#endif // end of [TEST_INCLUDE]
+#endif // end of [INCLUDED]
 //
 (* ****** ****** *)
 
@@ -67,101 +67,116 @@ macdef int() = randint(INTMAX)
 //
 extern
 fun{}
-intlist{n:nat}(int(n)): list(int, n)
+intlist{n:nat}(int(n)): list_vt(int, n)
 //
 implement
 {}(*tmp*)
 intlist(n) =
-list_vt2t
 (
  list_tabulate<int>(n)
  where { implement list_tabulate$fopr<int>(_) = int() }
 ) (* end of [intlist] *)
 //
 (* ****** ****** *)
-//
-macdef
-reverse(xs) =
-list_vt2t(list_reverse(,(xs)))
-//
-(* ****** ****** *)
-//
-macdef
-zip(xs, ys) =
-list_vt2t(list_zip(,(xs), ,(ys)))
-//
-(* ****** ****** *)
 
 val () =
 {
 //
-val LN =
-$UN.cast{intGte(1)}(1E3)
+val N = 100
 //
-val xs = intlist(randint(LN))
-val ys = intlist(randint(LN))
+val
+(pf, pf_gc | p) = 
+array_ptr_alloc<int>(i2sz(N))
 //
-val () = assertloc(reverse(xs+ys) = reverse(ys)+reverse(xs))
+val xs = intlist(N)
 //
-} (* end of [val] *)
-
-(* ****** ****** *)
-
 val () =
-{
-//
-val LN = 1000
-//
-val xs = intlist(LN)
+array_copy_from_list_vt
+  (!p, copy(xs))
 //
 val ys =
-list_map<int><int>
-  (xs) where
-{
-implement
-list_map$fopr<int><int>(x) = x + 1
-} (* end of [val] *)
-//
-val ys = list_vt2t(ys)
-//
-val zs =
-list_map<int><int>
-  (ys) where
-{
-implement
-list_map$fopr<int><int>(x) = x - 1
-} (* end of [val] *)
-//
-val zs = list_vt2t(zs)
-//
-val () = assertloc (xs = zs)
-//
-} (* end of [val] *)
-
-(* ****** ****** *)
-
-val () =
-{
-//
-val LN = 1000
-//
-val xs = intlist(LN)
-val ys = intlist(LN)
+array_copy_to_list_vt(!p, i2sz(N))
 //
 val () =
 assertloc
-  (reverse(zip(xs, ys)) = zip(reverse(xs), reverse(ys)))
+(
+  $UN.list_vt2t(xs) = $UN.list_vt2t(ys)
+) (* end of [val] *)
 //
-} (* end of [val] *)
+val () = free(xs) and () = free(ys)
+//
+val () = array_ptr_free(pf, pf_gc | p)
+//
+} (* end-of-val *)
+
+(* ****** ****** *)
+
+val () =
+{
+//
+val N = 100
+//
+val
+(pf, pf_gc | p) = 
+array_ptr_tabulate<int>(i2sz(N))
+where {
+implement
+array_tabulate$fopr<int>(x) = sz2i(x)+1
+} (* where *)
+//
+var env: int = 0
+val asz =
+array_foreach_env<int><int>(!p, i2sz(N), env)
+where {
+implement
+array_foreach$fwork<int><int>(x, env) = env := env + x
+} (* where *)
+//
+val () = assertloc(asz = N)
+val () = assertloc(env = N*(N+1)/2)
+//
+val () = array_ptr_free(pf, pf_gc | p)
+//
+} (* end-of-val *)
+
+(* ****** ****** *)
+
+val () =
+{
+//
+val N = 100
+//
+val
+(pf, pf_gc | p) = 
+array_ptr_tabulate<int>(i2sz(N))
+where {
+implement
+array_tabulate$fopr<int>(x) = sz2i(x)+1
+} (* where *)
+//
+var env: int = 0
+val asz =
+array_rforeach_env<int><int>(!p, i2sz(N), env)
+where {
+implement
+array_rforeach$fwork<int><int>(x, env) = env := env + x
+} (* where *)
+//
+val () = assertloc(asz = N)
+val () = assertloc(env = N*(N+1)/2)
+//
+val () = array_ptr_free(pf, pf_gc | p)
+//
+} (* end-of-val *)
 
 (* ****** ****** *)
 
 val () =
 println!
 (
-  "ATS-Postiate-test/core/ATSLIB/prelude: test_list is done!"
+  "ATS-Postiate-test/core/ATSLIB/prelude: prelude_array is done!"
 ) (* println! *)
 
 (* ****** ****** *)
 
-(* end of [test_list.dats] *)
+(* end of [prelude_array.dats] *)

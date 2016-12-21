@@ -1,7 +1,7 @@
 (* ****** ****** *)
 (*
 ** For testing
-** ATSLIB/prelude/integer
+** ATSLIB/prelude/string
 *)
 (* ****** ****** *)
 (*
@@ -35,7 +35,7 @@
 (* ****** ****** *)
 //
 #if
-undefined(TEST_INCLUDE)
+undefined(INCLUDED)
 #then
 //
 #include
@@ -46,98 +46,28 @@ undefined(TEST_INCLUDE)
 #include
 "share/HATS/atspre_staload_libats_ML.hats"
 //
-#endif // end of [TEST_INCLUDE]
+#endif // end of [INCLUDED]
 //
-(* ****** ****** *)
-//
-macdef
-INTMAX =
-$UNSAFE.cast
-  {intGte(1)}((1 << 31) + (1 << 31 - 1))
-//
-(* ****** ****** *)
-//
-macdef int() = randint(INTMAX)
-//
-(* ****** ****** *)
-//
-val () =
-{
-//
-val () = let
-//
-val x = int()
-//
-in
-//
-assertloc
-(
-  x =
-  g0string2int(strptr2string(g0int2string(x)))
-) (* assertloc *)
-//
-end // end of [val]
-//
-} (* end of [val] *)
-
 (* ****** ****** *)
 
-val () =
-{
-//
-val
-N = 10
-//
-val () =
-repeat (
-  N
-, $delay (
-    let val x = int()
-        and y = int() in assertloc(x+y = y+x) end
-  ) (* $ldelay *)
-) (* repeat *)
-//
-val () =
-repeat (
-  N
-, $delay (
-    let val x = int()
-        and y = int() in assertloc(x*y = y*x) end
-  ) (* $ldelay *)
-) (* repeat *)
-//
-val () =
-repeat (
-  N
-, $delay
-  (
-    let val x = int()
-        and y = int() in
-        assertloc((x-y)*(x-y) = x*x-2*x*y+y*y) end
-  ) (* $ldelay *)
-) (* repeat *)
-//
-val () =
-repeat (
-  N
-, $delay
-  ( let
-    val x = int()
-    and y = g1ofg0(int())
-    val _ = assertloc(y >= 1) in assertloc(x=(x/y)*y+(x%y)) end
-  ) (* $ldelay *)
-) (* repeat *)
-//
-} (* end of [val] *)
+val alphabet = "abcdefghijklmnopqrstuvwxyz"
 
+(* ****** ****** *)
+//
+val () =
+assertloc(length(streamize_string_char(alphabet)) = 26)
+//
+val () =
+assertloc(length(list_vt2t(stream2list_vt(streamize_string_char(alphabet)))) = 26)
+//
 (* ****** ****** *)
 
 val () =
 println!
 (
-  "ATS-Postiate-test/core/ATSLIB/prelude: test_integer is done!"
+  "ATS-Postiate-test/core/ATSLIB/prelude: prelude_string is done!"
 ) (* println! *)
 
 (* ****** ****** *)
 
-(* end of [test_integer.dats] *)
+(* end of [prelude_string.dats] *)

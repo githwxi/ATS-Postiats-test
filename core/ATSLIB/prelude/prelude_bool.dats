@@ -35,7 +35,7 @@
 (* ****** ****** *)
 //
 #if
-undefined(TEST_INCLUDE)
+undefined(INCLUDED)
 #then
 //
 #include
@@ -46,7 +46,7 @@ undefined(TEST_INCLUDE)
 #include
 "share/HATS/atspre_staload_libats_ML.hats"
 //
-#endif // end of [TEST_INCLUDE]
+#endif // end of [INCLUDED]
 //
 (* ****** ****** *)
 //
@@ -194,9 +194,9 @@ val () = assertloc(compare(f, f) = 0)
 val () =
 println!
 (
-  "ATS-Postiate-test/core/ATSLIB/prelude: test_bool is done!"
+  "ATS-Postiate-test/core/ATSLIB/prelude: prelude_bool is done!"
 ) (* println! *)
 
 (* ****** ****** *)
 
-(* end of [test_bool.dats] *)
+(* end of [prelude_bool.dats] *)

@@ -1,7 +1,7 @@
 (* ****** ****** *)
 (*
 ** For testing
-** ATSLIB/prelude/array
+** ATSLIB/prelude/stream_vt
 *)
 (* ****** ****** *)
 (*
@@ -35,7 +35,7 @@
 (* ****** ****** *)
 //
 #if
-undefined(TEST_INCLUDE)
+undefined(INCLUDED)
 #then
 //
 #include
@@ -46,7 +46,7 @@ undefined(TEST_INCLUDE)
 #include
 "share/HATS/atspre_staload_libats_ML.hats"
 //
-#endif // end of [TEST_INCLUDE]
+#endif // end of [INCLUDED]
 //
 (* ****** ****** *)
 
@@ -64,119 +64,37 @@ $UNSAFE.cast
 macdef int() = randint(INTMAX)
 //
 (* ****** ****** *)
-//
-extern
-fun{}
-intlist{n:nat}(int(n)): list_vt(int, n)
-//
-implement
-{}(*tmp*)
-intlist(n) =
-(
- list_tabulate<int>(n)
- where { implement list_tabulate$fopr<int>(_) = int() }
-) (* end of [intlist] *)
-//
-(* ****** ****** *)
 
 val () =
 {
 //
-val N = 100
+val xs =
+stream_vt_tabulate<int>()
+where {
+implement
+stream_vt_tabulate$fopr<int>(i) = i+1
+} (* end of [where] *)
+//
+val N = 10
+//
+val xs = stream_vt_takeLte(xs, N)
 //
 val
-(pf, pf_gc | p) = 
-array_ptr_alloc<int>(i2sz(N))
+tally =
+stream_vt_foldleft_cloptr<int><int>(xs, 0, lam(res, x) => res + x)
 //
-val xs = intlist(N)
+val () = assertloc(tally = N * (N+1) / 2)
 //
-val () =
-array_copy_from_list_vt
-  (!p, copy(xs))
-//
-val ys =
-array_copy_to_list_vt(!p, i2sz(N))
-//
-val () =
-assertloc
-(
-  $UN.list_vt2t(xs) = $UN.list_vt2t(ys)
-) (* end of [val] *)
-//
-val () = free(xs) and () = free(ys)
-//
-val () = array_ptr_free(pf, pf_gc | p)
-//
-} (* end-of-val *)
-
-(* ****** ****** *)
-
-val () =
-{
-//
-val N = 100
-//
-val
-(pf, pf_gc | p) = 
-array_ptr_tabulate<int>(i2sz(N))
-where {
-implement
-array_tabulate$fopr<int>(x) = sz2i(x)+1
-} (* where *)
-//
-var env: int = 0
-val asz =
-array_foreach_env<int><int>(!p, i2sz(N), env)
-where {
-implement
-array_foreach$fwork<int><int>(x, env) = env := env + x
-} (* where *)
-//
-val () = assertloc(asz = N)
-val () = assertloc(env = N*(N+1)/2)
-//
-val () = array_ptr_free(pf, pf_gc | p)
-//
-} (* end-of-val *)
-
-(* ****** ****** *)
-
-val () =
-{
-//
-val N = 100
-//
-val
-(pf, pf_gc | p) = 
-array_ptr_tabulate<int>(i2sz(N))
-where {
-implement
-array_tabulate$fopr<int>(x) = sz2i(x)+1
-} (* where *)
-//
-var env: int = 0
-val asz =
-array_rforeach_env<int><int>(!p, i2sz(N), env)
-where {
-implement
-array_rforeach$fwork<int><int>(x, env) = env := env + x
-} (* where *)
-//
-val () = assertloc(asz = N)
-val () = assertloc(env = N*(N+1)/2)
-//
-val () = array_ptr_free(pf, pf_gc | p)
-//
-} (* end-of-val *)
+} (* end of [val] *)
 
 (* ****** ****** *)
 
 val () =
 println!
 (
-  "ATS-Postiate-test/core/ATSLIB/prelude: test_array is done!"
+  "ATS-Postiate-test/core/ATSLIB/prelude: prelude_stream_vt is done!"
 ) (* println! *)
 
 (* ****** ****** *)
 
-(* end of [test_array.dats] *)
+(* end of [prelude_stream_vt.dats] *)

@@ -1,7 +1,6 @@
 (* ****** ****** *)
 (*
-** For testing
-** ATSLIB/prelude/stream_vt
+** For testing ATSLIB/prelude
 *)
 (* ****** ****** *)
 (*
@@ -34,10 +33,6 @@
 //
 (* ****** ****** *)
 //
-#if
-undefined(TEST_INCLUDE)
-#then
-//
 #include
 "share/atspre_define.hats"
 //
@@ -46,55 +41,102 @@ undefined(TEST_INCLUDE)
 #include
 "share/HATS/atspre_staload_libats_ML.hats"
 //
-#endif // end of [TEST_INCLUDE]
-//
 (* ****** ****** *)
-
+//
 staload UN = $UNSAFE
-
-(* ****** ****** *)
 //
-macdef
-INTMAX =
-$UNSAFE.cast
-  {intGte(1)}((1 << 31) + (1 << 31 - 1))
-//
-(* ****** ****** *)
-//
-macdef int() = randint(INTMAX)
+staload
+TIME =
+"libats/libc/SATS/time.sats"
+staload
+STDLIB =
+"libats/libc/SATS/stdlib.sats"
 //
 (* ****** ****** *)
 
+#define INCLUDED 1
+
+(* ****** ****** *)
+//
 val () =
-{
+$STDLIB.srandom
+(
+  $UN.cast{uint}($TIME.time_get())
+) (* $STDLIB.srandom *)
 //
-val xs =
-stream_vt_tabulate<int>()
-where {
+(* ****** ****** *)
+
+local
+#include
+"prelude_bool.dats"
+in (* nothing *) end
+
+(* ****** ****** *)
+
+local
+#include
+"prelude_char.dats"
+in (* nothing *) end
+
+(* ****** ****** *)
+
+local
+#include
+"prelude_integer.dats"
+in (* nothing *) end
+
+(* ****** ****** *)
+
+local
+#include
+"prelude_string.dats"
+in (* nothing *) end
+
+(* ****** ****** *)
+
+local
+#include "prelude_list.dats"
+in (* nothing *) end
+
+(* ****** ****** *)
+
+local
+#include "prelude_list_vt.dats"
+in (* nothing *) end
+
+(* ****** ****** *)
+
+local
+#include "prelude_array.dats"
+in (*nothing*) end // local
+local
+#include "prelude_arrayref.dats"
+in (*nothing*) end // local
+
+(* ****** ****** *)
+
+local
+#include "prelude_stream.dats"
+in (* nothing *) end
+local
+#include "prelude_stream_vt.dats"
+in (* nothing *) end
+
+(* ****** ****** *)
+//
 implement
-stream_vt_tabulate$fopr<int>(i) = i+1
-} (* end of [where] *)
-//
-val N = 10
-//
-val xs = stream_vt_takeLte(xs, N)
-//
-val
-tally =
-stream_vt_foldleft_cloptr<int><int>(xs, 0, lam(res, x) => res + x)
-//
-val () = assertloc(tally = N * (N+1) / 2)
-//
-} (* end of [val] *)
-
-(* ****** ****** *)
-
-val () =
+main0
+(
+// argless
+) =
+{
+val() =
 println!
 (
-  "ATS-Postiate-test/core/ATSLIB/prelude: test_stream_vt is done!"
+  "ATS-Postiate-test/core/ATSLIB/prelude: Testing is done successfully!"
 ) (* println! *)
-
+} (* end of [main0] *)
+//
 (* ****** ****** *)
 
-(* end of [test_stream_vt.dats] *)
+(* end of [testall.dats] *)

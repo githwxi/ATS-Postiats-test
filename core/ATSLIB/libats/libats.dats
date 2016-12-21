@@ -1,7 +1,6 @@
 (* ****** ****** *)
 (*
-** For testing
-** ATSLIB/prelude/char
+** For testing ATSLIB/libats
 *)
 (* ****** ****** *)
 (*
@@ -34,42 +33,19 @@
 //
 (* ****** ****** *)
 //
-#if
-undefined(TEST_INCLUDE)
-#then
-//
-#include
-"share/atspre_define.hats"
-//
-#include
-"share/atspre_staload.hats"
-#include
-"share/HATS/atspre_staload_libats_ML.hats"
-//
-#endif // end of [TEST_INCLUDE]
-//
-(* ****** ****** *)
-//
-val () =
+implement
+main0
+(
+// argless
+) =
 {
-//
-val N = 256
-//
-val () =
-assertloc(
-  N.forall()(lam(x) => char2int0(int2char0(x-128))+128 = x)
-)(*assertloc*)
-//
-} (* end of [val] *)
-//
-(* ****** ****** *)
-
-val () =
+val() =
 println!
 (
-  "ATS-Postiate-test/core/ATSLIB/prelude: test_char is done!"
+  "ATS-Postiate-test/core/ATSLIB/libats: Testing is done successfully!"
 ) (* println! *)
-
+} (* end of [main0] *)
+//
 (* ****** ****** *)
 
-(* end of [test_char.dats] *)
+(* end of [libats.dats] *)

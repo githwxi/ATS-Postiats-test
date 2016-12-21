@@ -1,5 +1,6 @@
 ##
-## A Makefile for simple testing
+## A simple
+## Makefile for testing
 ##
 
 ## ###### ###### ##
@@ -20,23 +21,14 @@ cleanall::
 ## ###### ###### ##
 #
 all:: \
-prelude
-prelude: \
-prelude.dats \
-prelude_bool.dats \
-prelude_char.dats \
-prelude_integer.dats \
-prelude_string.dats \
-prelude_list.dats \
-prelude_list_vt.dats \
-prelude_array.dats \
-prelude_arrayref.dats \
-prelude_stream.dats \
-prelude_stream_vt.dats \
+libats_ML
+libats_ML: \
+libats_ML.dats \
 ; $(PATSCC) -D_GNU_SOURCE -DATS_MEMALLOC_LIBC -O2 -o $@ $<
 #
-regress:: prelude; ./$<
-cleanall:: ; $(RMF) prelude
+regress:: \
+libats_ML; ./libats_ML
+cleanall:: ; $(RMF) libats_ML
 #
 ## ###### ###### ##
 

@@ -1,7 +1,6 @@
 (* ****** ****** *)
 (*
-** For testing
-** ATSLIB/prelude/string
+** For testing ATSLIB/libats/ML
 *)
 (* ****** ****** *)
 (*
@@ -34,40 +33,19 @@
 //
 (* ****** ****** *)
 //
-#if
-undefined(TEST_INCLUDE)
-#then
-//
-#include
-"share/atspre_define.hats"
-//
-#include
-"share/atspre_staload.hats"
-#include
-"share/HATS/atspre_staload_libats_ML.hats"
-//
-#endif // end of [TEST_INCLUDE]
-//
-(* ****** ****** *)
-
-val alphabet = "abcdefghijklmnopqrstuvwxyz"
-
-(* ****** ****** *)
-//
-val () =
-assertloc(length(streamize_string_char(alphabet)) = 26)
-//
-val () =
-assertloc(length(list_vt2t(stream2list_vt(streamize_string_char(alphabet)))) = 26)
-//
-(* ****** ****** *)
-
-val () =
+implement
+main0
+(
+// argless
+) =
+{
+val() =
 println!
 (
-  "ATS-Postiate-test/core/ATSLIB/prelude: test_string is done!"
+  "ATS-Postiate-test/core/ATSLIB/libats/ML: Testing is done successfully!"
 ) (* println! *)
-
+} (* end of [main0] *)
+//
 (* ****** ****** *)
 
-(* end of [test_string.dats] *)
+(* end of [libats_ML.dats] *)
