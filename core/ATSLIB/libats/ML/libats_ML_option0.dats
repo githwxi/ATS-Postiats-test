@@ -53,7 +53,10 @@ undefined(INCLUDED)
 val opt = option0_some<int>(0)
 val-(0) = option0_unsome_exn(option0_some<int>(0))
 val-(1) = option0_unsome_exn(opt.map(TYPE{int})(lam x => x + 1))
-
+//
+val-None0 _ = opt.filter()(lam x => x >= 1)
+val-Some0 0 = opt.filter()(lam x => x >= 0)
+//
 (* ****** ****** *)
 
 val () =
