@@ -95,13 +95,40 @@ array_foreach$fwork<int><int>(x, env) = env := env + x
 } (* end-of-val *)
 
 (* ****** ****** *)
+//
+extern
+fun{a:t@ype}
+arrayref_remove_at
+  {n:int}{i:nat | i < n}
+(
+A0: arrayref(a, n), n: int(n), i: int(i)
+) : arrayref(a, n-1) // end-of-function
+//  
+implement
+{a}(*tmp*)
+arrayref_remove_at
+  (A0, n, i) = let
+//
+val n = i2sz(n) and i = i2sz(i)
+//
+in
+//
+arrayref_tabulate_cloref
+(
+  n-1
+, lam j => $effmask_ref(if j < i then A0[j] else A0[j+1])
+) (* arrayref_tabulate_cloref *)
+//
+end // end of [arrayref_remove_at]
+//
+(* ****** ****** *)
 
 val () =
 println!
 (
-  "ATS-Postiate-test/core/ATSLIB/prelude: preludearrayref is done!"
+  "ATS-Postiate-test/core/ATSLIB/prelude: prelude_arrayref is done!"
 ) (* println! *)
 
 (* ****** ****** *)
 
-(* end of [preludearrayref.dats] *)
+(* end of [prelude_arrayref.dats] *)

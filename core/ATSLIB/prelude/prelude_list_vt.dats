@@ -214,6 +214,36 @@ val () = assertloc(list_vt_eqfree<int>(ds, list_make_intrange(1, 6)))
 (* ****** ****** *)
 
 val () =
+{
+//
+val ds =
+list_make_intrange
+  (0, 10)
+//
+local
+//
+implement
+list_vt_permute$randint<>
+  (n) = randint(n)
+//
+in(* in-of-local *)
+//
+val ds =
+  list_vt_permute<int>(ds)
+//
+end // end of [local]
+//
+(*
+val () = println!("ds = ", ds)
+*)
+//
+val () = list_vt_free<int>(ds)
+//
+} (* end of [val] *)
+
+(* ****** ****** *)
+
+val () =
 println!
 (
   "ATS-Postiate-test/core/ATSLIB/prelude: prelude_list_vt is done!"
