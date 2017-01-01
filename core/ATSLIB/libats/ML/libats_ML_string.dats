@@ -1,6 +1,7 @@
 (* ****** ****** *)
 (*
-** For testing ATSLIB/libats/ML
+** For testing
+** ATSLIB/libats/ML/string
 *)
 (* ****** ****** *)
 (*
@@ -33,6 +34,10 @@
 //
 (* ****** ****** *)
 //
+#if
+undefined(INCLUDED)
+#then
+//
 #include
 "share/atspre_define.hats"
 //
@@ -41,49 +46,25 @@
 #include
 "share/HATS/atspre_staload_libats_ML.hats"
 //
-(* ****** ****** *)
-
-#define INCLUDED 1
-
-(* ****** ****** *)
-
-local
-#include"libats_ML_string.dats"
-in (* nothing *) end
-
-(* ****** ****** *)
-
-local
-#include"libats_ML_list0.dats"
-in (* nothing *) end
-
-(* ****** ****** *)
-
-local
-#include"libats_ML_option0.dats"
-in (* nothing *) end
-
-(* ****** ****** *)
-
-local
-#include "libats_ML_array0.dats"
-in (* nothing *) end
-
-(* ****** ****** *)
+#endif // end of [INCLUDED]
 //
-implement
-main0
-(
-// argless
-) =
+(* ****** ****** *)
+
+val () =
 {
-val() =
+//
+val () = assertloc(3*"abc" = "abcabcabc")
+//
+} (* end of [val] *)
+
+(* ****** ****** *)
+
+val () =
 println!
 (
-  "ATS-Postiate-test/core/ATSLIB/libats/ML: Testing is done successfully!"
+  "ATS-Postiate-test/core/ATSLIB/prelude: libats_ML_string is done!"
 ) (* println! *)
-} (* end of [main0] *)
-//
+
 (* ****** ****** *)
 
-(* end of [libats_ML.dats] *)
+(* end of [libats_ML_string.dats] *)
