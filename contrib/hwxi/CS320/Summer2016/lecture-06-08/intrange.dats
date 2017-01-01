@@ -24,7 +24,7 @@ implement
 mul_int_string(n, s) =
   int_foldleft_cloref<string>(n, "", lam(res, i) => s + res)
 //
-overload * with mul_int_string
+overload * with mul_int_string of 10
 //
 (* ****** ****** *)
 
