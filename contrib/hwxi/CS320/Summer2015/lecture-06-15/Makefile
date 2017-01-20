@@ -29,15 +29,19 @@ regress:: fact2; ./fact2 12
 cleanall:: ; rm -f fact2
 
 ######
-
+#
 all:: \
 gfact
 gfact: \
 gfact.dats; \
-$(PATSCC) -I${PATSHOMERELOC}/contrib -D_GNU_SOURCE -DATS_MEMALLOC_LIBC -o $@ $< -lgmp
-regress:: gfact; ./gfact 12
+$(PATSCC) -D_GNU_SOURCE -DATS_MEMALLOC_LIBC \
+  -I${PATSHOME}/atscntrb/atscntrb-libgmp -o $@ $< -lgmp
+#
+regress:: \
+gfact; ./gfact 12
+#
 cleanall:: ; rm -f gfact
-
+#
 ######
 
 all:: \

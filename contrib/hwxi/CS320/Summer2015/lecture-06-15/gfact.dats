@@ -6,10 +6,10 @@
 //
 (* ****** ****** *)
 //
-staload "{$LIBATSHWXI}/intinf/DATS/gintinf_t.dats"
+staload "{$HX_INTINF}/DATS/gintinf_t.dats"
 //
-staload _ = "{$LIBATSHWXI}/intinf/DATS/intinf_t.dats"
-staload _ = "{$LIBATSHWXI}/intinf/DATS/intinf_vt.dats"
+staload _ = "{$HX_INTINF}/DATS/intinf_t.dats"
+staload _ = "{$HX_INTINF}/DATS/intinf_vt.dats"
 //
 (* ****** ****** *)
 

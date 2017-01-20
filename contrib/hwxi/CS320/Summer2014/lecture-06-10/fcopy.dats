@@ -13,7 +13,7 @@ staload _ = "libats/ML/DATS/array0.dats"
 //
 (* ****** ****** *)
 
-staload "{$LIBATSHWXI}/teaching/BUCS/DATS/BUCS.dats"
+staload "{$LIBATSHWXI}/teaching/BUCS/DATS/BUCS320.dats"
 
 (* ****** ****** *)
 

@@ -6,15 +6,18 @@
 //
 (* ****** ****** *)
 //
-#include
-"share/atspre_define.hats"
-#include
-"{$ARDUINO}/staloadall.hats"
+#define
+ARDUINO_targetloc
+"$PATSCONTRIB/contrib/arduino"
 //
 (* ****** ****** *)
 //
-staload
-UN = "prelude/SATS/unsafe.sats"
+#include "share/atspre_define.hats"
+#include "{$ARDUINO}/staloadall.hats"
+//
+(* ****** ****** *)
+//
+staload UN = "prelude/SATS/unsafe.sats"
 //
 (* ****** ****** *)
 
