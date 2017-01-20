@@ -55,6 +55,8 @@ then
 # For contrib/jansson/
 # sudo apt-get -qq -y install libjansson-dev
 #
+  echo "Linux: no need for installing packages."    
+#
 fi
 
 ######
