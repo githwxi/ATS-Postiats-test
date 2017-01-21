@@ -17,26 +17,33 @@ dynload "./intlist_util.dats"
 
 (* ****** ****** *)
 
-val digits = (
+val
+digits =
+(
   0::1::2::3::4::5::6::7::8::9::nil()
 ) (* end of [val] *)
 
 (* ****** ****** *)
-
-fun fromTo (i: int, n: int): intlist =
-  if i < n then i :: fromTo (i+1, n) else nil()
-
+//
+fun
+fromTo(i: int, n: int): intlist =
+  if i < n then i :: fromTo(i+1, n) else nil()
+//
 (* ****** ****** *)
 
-val () = fprint (stdout_ref, "digits = ")
-val () = fprint_intlist (stdout_ref, digits)
-val () = fprint_newline (stdout_ref)
+val () =
+  fprint(stdout_ref, "digits = ")
+val () =
+  fprint_intlist(stdout_ref, digits)
+val () = fprint_newline(stdout_ref)
 
 (* ****** ****** *)
 
 val digits2 = fromTo (0, 10)
-val () = fprint (stdout_ref, "digits2 = ")
-val () = fprint_intlist (stdout_ref, digits2)
+val () =
+  fprint (stdout_ref, "digits2 = ")
+val () =
+  fprint_intlist (stdout_ref, digits2)
 val () = fprint_newline (stdout_ref)
 
 (* ****** ****** *)

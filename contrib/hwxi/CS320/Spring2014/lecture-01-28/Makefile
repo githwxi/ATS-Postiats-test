@@ -1,7 +1,11 @@
 #
 # A simple Makefile
 #
-include $(PATSHOME)/share/atsmake-pre.mk
+include \
+$(PATSHOME)/share/atsmake-pre.mk
+#
+include \
+$(PATSHOME)/share/atsmake-post.mk
 #
 SOURCES_SATS += intlist.sats
 SOURCES_DATS += intlist.dats
@@ -18,8 +22,6 @@ test: test.dats \
 #
 regress:: test; ./$<
 cleanall:: ; $(RMF) test
-#
-include $(PATSHOME)/share/atsmake-post.mk
 #
 testall:: all
 testall:: regress
