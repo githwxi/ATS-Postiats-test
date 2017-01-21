@@ -35,7 +35,7 @@ gfact
 gfact: \
 gfact.dats; \
 $(PATSCC) -D_GNU_SOURCE -DATS_MEMALLOC_LIBC \
-  -I${PATSHOME}/atscntrb/atscntrb-libgmp -o $@ $< -lgmp
+  -I${PATSHOME}/contrib/atscntrb-libgmp -o $@ $< -lgmp
 #
 regress:: \
 gfact; ./gfact 12

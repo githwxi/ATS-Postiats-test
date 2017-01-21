@@ -62,9 +62,9 @@ script:
   # Building parsemit
   - (cd ${PATSHOME}/contrib/CATS-parsemit && make all)
   # Building atscc2js
-  - (cd ${PATSHOME}/contrib/CATS-atscc2js && make build && mv -f atscc2js ${PATSHOME}/bin/.)
+  - (cd ${PATSHOME}/contrib/CATS-atscc2js && make all && mv -f atscc2js ${PATSHOME}/bin/.)
   # Building atscc2php
-  - (cd ${PATSHOME}/contrib/CATS-atscc2php && make build && mv -f atscc2php ${PATSHOME}/bin/.)
+  - (cd ${PATSHOME}/contrib/CATS-atscc2php && make all && mv -f atscc2php ${PATSHOME}/bin/.)
   # Running regress test
   - cd ${TRAVIS_BUILD_DIR}
   - export Makefile_test=Makefile_test
