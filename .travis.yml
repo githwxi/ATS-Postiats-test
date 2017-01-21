@@ -63,6 +63,8 @@ script:
   - (cd ${PATSHOME}/contrib/CATS-parsemit && make all)
   # Building atscc2js
   - (cd ${PATSHOME}/contrib/CATS-atscc2js && make all && mv -f atscc2js ${PATSHOME}/bin/.)
+  # Building atscc2py3
+  - (cd ${PATSHOME}/contrib/CATS-atscc2py3 && make all && mv -f atscc2py3 ${PATSHOME}/bin/.)
   # Building atscc2php
   - (cd ${PATSHOME}/contrib/CATS-atscc2php && make all && mv -f atscc2php ${PATSHOME}/bin/.)
   # Running regress test
