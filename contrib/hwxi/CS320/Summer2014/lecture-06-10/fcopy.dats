@@ -12,9 +12,11 @@ staload "libats/ML/SATS/array0.sats"
 staload _ = "libats/ML/DATS/array0.dats"
 //
 (* ****** ****** *)
-
-staload "{$LIBATSHWXI}/teaching/BUCS/DATS/BUCS320.dats"
-
+//
+staload
+"{$PATSHOME}/npm-utils/contrib\
+/libats-hwxi/teaching/BUCS/DATS/BUCS320.dats"
+//
 (* ****** ****** *)
 
 fun fcopy
