@@ -72,7 +72,7 @@ val theClicks = merge(theClicks, theResets)
 //
 val
 theCounter =
-scan{int}{act}
+EStream_scan{int}{act}
 (
   theClicks, 0
 , lam(y, x) =<cloref1>

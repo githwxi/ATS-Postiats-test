@@ -45,11 +45,11 @@ val theDns =
 val theUps = EStream_map(theUps, lam(x) => 1)
 val theDns = EStream_map(theDns, lam(x) => ~1)
 //
-val theUpDns = merge(theUps, theDns)
+val theUpDns = merge{int}(theUps, theDns)
 //
 val
 theCounts =
-scan{int}{int}(theUpDns, 100, lam(y, x) =<cloref1> (y + x))
+EStream_scan{int}{int}(theUpDns, 100, lam(y, x) => (y + x))
 //
 extvar "theCounts" = theCounts
 //

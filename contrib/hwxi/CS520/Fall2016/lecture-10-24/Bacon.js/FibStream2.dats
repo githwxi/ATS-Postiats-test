@@ -74,7 +74,7 @@ end // end of [theFibs]
 //
 val
 theAutos =
-scan{bool}(theAutos, false, lam(tf, _) =<cloref1> not(tf))
+EStream_scan{bool}(theAutos, false, lam(tf, _) => not(tf))
 //
 val
 theAutos = theAutos.sampledBy(Bacon_interval{int}(1000, 0))

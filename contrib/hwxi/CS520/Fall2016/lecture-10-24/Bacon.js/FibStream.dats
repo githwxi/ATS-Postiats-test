@@ -51,7 +51,7 @@ typedef state = $tup(int,int)
 //
 val
 theFib2s_next =
-scan{state}{void}
+EStream_scan{state}{void}
 (
   theNexts, $tup(0, 1)
 , lam (state, _) => $tup(state.1, state.0+state.1)
