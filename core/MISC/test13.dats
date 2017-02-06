@@ -1,7 +1,16 @@
+(* ****** ****** *)
+
 (*
 HX-2017-02-06:
-I cannot make it work, either:
+A question from Chris Double:
 https://mail.google.com/mail/u/0/#inbox/15a13eb6c6a36e23
+*)
+
+(* ****** ****** *)
+
+(*
+HX-2017-02-06:
+I cannot make it work, either.
 *)
 
 (* ****** ****** *)
