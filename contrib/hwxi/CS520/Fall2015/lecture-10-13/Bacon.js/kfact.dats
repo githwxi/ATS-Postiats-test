@@ -9,8 +9,10 @@
 
 (* ****** ****** *)
 //
-#include
-"share/atspre_define.hats"
+#define
+LIBATSCC2JS_targetloc
+"$PATSHOME\
+/contrib/libatscc2js/ATS2-0.3.2"
 //
 (* ****** ****** *)
 //
@@ -94,7 +96,7 @@ val theState_1 = $tup(~1, k1)
 
 val
 theStates =
-scan{state}{void}
+EStream_scan{state}{void}
 (
   theClicks
 , theState_0
