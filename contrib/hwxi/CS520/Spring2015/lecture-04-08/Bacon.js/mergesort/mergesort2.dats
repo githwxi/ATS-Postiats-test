@@ -3,18 +3,20 @@
 *)
 
 (* ****** ****** *)
-//
-#include
-"share/atspre_define.hats"
-//
-(* ****** ****** *)
 
 #define ATS_MAINATSFLAG 1
 #define ATS_DYNLOADNAME "my_dynload"
 
 (* ****** ****** *)
 //
-staload
+#define
+LIBATSCC2JS_targetloc
+"$PATSHOME\
+/contrib/libatscc2js/ATS2-0.3.2"
+//
+(* ****** ****** *)
+//
+#staload
 UN = "prelude/SATS/unsafe.sats"
 //
 (* ****** ****** *)
@@ -24,7 +26,7 @@ UN = "prelude/SATS/unsafe.sats"
 //
 (* ****** ****** *)
 //
-staload
+#staload
 "{$LIBATSCC2JS}/SATS/HTML/canvas-2d/canvas2d.sats"
 //
 (* ****** ****** *)
@@ -151,10 +153,10 @@ overload - with sub_ppv
 //
 implement
 add_pvp (p, v) =
-  point_make_xy (p.x + v.x, p.y + v.y)
+  point_make_xy (p.x() + v.x(), p.y() + v.y())
 implement
 sub_ppv (p1, p2) =
-  vector_make_xy (p1.x - p2.x, p1.y - p2.y)
+  vector_make_xy (p1.x() - p2.x(), p1.y() - p2.y())
 //
 (* ****** ****** *)
 //
@@ -168,10 +170,10 @@ sub_vvv (v1: vector, v2: vector): vector
 //
 implement
 add_vvv (v1, v2) =
-  vector_make_xy (v1.x + v2.x, v1.y + v2.y)
+  vector_make_xy (v1.x() + v2.x(), v1.y() + v2.y())
 implement
 sub_vvv (v1, v2) =
-  vector_make_xy (v1.x - v2.x, v1.y - v2.y)
+  vector_make_xy (v1.x() - v2.x(), v1.y() - v2.y())
 //
 (* ****** ****** *)
 //
@@ -189,9 +191,9 @@ overload / with div_vkv
 (* ****** ****** *)
 //
 implement
-mul_kvv (k, v) = vector_make_xy (k * v.x, k * v.y)
+mul_kvv (k, v) = vector_make_xy (k * v.x(), k * v.y())
 implement
-div_vkv (v, k) = vector_make_xy (v.x / k, v.y / k)
+div_vkv (v, k) = vector_make_xy (v.x() / k, v.y() / k)
 //
 (* ****** ****** *)
 
@@ -400,10 +402,10 @@ val p3 = p2+a*(p3-p2)
 val p4 = p1+a*(p4-p1)
 //
 val () = ctx.beginPath()
-val () = ctx.moveTo(p1.x, p1.y)
-val () = ctx.lineTo(p2.x, p2.y)
-val () = ctx.lineTo(p3.x, p3.y)
-val () = ctx.lineTo(p4.x, p4.y)
+val () = ctx.moveTo(p1.x(), p1.y())
+val () = ctx.lineTo(p2.x(), p2.y())
+val () = ctx.lineTo(p3.x(), p3.y())
+val () = ctx.lineTo(p4.x(), p4.y())
 val () = ctx.closePath()
 //
 val ((*void*)) = ctx.fill((*void*))
@@ -639,9 +641,9 @@ val thePulses = $extval(EStream(void), "thePulses")
 (* ****** ****** *)
 //
 val thePlays =
-  map{void,bool}(thePlays, lam (x) =<cloref1> true)
+EStream_map{void}{bool}(thePlays, lam (x) =<cloref1> true)
 val thePauses =
-  map{void,bool}(thePauses, lam (x) =<cloref1> false)
+EStream_map{void}{bool}(thePauses, lam (x) =<cloref1> false)
 //
 val thePlayPauses = merge(thePlays, thePauses)
 val thePlayPauses = thePlayPauses.toProperty(false)
