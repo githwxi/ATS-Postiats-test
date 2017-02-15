@@ -3,17 +3,17 @@
 *)
 
 (* ****** ****** *)
-
-#define ATS_MAINATSFLAG 1
-#define ATS_DYNLOADNAME "my_dynload"
-
-(* ****** ****** *)
 //
 #define
 LIBATSCC2JS_targetloc
 "$PATSHOME\
 /contrib/libatscc2js/ATS2-0.3.2"
 //
+(* ****** ****** *)
+
+#define ATS_MAINATSFLAG 1
+#define ATS_DYNLOADNAME "my_dynload"
+
 (* ****** ****** *)
 //
 #include

@@ -1,13 +1,15 @@
 (* ****** ****** *)
+//
+#define
+LIBATSCC2JS_targetloc
+"$PATSHOME\
+/contrib/libatscc2js/ATS2-0.3.2"
+//
+(* ****** ****** *)
 
 #define ATS_MAINATSFLAG 1
 #define ATS_DYNLOADNAME "FPL_lambda_initize"
 
-(* ****** ****** *)
-//
-#include
-"share/atspre_define.hats"
-//
 (* ****** ****** *)
 //
 #include
