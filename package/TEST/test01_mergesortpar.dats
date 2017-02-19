@@ -1,8 +1,22 @@
 (* ****** ****** *)
 (*
 ** For testing
-** atscntrn-bucs320-mergesort
+** atscntrn-bucs320-mergesortpar
 *)
+(* ****** ****** *)
+
+%{^
+//
+#include <pthread.h>
+//
+#ifdef ATS_MEMALLOC_GCBDW
+#undef GC_H
+#define GC_THREADS
+#include <gc/gc.h>
+#endif // #if(ATS_MEMALLOC_GCBDW)
+//
+%} // end of [%{^]
+
 (* ****** ****** *)
 //
 #define
@@ -24,25 +38,31 @@ PATSHOMELOCS_targetloc
 
 (* ****** ****** *)
 //
-#define MERGESORT_LIST
+#define MERGESORTPAR_LIST
 //
 #include
 "{$PATSHOMELOCS}\
-/atscntrb-bucs320-mergesort/mydepies.hats"
+/atscntrb-bucs320-mergesortpar/mylibies.hats"
 #include
 "{$PATSHOMELOCS}\
-/atscntrb-bucs320-mergesort/mylibies.hats"
+/atscntrb-bucs320-mergesortpar/mydepies.hats"
+#include
+"{$PATSHOMELOCS}\
+/atscntrb-bucs320-mergesortpar/mydepies_list.hats"
+//
+#staload FWS = $FWORKSHOP_chanlst
 //
 (* ****** ****** *)
 //
 extern
 fun
-MergeSort_list_double
-  (xs: list0(double)): list0(double)
+MergeSortPar_list_double
+  ($FWS.fworkshop, xs: list0(double)): list0(double)
 //
 (* ****** ****** *)
 //
-typedef elt = $MergeSort_list.elt_t0ype
+typedef elt =
+$MergeSort_list.elt_t0ype
 //
 (* ****** ****** *)
 
@@ -54,11 +74,16 @@ $MergeSort_list.elt_t0ype = double
 implement
 gcompare_val_val<elt>(x, y) = compare(x, y)
 //
+//
+implement
+$MergeSort_list.MergeSort_list$cutoff<>() = 8096
+//
 in (* in-of-local *)
 //
 implement
-MergeSort_list_double
-  (xs) = $MergeSort_list.MergeSort_list<>(xs)
+MergeSortPar_list_double
+  (fws, xs) =
+  $MergeSortPar_list.MergeSortPar_list<>(fws, xs)
 //
 end // end of [local]
 
@@ -96,6 +121,15 @@ main0() = () where
 //
 val N = 1000000
 //
+val
+fws =
+$FWS.fworkshop_create_exn()
+//
+val err =
+  $FWS.fworkshop_add_worker(fws)
+val err =
+  $FWS.fworkshop_add_worker(fws)
+//
 local
 implement
 grandom_double<>() =
@@ -105,7 +139,7 @@ val xs = grandom_list<double>(N)
 end // end of [local]
 //
 val xs = g0ofg1(xs)
-val ys = MergeSort_list_double(xs)
+val ys = MergeSortPar_list_double(fws, xs)
 //
 val () =
 if (N <= 10)
@@ -120,4 +154,4 @@ val () = assertloc(list0_is_sorted(ys))
 
 (* ****** ****** *)
 
-(* end of [test01_mergesort.dats] *)
+(* end of [test01_mergesortpar.dats] *)

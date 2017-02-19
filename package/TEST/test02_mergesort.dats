@@ -24,7 +24,7 @@ PATSHOMELOCS_targetloc
 
 (* ****** ****** *)
 //
-#define MERGESORT_LIST
+#define MERGESORT_ARRAY
 //
 #include
 "{$PATSHOMELOCS}\
@@ -37,19 +37,20 @@ PATSHOMELOCS_targetloc
 //
 extern
 fun
-MergeSort_list_double
-  (xs: list0(double)): list0(double)
+MergeSort_array_double
+  {n:int}
+  (A: arrayref(double, n), n: int(n)): void
 //
 (* ****** ****** *)
 //
-typedef elt = $MergeSort_list.elt_t0ype
+typedef elt = $MergeSort_array.elt_t0ype
 //
 (* ****** ****** *)
 
 local
 //
 assume
-$MergeSort_list.elt_t0ype = double
+$MergeSort_array.elt_t0ype = double
 //
 implement
 gcompare_val_val<elt>(x, y) = compare(x, y)
@@ -57,8 +58,8 @@ gcompare_val_val<elt>(x, y) = compare(x, y)
 in (* in-of-local *)
 //
 implement
-MergeSort_list_double
-  (xs) = $MergeSort_list.MergeSort_list<>(xs)
+MergeSort_array_double
+  (A, n) = $MergeSort_array.MergeSort_array<>(A, n)
 //
 end // end of [local]
 
@@ -67,27 +68,6 @@ end // end of [local]
 #staload
 "libats/libc/SATS/stdlib.sats"
 //
-(* ****** ****** *)
-
-fun{a:t@ype}
-list0_is_sorted
-  (xs: list0(INV(a))): bool =
-(
-case+ xs of
-| list0_nil
-    () => true
-| list0_cons
-    (x, xs) => loop(x, xs) where 
-  {
-    fun loop(x0: a, xs: list0(a)): bool =
-      case+ xs of
-      | list0_nil() => true
-      | list0_cons(x1, xs) =>
-        if gcompare_val_val<a>(x0, x1) <= 0 then loop(x1, xs) else false
-    // end of [loop]
-  }
-)
-
 (* ****** ****** *)
 
 implement
@@ -101,20 +81,15 @@ implement
 grandom_double<>() =
 $extfcall(double, "drand48")
 in(*in-of-local*)
-val xs = grandom_list<double>(N)
+val A0 =
+  grandom_arrayref<double>(i2sz(N))
 end // end of [local]
 //
-val xs = g0ofg1(xs)
-val ys = MergeSort_list_double(xs)
+val () = MergeSort_array_double(A0, N)
 //
-val () =
-if (N <= 10)
-  then println! ("xs = ", xs)
-val () =
-if (N <= 10)
-  then println! ("ys = ", ys)
-//
-val () = assertloc(list0_is_sorted(ys))
+(*
+val () = assertloc(array0_is_sorted(ys))
+*)
 //
 } (* end of [main0] *)
 
