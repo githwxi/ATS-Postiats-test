@@ -1,0 +1,22 @@
+#
+# For testing
+#
+
+######
+
+MAKE=make
+
+######
+
+all::
+
+######
+#
+all:: \
+TEST
+TEST:: ; \
+$(MAKE) -C TEST -f Makefile testall
+#
+######
+
+###### end of [Makefile_test] ######

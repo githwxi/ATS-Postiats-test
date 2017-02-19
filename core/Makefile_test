@@ -12,13 +12,15 @@ all::
 
 ######
 #
-all:: MISC
+all:: \
+MISC
 MISC:: ; \
 $(MAKE) -C MISC -f Makefile testall
 #
 ######
 #
-all:: ATSLIB
+all:: \
+ATSLIB
 ATSLIB:: ; \
 $(MAKE) -C ATSLIB -f Makefile_test
 #
