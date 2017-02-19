@@ -38,7 +38,7 @@ PATSHOMELOCS_targetloc
 
 (* ****** ****** *)
 //
-#define MERGESORTPAR_LIST
+#define MERGESORTPAR_ARRAY
 //
 #include
 "{$PATSHOMELOCS}\
@@ -48,7 +48,7 @@ PATSHOMELOCS_targetloc
 /atscntrb-bucs320-mergesortpar/mydepies.hats"
 #include
 "{$PATSHOMELOCS}\
-/atscntrb-bucs320-mergesortpar/mydepies_list.hats"
+/atscntrb-bucs320-mergesortpar/mydepies_array.hats"
 //
 #staload FWS = $FWORKSHOP_chanlst
 //
@@ -56,34 +56,37 @@ PATSHOMELOCS_targetloc
 //
 extern
 fun
-MergeSortPar_list_double
-  ($FWS.fworkshop, xs: list0(double)): list0(double)
+MergeSortPar_array_double
+  {n:int}
+(
+  $FWS.fworkshop, A: arrayref(double, n), n: int(n)
+) : void // end of [MergeSortPar_array_double]
 //
 (* ****** ****** *)
 //
 typedef elt =
-$MergeSort_list.elt_t0ype
+$MergeSort_array.elt_t0ype
 //
 (* ****** ****** *)
 
 local
 //
 assume
-$MergeSort_list.elt_t0ype = double
+$MergeSort_array.elt_t0ype = double
 //
 implement
 gcompare_val_val<elt>(x, y) = compare(x, y)
 //
 //
 implement
-$MergeSort_list.MergeSort_list$cutoff<>() = 8096
+$MergeSort_array.MergeSort_array$cutoff<>() = 16*8096
 //
 in (* in-of-local *)
 //
 implement
-MergeSortPar_list_double
-  (fws, xs) =
-  $MergeSortPar_list.MergeSortPar_list<>(fws, xs)
+MergeSortPar_array_double
+  (fws, A, n) =
+  $MergeSortPar_array.MergeSortPar_array<>(fws, A, n)
 //
 end // end of [local]
 
@@ -98,7 +101,7 @@ implement
 main0() = () where
 {
 //
-val N = 1000000
+val N = 10000000
 //
 val
 fws =
@@ -114,24 +117,22 @@ implement
 grandom_double<>() =
 $extfcall(double, "drand48")
 in(*in-of-local*)
-val xs = grandom_list<double>(N)
+val A0 =
+  grandom_arrayref<double>(i2sz(N))
 end // end of [local]
 //
-val xs = g0ofg1(xs)
-val ys = MergeSortPar_list_double(fws, xs)
-//
 val () =
-if (N <= 10)
-  then println! ("xs = ", xs)
-val () =
-if (N <= 10)
-  then println! ("ys = ", ys)
+  MergeSortPar_array_double(fws, A0, N)
 //
 val () =
 assertloc
 (
-  list0_is_ordered(ys, lam(x, y) => compare(x, y))
-) (* assertloc *)
+  array0_is_ordered
+    (ASZ, lam(x, y) => compare(x, y))
+) where
+{
+  val ASZ = array0{double}(A0, i2sz(N))
+} (* end of [val] *)
 //
 } (* end of [main0] *)
 

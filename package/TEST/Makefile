@@ -68,6 +68,18 @@ cleanall:: ; $(RMF) test01_mergesortpar
 
 ## ###### ###### ##
 
+all:: \
+test02_mergesortpar
+test02_mergesortpar: \
+test02_mergesortpar.dats; \
+$(PATSCC2) -O2 \
+-DATS_MEMALLOC_GCBDW -o $@ $< -lgc -lpthread
+regress:: \
+test02_mergesortpar; ./$<
+cleanall:: ; $(RMF) test02_mergesortpar
+
+## ###### ###### ##
+
 testall:: all
 testall:: regress
 testall:: cleanall

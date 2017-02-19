@@ -69,6 +69,7 @@ end // end of [local]
 //
 (* ****** ****** *)
 
+(*
 fun{a:t@ype}
 list0_is_sorted
   (xs: list0(INV(a))): bool =
@@ -86,7 +87,8 @@ case+ xs of
         if gcompare_val_val<a>(x0, x1) <= 0 then loop(x1, xs) else false
     // end of [loop]
   }
-)
+) (* end of [list0_is_sorted] *)
+*)
 
 (* ****** ****** *)
 
@@ -114,7 +116,11 @@ val () =
 if (N <= 10)
   then println! ("ys = ", ys)
 //
-val () = assertloc(list0_is_sorted(ys))
+val () =
+assertloc
+(
+  list0_is_ordered(ys, lam(x, y) => compare(x, y))
+) (* assertloc *)
 //
 } (* end of [main0] *)
 

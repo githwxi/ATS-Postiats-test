@@ -74,7 +74,7 @@ implement
 main0() = () where
 {
 //
-val N = 1000000
+val N = 10000000
 //
 local
 implement
@@ -87,9 +87,15 @@ end // end of [local]
 //
 val () = MergeSort_array_double(A0, N)
 //
-(*
-val () = assertloc(array0_is_sorted(ys))
-*)
+val () =
+assertloc
+(
+  array0_is_ordered
+    (ASZ, lam(x, y) => compare(x, y))
+) where
+{
+  val ASZ = array0{double}(A0, i2sz(N))
+} (* end of [val] *)
 //
 } (* end of [main0] *)
 
