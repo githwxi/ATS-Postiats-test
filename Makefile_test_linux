@@ -29,5 +29,12 @@ contrib:: ; \
 $(MAKE) OS=$(OS) -C contrib -f Makefile_test
 #
 ######
+#
+all:: \
+package
+package:: ; \
+$(MAKE) OS=$(OS) -C package -f Makefile_test
+#
+######
 
 ###### end of [Makefile_test_linux] ######
