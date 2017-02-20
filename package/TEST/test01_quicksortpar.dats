@@ -1,8 +1,22 @@
 (* ****** ****** *)
 (*
 ** For testing
-** atscntrn-bucs320-quicksort
+** atscntrn-bucs320-quicksortpar
 *)
+(* ****** ****** *)
+
+%{^
+//
+#include <pthread.h>
+//
+#ifdef ATS_MEMALLOC_GCBDW
+#undef GC_H
+#define GC_THREADS
+#include <gc/gc.h>
+#endif // #if(ATS_MEMALLOC_GCBDW)
+//
+%} // end of [%{^]
+
 (* ****** ****** *)
 //
 #define
@@ -24,26 +38,34 @@ PATSHOMELOCS_targetloc
 
 (* ****** ****** *)
 //
-#define QUICKSORT_ARRAY
+#define QUICKSORTPAR_ARRAY
 //
 #include
 "{$PATSHOMELOCS}\
-/atscntrb-bucs320-quicksort/mydepies.hats"
+/atscntrb-bucs320-quicksortpar/mylibies.hats"
 #include
 "{$PATSHOMELOCS}\
-/atscntrb-bucs320-quicksort/mylibies.hats"
+/atscntrb-bucs320-quicksortpar/mydepies.hats"
+#include
+"{$PATSHOMELOCS}\
+/atscntrb-bucs320-quicksortpar/mydepies_array.hats"
+//
+#staload FWS = $FWORKSHOP_chanlst
 //
 (* ****** ****** *)
 //
 extern
 fun
-QuickSort_array_double
+QuickSortPar_array_double
   {n:int}
-  (A: arrayref(double, n), n: int(n)): void
+(
+  $FWS.fworkshop, A: arrayref(double, n), n: int(n)
+) : void // end of [QuickSortPar_array_double]
 //
 (* ****** ****** *)
 //
-typedef elt = $QuickSort_array.elt_t0ype
+typedef elt =
+$QuickSort_array.elt_t0ype
 //
 (* ****** ****** *)
 
@@ -55,11 +77,16 @@ $QuickSort_array.elt_t0ype = double
 implement
 gcompare_ref_ref<elt>(x, y) = compare(x, y)
 //
+//
+implement
+$QuickSort_array.QuickSort_array$cutoff<>() = 16*8096
+//
 in (* in-of-local *)
 //
 implement
-QuickSort_array_double
-  (A, n) = $QuickSort_array.QuickSort_array<>(A, n)
+QuickSortPar_array_double
+  (fws, A, n) =
+  $QuickSortPar_array.QuickSortPar_array<>(fws, A, n)
 //
 end // end of [local]
 
@@ -76,6 +103,15 @@ main0() = () where
 //
 val N = 10000000
 //
+val
+fws =
+$FWS.fworkshop_create_exn()
+//
+val err =
+  $FWS.fworkshop_add_worker(fws)
+val err =
+  $FWS.fworkshop_add_worker(fws)
+//
 local
 implement
 grandom_double<>() =
@@ -85,7 +121,8 @@ val A0 =
   grandom_arrayref<double>(i2sz(N))
 end // end of [local]
 //
-val () = QuickSort_array_double(A0, N)
+val () =
+  QuickSortPar_array_double(fws, A0, N)
 //
 val () =
 assertloc
@@ -102,4 +139,4 @@ assertloc
 
 (* ****** ****** *)
 
-(* end of [test01_quicksort.dats] *)
+(* end of [test02_quicksortpar.dats] *)
