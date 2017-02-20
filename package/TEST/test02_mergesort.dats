@@ -92,6 +92,7 @@ assertloc
 (
   array0_is_ordered
     (ASZ, lam(x, y) => compare(x, y))
+  // array0_is_ordered
 ) where
 {
   val ASZ = array0{double}(A0, i2sz(N))
@@ -101,4 +102,4 @@ assertloc
 
 (* ****** ****** *)
 
-(* end of [test01_mergesort.dats] *)
+(* end of [test02_mergesort.dats] *)

@@ -22,6 +22,8 @@
 "dependencies": {
 "atscntrb-bucs320-mergesort": ">=1.0.0"
 ,
+"atscntrb-bucs320-quicksort": ">=1.0.0"
+,
 "atscntrb-bucs320-mergesortpar": ">=1.0.0"
 }
 ,

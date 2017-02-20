@@ -57,6 +57,18 @@ cleanall:: ; $(RMF) test02_mergesort
 ## ###### ###### ##
 
 all:: \
+test01_quicksort
+test01_quicksort: \
+test01_quicksort.dats; \
+$(PATSCC2) -O2 \
+-DATS_MEMALLOC_GCBDW -o $@ $< -lgc
+regress:: \
+test01_quicksort; ./$<
+cleanall:: ; $(RMF) test01_quicksort
+
+## ###### ###### ##
+
+all:: \
 test01_mergesortpar
 test01_mergesortpar: \
 test01_mergesortpar.dats; \

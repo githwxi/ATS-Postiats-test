@@ -1,22 +1,8 @@
 (* ****** ****** *)
 (*
 ** For testing
-** atscntrn-bucs320-mergesortpar
+** atscntrn-bucs320-quicksort
 *)
-(* ****** ****** *)
-
-%{^
-//
-#include <pthread.h>
-//
-#ifdef ATS_MEMALLOC_GCBDW
-#undef GC_H
-#define GC_THREADS
-#include <gc/gc.h>
-#endif // #if(ATS_MEMALLOC_GCBDW)
-//
-%} // end of [%{^]
-
 (* ****** ****** *)
 //
 #define
@@ -38,55 +24,42 @@ PATSHOMELOCS_targetloc
 
 (* ****** ****** *)
 //
-#define MERGESORTPAR_ARRAY
+#define QUICKSORT_ARRAY
 //
 #include
 "{$PATSHOMELOCS}\
-/atscntrb-bucs320-mergesortpar/mylibies.hats"
+/atscntrb-bucs320-quicksort/mydepies.hats"
 #include
 "{$PATSHOMELOCS}\
-/atscntrb-bucs320-mergesortpar/mydepies.hats"
-#include
-"{$PATSHOMELOCS}\
-/atscntrb-bucs320-mergesortpar/mydepies_array.hats"
-//
-#staload FWS = $FWORKSHOP_chanlst
+/atscntrb-bucs320-quicksort/mylibies.hats"
 //
 (* ****** ****** *)
 //
 extern
 fun
-MergeSortPar_array_double
+QuickSort_array_double
   {n:int}
-(
-  $FWS.fworkshop, A: arrayref(double, n), n: int(n)
-) : void // end of [MergeSortPar_array_double]
+  (A: arrayref(double, n), n: int(n)): void
 //
 (* ****** ****** *)
 //
-typedef elt =
-$MergeSort_array.elt_t0ype
+typedef elt = $QuickSort_array.elt_t0ype
 //
 (* ****** ****** *)
 
 local
 //
 assume
-$MergeSort_array.elt_t0ype = double
+$QuickSort_array.elt_t0ype = double
 //
 implement
 gcompare_val_val<elt>(x, y) = compare(x, y)
 //
-//
-implement
-$MergeSort_array.MergeSort_array$cutoff<>() = 16*8096
-//
 in (* in-of-local *)
 //
 implement
-MergeSortPar_array_double
-  (fws, A, n) =
-  $MergeSortPar_array.MergeSortPar_array<>(fws, A, n)
+QuickSort_array_double
+  (A, n) = $QuickSort_array.QuickSort_array<>(A, n)
 //
 end // end of [local]
 
@@ -103,15 +76,6 @@ main0() = () where
 //
 val N = 10000000
 //
-val
-fws =
-$FWS.fworkshop_create_exn()
-//
-val err =
-  $FWS.fworkshop_add_worker(fws)
-val err =
-  $FWS.fworkshop_add_worker(fws)
-//
 local
 implement
 grandom_double<>() =
@@ -121,8 +85,7 @@ val A0 =
   grandom_arrayref<double>(i2sz(N))
 end // end of [local]
 //
-val () =
-  MergeSortPar_array_double(fws, A0, N)
+val () = QuickSort_array_double(A0, N)
 //
 val () =
 assertloc
@@ -139,4 +102,4 @@ assertloc
 
 (* ****** ****** *)
 
-(* end of [test02_mergesortpar.dats] *)
+(* end of [test01_quicksort.dats] *)
