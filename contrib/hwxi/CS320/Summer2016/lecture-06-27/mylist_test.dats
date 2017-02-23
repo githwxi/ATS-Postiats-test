@@ -15,7 +15,12 @@ staload "./../mylib/mylist.dats"
 
 (* ****** ****** *)
 
-#define N 10000
+#define N 1000
+(*
+// mylist_reverse_slow
+#define N 10000 // cannot it!!!
+//
+*)
 
 val xs = list0_make_intrange(0, N)
 val ys = mylist_reverse<int>(xs)
