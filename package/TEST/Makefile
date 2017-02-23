@@ -31,6 +31,28 @@ regress::
 cleanall::
 
 ## ###### ###### ##
+#
+all:: \
+Fibonacci
+Fibonacci: \
+Fibonacci.dats; \
+$(PATSCC2) -DATS_MEMALLOC_LIBC -o $@ $<
+#
+regress:: Fibonacci; ./$<
+cleanall:: ; $(RMF) Fibonacci
+#
+## ###### ###### ##
+#
+all:: \
+MCarthy91
+MCarthy91: \
+MCarthy91.dats; \
+$(PATSCC2) -DATS_MEMALLOC_LIBC -o $@ $<
+#
+regress:: MCarthy91; ./$<
+cleanall:: ; $(RMF) MCarthy91
+#
+## ###### ###### ##
 
 all:: \
 test01_mergesort

@@ -20,6 +20,8 @@
 ]
 ,
 "dependencies": {
+"effectivats-divideconquer": ">=1.0.0"
+,
 "atscntrb-bucs320-mergesort": ">=1.0.0"
 ,
 "atscntrb-bucs320-quicksort": ">=1.0.0"
