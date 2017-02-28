@@ -77,9 +77,33 @@ $QuickSort_array.elt_t0ype = double
 implement
 gcompare_ref_ref<elt>(x, y) = compare(x, y)
 //
+(* ****** ****** *)
+//
+#staload
+DC = $DivideConquer
+//
+local
+reassume $DC.input_t0ype
+//
+in // in-of-local
 //
 implement
-$QuickSort_array.QuickSort_array$cutoff<>() = 16*8096
+$DC.DivideConquer$base_test<>
+  (nxs) = let
+//
+val
+CUTOFF = 16192
+//
+in
+  if nxs.0 >= CUTOFF then false else true
+end // end of [DivideConquer$base_test]
+//
+end // end of [local]
+//
+(*
+implement
+$QuickSort_array.QuickSort_array$cutoff<>() = 16192
+*)
 //
 in (* in-of-local *)
 //
