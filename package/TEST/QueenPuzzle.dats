@@ -54,8 +54,10 @@ QueenPuzzle() = QueenPuzzle_helper(nil0)
 
 (* ****** ****** *)
 
-assume $DC.input_t0ype = list0(int)
-assume $DC.output_t0ype = list0(list0(int))
+assume
+$DC.input_t0ype = list0(int)
+assume
+$DC.output_t0ype = list0(list0(int))
 
 (* ****** ****** *)
 
@@ -111,7 +113,7 @@ test(xs, 1)
 then list0_cons(list0_cons(i, xs), aux(i+1))
 else aux(i+1)
 )
-else list0_nil(*void*)
+else list0_nil((*void*))
 //
 end // end of [aux]
 //
@@ -137,6 +139,11 @@ implement
 main0((*void*)) = 
 {
 //
+overload
+*
+with
+int_repeat_lazy
+//
 val
 xss = QueenPuzzle()
 //
@@ -146,6 +153,7 @@ println! ("The number of solutions equals ", length(xss), ".")
 val _(* nsol *) =
 xss.iforeach
 (
+// argless
 )
 (
 lam(i, xs) =>
@@ -158,11 +166,11 @@ xs.rforeach()
 (
 lam x =>
 (
-(x).repeat()(lam() => print ". ");
+x*delay(print ". ");
 print "Q ";
-(N-1-x).repeat()(lam() => print ". "); println!()
+(N-1-x)*delay(print ". "); println!()
 )
-); println!()
+); println!((*void*))
 )
 )
 //
