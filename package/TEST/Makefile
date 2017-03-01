@@ -53,6 +53,17 @@ regress:: MCarthy91; ./$<
 cleanall:: ; $(RMF) MCarthy91
 #
 ## ###### ###### ##
+#
+all:: \
+QueenPuzzle
+QueenPuzzle: \
+QueenPuzzle.dats; \
+$(PATSCC2) -O2 -DATS_MEMALLOC_LIBC -o $@ $<
+#
+regress:: QueenPuzzle; ./$<
+cleanall:: ; $(RMF) QueenPuzzle
+#
+## ###### ###### ##
 
 all:: \
 test01_mergesort
