@@ -1,7 +1,7 @@
 (* ****** ****** *)
 (*
 ** DivideConquer:
-** MacCarthy'1 91-function
+** MacCarthy's 91-function
 **
 *)
 (* ****** ****** *)
