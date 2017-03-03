@@ -59,7 +59,7 @@ QueenPuzzle
 QueenPuzzle: \
 QueenPuzzle.dats; \
 $(PATSCC2) -O2 \
--DATS_MEMALLOC_GCBDW -o $@ $< -lgc
+-DATS_MEMALLOC_LIBC -o $@ $<
 #
 regress:: QueenPuzzle; ./$<
 cleanall:: ; $(RMF) QueenPuzzle
@@ -69,7 +69,7 @@ QueenPuzzlePar
 QueenPuzzlePar: \
 QueenPuzzlePar.dats; \
 $(PATSCC2) -O2 \
--DATS_MEMALLOC_GCBDW -o $@ $< -lgc -lpthread
+-DATS_MEMALLOC_LIBC -o $@ $< -lpthread
 regress:: \
 QueenPuzzlePar; ./$<
 cleanall:: ; $(RMF) QueenPuzzlePar

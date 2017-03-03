@@ -6,8 +6,7 @@
 (* ****** ****** *)
 //
 // HX-2017-03-03:
-// This is slower than QueenPuzzle
-// as there is no cutoff properly set
+// It is slightly better than QueenPuzzle
 //
 (* ****** ****** *)
 
@@ -173,11 +172,36 @@ $FWS.fworkshop_insert_lincloptr
   {
     val () = fwork()
     val () = // fwork needs to be freed
-    cloptr_free($UNSAFE.castvwtp0{cloptr(void)}(fwork))
+    cloptr_free
+    (
+      $UNSAFE.castvwtp0{cloptr(void)}(fwork)
+    ) (* cloptr_free *)
   } // end of [fworkshop_insert_lincloptr]
 ) (* end of [val] *)
 //
 } (* DivideConquerPar$submit] *)
+//
+implement
+$DCP.DivideConquerPar$submit2<>
+  (xs, fwork) =
+(
+//
+if
+length(xs) >= N/2
+then () where
+{
+  val () = fwork()
+  val () = // fwork needs to be freed
+  cloptr_free
+    ($UNSAFE.castvwtp0{cloptr(void)}(fwork))
+  // end of [cloptr_free]
+}
+else () where
+{
+  val () = $DCP.DivideConquerPar$submit<>(fwork)
+}
+//
+) (* $DCP.DivideConquerPar$submit2 *)
 //
 in
   $DC.DivideConquer$solve<>(xs)
