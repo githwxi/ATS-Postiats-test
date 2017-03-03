@@ -1,8 +1,28 @@
 (* ****** ****** *)
 (*
 ** For testing
-** atscntrn-bucs320-divideconquer
+** atscntrn-bucs320-divideconquerpar
 *)
+(* ****** ****** *)
+//
+// HX-2017-03-03:
+// This is slower than QueenPuzzle
+// as there is no cutoff properly set
+//
+(* ****** ****** *)
+
+%{^
+//
+#include <pthread.h>
+//
+#ifdef ATS_MEMALLOC_GCBDW
+#undef GC_H
+#define GC_THREADS
+#include <gc/gc.h>
+#endif // #if(ATS_MEMALLOC_GCBDW)
+//
+%} // end of [%{^]
+
 (* ****** ****** *)
 //
 #define
@@ -26,7 +46,10 @@ PATSHOMELOCS_targetloc
 //
 #include
 "{$PATSHOMELOCS}\
-/atscntrb-bucs320-divideconquer/mylibies.hats"
+/atscntrb-bucs320-divideconquerpar/mydepies.hats"
+#include
+"{$PATSHOMELOCS}\
+/atscntrb-bucs320-divideconquerpar/mylibies.hats"
 //
 (* ****** ****** *)
 
@@ -35,22 +58,26 @@ PATSHOMELOCS_targetloc
 (* ****** ****** *)
 
 #staload DC = $DivideConquer
+#staload DCP = $DivideConquerPar
+#staload FWS = $FWORKSHOP_chanlst
 
 (* ****** ****** *)
 
 extern
 fun
-QueenPuzzle(): list0(list0(int))
+QueenPuzzlePar
+  ($FWS.fworkshop): list0(list0(int))
 //
 extern
 fun
-QueenPuzzle_helper
-  : (list0(int)) -> list0(list0(int))
+QueenPuzzlePar_helper:
+  ($FWS.fworkshop, list0(int)) -> list0(list0(int))
 //
 (* ****** ****** *)
 
 implement
-QueenPuzzle() = QueenPuzzle_helper(nil0)
+QueenPuzzlePar(fws) =
+QueenPuzzlePar_helper(fws, nil0)
 
 (* ****** ****** *)
 
@@ -129,7 +156,32 @@ $DC.DivideConquer$conquer$combine<>(_, rs) = list0_concat(rs)
 in (* in-of-local *)
 
 implement
-QueenPuzzle_helper(xs) = $DC.DivideConquer$solve<>(xs)
+QueenPuzzlePar_helper
+  (fws, xs) = let
+//
+val () = $tempenver(fws)
+//
+implement
+$DCP.DivideConquerPar$submit<>
+  (fwork) =
+{
+//
+val () =
+$FWS.fworkshop_insert_lincloptr
+( fws
+, llam() => 0 where
+  {
+    val () = fwork()
+    val () = // fwork needs to be freed
+    cloptr_free($UNSAFE.castvwtp0{cloptr(void)}(fwork))
+  } // end of [fworkshop_insert_lincloptr]
+) (* end of [val] *)
+//
+} (* DivideConquerPar$submit] *)
+//
+in
+  $DC.DivideConquer$solve<>(xs)
+end // end of [QueenPuzzlePar_helper]
 
 end // end of [local]
 
@@ -145,7 +197,16 @@ with
 int_repeat_lazy
 //
 val
-xss = QueenPuzzle()
+fws =
+$FWS.fworkshop_create_exn()
+//
+val err =
+  $FWS.fworkshop_add_worker(fws)
+val err =
+  $FWS.fworkshop_add_worker(fws)
+//
+val
+xss = QueenPuzzlePar(fws)
 //
 val ((*void*)) =
 println! ("The number of solutions equals ", length(xss), ".")
@@ -180,4 +241,4 @@ print "Q ";
 
 (* ****** ****** *)
 
-(* end of [QueenPuzzle.dats] *)
+(* end of [QueenPuzzlePar.dats] *)

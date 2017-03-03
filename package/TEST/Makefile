@@ -58,10 +58,21 @@ all:: \
 QueenPuzzle
 QueenPuzzle: \
 QueenPuzzle.dats; \
-$(PATSCC2) -O2 -DATS_MEMALLOC_LIBC -o $@ $<
+$(PATSCC2) -O2 \
+-DATS_MEMALLOC_GCBDW -o $@ $< -lgc
 #
 regress:: QueenPuzzle; ./$<
 cleanall:: ; $(RMF) QueenPuzzle
+#
+all:: \
+QueenPuzzlePar
+QueenPuzzlePar: \
+QueenPuzzlePar.dats; \
+$(PATSCC2) -O2 \
+-DATS_MEMALLOC_GCBDW -o $@ $< -lgc -lpthread
+regress:: \
+QueenPuzzlePar; ./$<
+cleanall:: ; $(RMF) QueenPuzzlePar
 #
 ## ###### ###### ##
 
