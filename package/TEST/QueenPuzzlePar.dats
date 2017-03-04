@@ -37,6 +37,10 @@ ATS_DYNLOADFLAG 0
 //
 (* ****** ****** *)
 
+staload UN = $UNSAFE
+
+(* ****** ****** *)
+
 #define
 PATSHOMELOCS_targetloc
 "./../node_modules"
@@ -161,27 +165,6 @@ QueenPuzzlePar_helper
 val () = $tempenver(fws)
 //
 implement
-$DCP.DivideConquerPar$submit<>
-  (fwork) =
-{
-//
-val () =
-$FWS.fworkshop_insert_lincloptr
-( fws
-, llam() => 0 where
-  {
-    val () = fwork()
-    val () = // fwork needs to be freed
-    cloptr_free
-    (
-      $UNSAFE.castvwtp0{cloptr(void)}(fwork)
-    ) (* cloptr_free *)
-  } // end of [fworkshop_insert_lincloptr]
-) (* end of [val] *)
-//
-} (* DivideConquerPar$submit] *)
-//
-implement
 $DCP.DivideConquerPar$submit2<>
   (xs, fwork) =
 (
@@ -193,15 +176,21 @@ then () where
   val () = fwork()
   val () = // fwork needs to be freed
   cloptr_free
-    ($UNSAFE.castvwtp0{cloptr(void)}(fwork))
-  // end of [cloptr_free]
+  (
+    $UN.castvwtp0{cloptr(void)}(fwork)
+  ) (* cloptr_free *)
 }
 else () where
 {
-  val () = $DCP.DivideConquerPar$submit<>(fwork)
+  val () =
+  $DCP.DivideConquerPar$submit<>(fwork)
 }
 //
 ) (* $DCP.DivideConquerPar$submit2 *)
+//
+implement
+$DCP.DivideConquerPar$fworkshop<>
+  ((*void*)) = $DCP.FWORKSHOP_chanlst(fws)
 //
 in
   $DC.DivideConquer$solve<>(xs)
