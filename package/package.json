@@ -22,9 +22,13 @@
 "dependencies": {
 "effectivats-divideconquer": ">=1.0.0"
 ,
+"atscntrb-bucs320-divideconquer": ">=1.0.0"
+,
 "atscntrb-bucs320-mergesort": ">=1.0.0"
 ,
 "atscntrb-bucs320-quicksort": ">=1.0.0"
+,
+"atscntrb-bucs320-divideconquerpar": ">=1.0.0"
 ,
 "atscntrb-bucs320-mergesortpar": ">=1.0.0"
 ,
