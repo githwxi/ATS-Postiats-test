@@ -1,0 +1,21 @@
+#
+# What is covered in lecture-02-16?
+#
+
+1. list folding:
+   list0_foldleft and list0_foldright
+   list0_foldleft is tail-recursive
+   list0_foldright is tail-recursive
+
+2. list0_forall
+3. list0_exists
+4. list0_find_opt: Option-values are very useful.
+
+5. fun string_explode: string -> list0(char)
+6. fun string_implode: list0(char) -> string
+
+7. list0_mult_exn:
+   Exceptions are very useful but somewhat difficult to use
+
+Trying to read:
+http://ats-lang.sourceforge.net/DOCUMENT/INT2PROGINATS/HTML/HTMLTOC/c1378.html#exceptions

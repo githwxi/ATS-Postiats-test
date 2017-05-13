@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!--
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+-->
+<title>Wormlike</title>
+
+<style>
+button:focus{
+  outline:none !important;
+}
+</style>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+</script>
+
+<script
+src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+</script>
+<script
+src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js">
+</script>
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/bacon.js/0.7.53/Bacon.min.js">
+</script>
+<script
+ src="https://ats-lang.github.io/LIBRARY/libatscc2js/ATS2-0.3.2/libatscc2js_all.js">
+</script>
+<script
+ src="https://ats-lang.github.io/LIBRARY/libatscc2js/ATS2-0.3.2/libatscc2js_print_store_cats.js">
+</script>
+<script
+ src="https://ats-lang.github.io/LIBRARY/libatscc2js/ATS2-0.3.2/libatscc2js_baconjs_all.js">
+</script>
+</head>
+
+<body>
+
+<div
+ class="container-fluid"
+><!--div-->
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-10">
+
+<center>
+<h1>Let's play Wormlike!</h1>
+</center>
+
+<hr size="2">
+
+<div class="row">
+<div class="col-md-12">
+<center>
+<div id="canvas-container">
+<canvas
+ id="theShowStream-canvas"
+ width="600px" height="420px"
+ oncontextmenu="event.preventDefault()">
+It seems that canvas is not supported by your browser!
+</canvas>
+</div>
+</center>
+</div>
+</div><!--class-row-->
+
+<hr size="2">
+
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-2">
+<center>
+<!--
+<label>
+<input type="checkbox">Auto</input>
+</label>
+<input checked data-toggle="toggle" data-onstyle="primary" type="checkbox">
+-->
+<button
+ id="theAuto_btn"
+ type="button" class="btn btn-default btn-lg"
+>Auto</button>
+</center>
+</div>
+<div class="col-md-2">
+<center>
+<button
+ id="theNext_btn"
+ type="button" class="btn btn-primary btn-lg"
+>Next</button>
+</center>
+</div>
+<div class="col-md-2">
+<center>
+<button
+ id="thePrev_btn"
+ type="button" class="btn btn-primary btn-lg"
+>Prev</button>
+</center>
+</div>
+<div class="col-md-2">
+<center>
+<button
+ id="theSrch_btn"
+ type="button" class="btn btn-primary btn-lg"
+>Search</button>
+</center>
+</div>
+<div class="col-md-2">
+<center>
+<button
+ id="theReset_btn"
+ type="button" class="btn btn-primary btn-lg"
+>Reset</button>
+</center>
+</div>
+<div class="col-md-1"></div>
+</div><!--class-row-->
+
+<hr size="2">
+
+</div>
+<div class="col-md-1"></div>
+</div>
+
+</div><!--container-fluid-->
+
+<script
+ type="text/x-javascript" src="./DATS_JS/main_dats.js">
+</script>
+<script
+ type="text/x-javascript" src="./DATS_JS/theCounter3_baconjs_dats.js">
+</script>
+
+</body>
+</html>
