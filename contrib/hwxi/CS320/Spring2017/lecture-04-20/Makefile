@@ -45,6 +45,6 @@ clean:: ; rm -f *_dats.c
 clean:: ; rm -f *_dats.o
 
 cleanall:: clean
-cleanall:: ; rm -f test
+cleanall:: ; rm -f kfib kfact
 
 ###### end of [Makefile] ######
