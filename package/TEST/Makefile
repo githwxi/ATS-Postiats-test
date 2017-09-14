@@ -18,7 +18,7 @@ $(PATSCC) \
 #
 export \
 PATSHOMELOCS=\
-./node_modules:./../../node_modules
+./node_modules:./../node_modules:./../../node_modules:./../../../node_modules
 #
 ## ###### ###### ##
 
