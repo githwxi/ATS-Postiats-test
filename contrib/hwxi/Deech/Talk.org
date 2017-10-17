@@ -1,0 +1,1909 @@
+#+TITLE: A (Not So Gentle) Introduction To Systems Programming In ATS
+#+AUTHOR: Aditya Siram
+#+OPTIONS: H:1 toc:f
+#+OPTIONS: ^:nil
+#+LATEX_CLASS: beamer
+#+LATEX_listingsCLASS_OPTIONS: [presentation]
+#+BEAMER_THEME: Madrid
+#+EPRESENT_FRAME_LEVEL: 1
+* ATS
+- Is an ML (not standard)
+  - ADTS, pattern-matching etc.
+- FP fully supported (TCO)
+- Exactly the same performance/memory predictability
+  - Decompiles to C
+  - No optimizations (except TCO)
+  - GCC does the rest
+- Exactly the same control of C
+  - Pointer arithmetic
+  - malloc/free
+  - stack allocation
+- Completely verified at compile time
+  - type system has zero overhead
+* ATS
+- Top of The Benchmarks Game
+- Now taken down in 2015
+  - No idea why!
+* ATS
+- Linear logic to manage resources
+  - Prove it exists, consume proof, repeat
+  - file handles, sockets, anything
+* ATS
+#+BEGIN_EXAMPLE
+fun bar
+    ...
+    =
+   let
+      val (awesome_proof | fd) = open_file("some_file.txt")
+           ^^^^^^^^^^^^^
+      val contents = read_file (awesome_proof | fd)
+                                ^^^^^^^^^^^^^
+      ...
+   in
+      ...
+   end
+#+END_EXAMPLE
+* ATS
+- Especially memory
+  - Prove pointer is initialized, dereference, repeat
+  - Type checked pointer arithmetic
+* ATS
+- Refinement types
+  #+BEGIN_EXAMPLE
+  fun foo
+      {                       }
+      (i : int  ) ...
+  #+END_EXAMPLE
+* ATS
+- Refinement types
+  #+BEGIN_EXAMPLE
+  fun foo
+      {                       }
+      (i : int n) ...
+  #+END_EXAMPLE
+* ATS
+- Refinement types
+  #+BEGIN_EXAMPLE
+  fun foo
+      {n:int                  }
+      (i : int n) ...
+  #+END_EXAMPLE
+* ATS
+- Refinement types
+  #+BEGIN_EXAMPLE
+  fun foo
+      {n:int | n > 0          }
+      (i : int n) ...
+  #+END_EXAMPLE
+* ATS
+- Refinement types
+  #+BEGIN_EXAMPLE
+  fun foo
+      {n:int | n > 0 && n < 10}
+      (i : int n) ...
+  #+END_EXAMPLE
+* ATS
+- Very Difficult
+- Intersects
+  - refinement types
+  - linear logic
+  - proofs
+  - C
+- Research!
+  - Funded by the NSF
+- No easy story, or newcomer "onboarding"
+- Tiny community
+- Sparse docs
+* Swap
+- Easiest way to get started is C interop
+- A generic swap in C
+ - Yes, I realize 'size_t' is bad!
+#+BEGIN_SRC
+void swap (void* p1, void* p2, size_t size) {
+	char* buffer = (char*)malloc(sizeof(char)*size);
+	memcpy(buffer, p1, size);
+	memcpy(p1, p2, size);
+	memcpy(p2, buffer, size);
+	free(buffer);
+}
+#+END_SRC
+* Swap
+- A slightly non-standard swap
+#+BEGIN_SRC
+%{
+  #include <stdio.h>
+  #include <stdlib.h>
+  void swap(void *i, void *j, size_t size) {
+    ...
+  }
+%}
+
+
+#+END_SRC
+* Swap
+- A slightly non-standard swap
+#+BEGIN_SRC
+%{
+  #include <stdio.h>
+  #include <stdlib.h>
+  void swap(void *i, void *j, size_t size) {
+    ...
+  }
+%}
+extern fun swap (i:ptr, j:ptr, s:size_t): void = "ext#swap"
+
+#+END_SRC
+
+* Swap
+- A slightly non-standard swap
+#+BEGIN_SRC
+%{
+  #include <stdio.h>
+  #include <stdlib.h>
+  void swap(void *i, void *j, size_t size) {
+    ...
+  }
+%}
+extern fun swap (i:ptr, j:ptr, s:size_t) : void = "ext#swap"
+extern fun malloc(s:size_t):ptr = "ext#malloc"
+#+END_SRC
+* Swap
+- Runner
+#+BEGIN_SRC
+implement main0 () =
+  let
+     val i = malloc(sizeof<int>)
+     val j = malloc(sizeof<double>)
+     val _ = swap(i,j,sizeof<double>)
+  in
+     ()
+  end
+#+END_SRC
+* Swap
+- Runner
+#+BEGIN_SRC
+implement main0 () =
+  let
+     val i = malloc(sizeof<int>) // all good
+
+
+  in
+
+  end
+#+END_SRC
+* Swap
+- Runner
+#+BEGIN_SRC
+implement main0 () =
+  let
+     val i = malloc(sizeof<int>)
+     val j = malloc(sizeof<double>) // uh oh!
+
+  in
+
+  end
+#+END_SRC
+* Swap
+- Runner
+#+BEGIN_SRC
+implement main0 () =
+  let
+     val i = malloc(sizeof<int>)
+     val j = malloc(sizeof<double>)
+     val _ = swap(i,j,sizeof<double>) // oh noes!
+  in
+
+  end
+#+END_SRC
+* Swap
+- Runner
+#+BEGIN_SRC
+implement main0 () =
+  let
+     val i = malloc(sizeof<int>)
+     val j = malloc(sizeof<double>)
+     val _ = swap(i,j,sizeof<double>)
+  in
+     () // free as in leak
+  end
+#+END_SRC
+* Swap
+- Can totally mimic C
+- Including the bugs
+- Gradual migration
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun swap (i:ptr, j:ptr, s:size_t) : void = "ext#swap"
+#+END_SRC
+
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun swap                          : void = "ext#swap"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun swap                          :      = "ext#swap"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun swap
+
+
+
+
+                            = "ext#swap"
+#+END_SRC
+
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun swap
+  {a : t@ype}
+
+
+
+                            = "ext#swap"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun swap
+  {a : t@ype}
+  {l1: addr |          }
+
+
+                            = "ext#swap"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun swap
+  {a : t@ype}
+  {l1: addr | l1 > null}
+
+
+                            = "ext#swap"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun swap
+  {a : t@ype}
+  {l1: addr | l1 > null}
+  {l2: addr | l2 > null}
+
+                            = "ext#swap"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun swap
+  {a : t@ype}
+  {l1: addr | l1 > null}
+  {l2: addr | l2 > null}
+  (                  i : ptr l1                           ):
+                            = "ext#swap"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun swap
+  {a : t@ype}
+  {l1: addr | l1 > null}
+  {l2: addr | l2 > null}
+  (                  i : ptr l1, j : ptr l2               ):
+                            = "ext#swap"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun swap
+  {a : t@ype}
+  {l1: addr | l1 > null}
+  {l2: addr | l2 > null}
+  (                  i : ptr l1, j : ptr l2, s: sizeof_t a):
+                            = "ext#swap"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun swap
+  {a : t@ype}
+  {l1: addr | l1 > null}
+  {l2: addr | l2 > null}
+  (                | i : ptr l1, j : ptr l2, s: sizeof_t a):
+                            = "ext#swap"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun swap
+  {a : t@ype}
+  {l1: addr | l1 > null}
+  {l2: addr | l2 > null}
+  (a @ l1          | i : ptr l1, j : ptr l2, s: sizeof_t a):
+                            = "ext#swap"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun swap
+  {a : t@ype}
+  {l1: addr | l1 > null}
+  {l2: addr | l2 > null}
+  (a @ l1 , a @ l2 | i : ptr l1, j : ptr l2, s: sizeof_t a):
+                            = "ext#swap"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun swap
+  {a : t@ype}
+  {l1: addr | l1 > null}
+  {l2: addr | l2 > null}
+  (a @ l1 , a @ l2 | i : ptr l1, j : ptr l2, s: sizeof_t a):
+    (                     ) = "ext#swap"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun swap
+  {a : t@ype}
+  {l1: addr | l1 > null}
+  {l2: addr | l2 > null}
+  (a @ l1 , a @ l2 | i : ptr l1, j : ptr l2, s: sizeof_t a):
+    (                 void) = "ext#swap"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun swap
+  {a : t@ype}
+  {l1: addr | l1 > null}
+  {l2: addr | l2 > null}
+  (a @ l1 , a @ l2 | i : ptr l1, j : ptr l2, s: sizeof_t a):
+    (               | void) = "ext#swap"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun swap
+  {a : t@ype}
+  {l1: addr | l1 > null}
+  {l2: addr | l2 > null}
+  (a @ l1 , a @ l2 | i : ptr l1, j : ptr l2, s: sizeof_t a):
+    (a @ l1         | void) = "ext#swap"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun swap
+  {a : t@ype}
+  {l1: addr | l1 > null}
+  {l2: addr | l2 > null}
+  (a @ l1 , a @ l2 | i : ptr l1, j : ptr l2, s: sizeof_t a):
+    (a @ l1, a @ l2 | void) = "ext#swap"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun malloc(s:size_t):ptr = "ext#malloc"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun malloc
+
+
+
+   = "ext#malloc"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun malloc
+       {a:t@ype}
+
+
+   = "ext#malloc"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun malloc
+       {a:t@ype}
+       (s:sizeof_t a):
+
+   = "ext#malloc"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun malloc
+       {a:t@ype}
+       (s:sizeof_t a):
+                           (         ptr l)
+   = "ext#malloc"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun malloc
+       {a:t@ype}
+       (s:sizeof_t a):
+                           (a? @ l | ptr l)
+   = "ext#malloc"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun malloc
+       {a:t@ype}
+       (s:sizeof_t a):
+       [                 ] (a? @ l | ptr l)
+   = "ext#malloc"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun malloc
+       {a:t@ype}
+       (s:sizeof_t a):
+       [l:addr           ] (a? @ l | ptr l)
+   = "ext#malloc"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+extern fun malloc
+       {a:t@ype}
+       (s:sizeof_t a):
+       [l:addr | l > null] (a? @ l | ptr l)
+   = "ext#malloc"
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+implement main0 () = let
+  val (      i) = malloc (sizeof<int>)
+
+
+
+
+in
+
+
+end
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+implement main0 () = let
+  val (    | i) = malloc (sizeof<int>)
+
+
+
+
+in
+
+
+end
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+
+
+
+
+in
+
+
+end
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+  val (pfj | j) = malloc (sizeof<int>)
+
+
+
+in
+
+
+end
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+  val (pfj | j) = malloc (sizeof<int>)
+  val             = ptr_set(      i, 1)
+
+
+in
+
+
+end
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+  val (pfj | j) = malloc (sizeof<int>)
+  val             = ptr_set(pfi | i, 1)
+
+
+in
+
+
+end
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+  val (pfj | j) = malloc (sizeof<int>)
+  val (       ()) = ptr_set(pfi | i, 1)
+
+
+in
+
+
+end
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+  val (pfj | j) = malloc (sizeof<int>)
+  val (pfi1 | ()) = ptr_set(pfi | i, 1)
+
+
+in
+
+
+end
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+  val (pfj | j) = malloc (sizeof<int>)
+  val (pfi1 | ()) = ptr_set(pfi | i, 1)
+  val (pfj1 | ()) = ptr_set(pfj | j, 2)
+
+in
+
+
+end
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+  val (pfj | j) = malloc (sizeof<int>)
+  val (pfi1 | ()) = ptr_set(pfi | i, 1)
+  val (pfj1 | ()) = ptr_set(pfj | j, 2)
+  val                 = swap(             i, j, sizeof<int>)
+in
+
+
+end
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+  val (pfj | j) = malloc (sizeof<int>)
+  val (pfi1 | ()) = ptr_set(pfi | i, 1)
+  val (pfj1 | ()) = ptr_set(pfj | j, 2)
+  val                 = swap(           | i, j, sizeof<int>)
+in
+
+
+end
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+  val (pfj | j) = malloc (sizeof<int>)
+  val (pfi1 | ()) = ptr_set(pfi | i, 1)
+  val (pfj1 | ()) = ptr_set(pfj | j, 2)
+  val                 = swap(pfi1       | i, j, sizeof<int>)
+in
+
+
+end
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+  val (pfj | j) = malloc (sizeof<int>)
+  val (pfi1 | ()) = ptr_set(pfi | i, 1)
+  val (pfj1 | ()) = ptr_set(pfj | j, 2)
+  val                 = swap(pfi1, pfj2 | i, j, sizeof<int>)
+in
+
+
+end
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+  val (pfj | j) = malloc (sizeof<int>)
+  val (pfi1 | ()) = ptr_set(pfi | i, 1)
+  val (pfj1 | ()) = ptr_set(pfj | j, 2)
+  val (           ()) = swap(pfi1, pfj2 | i, j, sizeof<int>)
+in
+
+
+end
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+  val (pfj | j) = malloc (sizeof<int>)
+  val (pfi1 | ()) = ptr_set(pfi | i, 1)
+  val (pfj1 | ()) = ptr_set(pfj | j, 2)
+  val (pfi2     | ()) = swap(pfi1, pfj1 | i, j, sizeof<int>)
+in
+
+
+end
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+  val (pfj | j) = malloc (sizeof<int>)
+  val (pfi1 | ()) = ptr_set(pfi | i, 1)
+  val (pfj1 | ()) = ptr_set(pfj | j, 2)
+  val (pfi2,pfj2| ()) = swap(pfi1, pfj1 | i, j, sizeof<int>)
+in
+
+
+end
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_SRC
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+  val (pfj | j) = malloc (sizeof<int>)
+  val (pfi1 | ()) = ptr_set(pfi | i, 1)
+  val (pfj1 | ()) = ptr_set(pfj | j, 2)
+  val (pfi2,pfj2| ()) = swap(pfi1, pfj2 | i, j, sizeof<int>)
+in
+  free(pfi2 | i);
+
+end
+#+END_SRC
+* Swap
+- Safe swap
+#+BEGIN_EXAMPLE
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+  val (pfj | j) = malloc (sizeof<int>)
+  val (pfi1 | ()) = ptr_set(pfi | i, 1)
+  val (pfj2 | ()) = ptr_set(pfj | j, 2)
+  val (pfi2,pfj2| ()) = swap(pfi1, pfj1 | i, j, sizeof<int>)
+in
+  free(pfi2 | i);
+  free(pfj2 | j);
+end
+#+END_EXAMPLE
+* Swap
+- Safe swap
+#+BEGIN_EXAMPLE
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+  val (pfj | j) = malloc (sizeof<int>)
+  val (pfi1 | ()) = ptr_set(pfi | i, 1)
+  val (pfj2 | ()) = ptr_set(pfj | j, 2)
+  val (pfi2,pfj2| ()) = swap(pfi1, pfj1 | i, j, sizeof<int>)
+in
+  free(pfi2 | i);
+  free(pfj2 | j);
+  ^^^^^^^^^^^^^^
+end
+#+END_EXAMPLE
+* Swap
+- Safe swap
+#+BEGIN_EXAMPLE
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+  val (pfj | j) = malloc (sizeof<int>)
+  val (pfi1 | ()) = ptr_set(pfi | i, 1)
+  val (pfj2 | ()) = ptr_set(pfj | j, 2)
+  val (pfi2,pfj2| ()) = swap(pfi1, pfj1 | i, j, sizeof<int>)
+in
+  free(pfi2 | i);
+  ^^^^^^^^^^^^^^
+  free(pfj2 | j);
+end
+#+END_EXAMPLE
+* Swap
+- Safe swap
+#+BEGIN_EXAMPLE
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+  val (pfj | j) = malloc (sizeof<int>)
+  val (pfi1 | ()) = ptr_set(pfi | i, 1)
+  val (pfj2 | ()) = ptr_set(pfj | j, 2)
+  val (pfi2,pfj2| ()) = swap(pfi1, pfj1 | i, j, sizeof<int>)
+in                                              ^^^^^^^^^^^
+  free(pfi2 | i);
+  free(pfj2 | j);
+end
+#+END_EXAMPLE
+* Swap
+- Safe swap
+#+BEGIN_EXAMPLE
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+  val (pfj | j) = malloc (sizeof<int>)
+  val (pfi1 | ()) = ptr_set(pfi | i, 1)
+                    ^^^^^^^^^^^^^^^^^^^
+  val (pfj2 | ()) = ptr_set(pfj | j, 2)
+  val (pfi2,pfj2| ()) = swap(pfi1, pfj1 | i, j, sizeof<int>)
+in
+  free(pfi2 | i);
+  free(pfj2 | j);
+end
+#+END_EXAMPLE
+* Swap
+- Safe swap
+#+BEGIN_EXAMPLE
+implement main0 () = let
+  val (pfi | i) = malloc (sizeof<int>)
+  val (pfj | j) = malloc (sizeof<int>)
+  val (pfi1 | ()) = ptr_set(pfi | i, 1)
+  val (pfj2 | ()) = ptr_set(pfj | j, 2)
+  val (pfi2,pfj2| ()) = swap(pfi1, pfj1 | i, j, sizeof<int>)
+in
+  free(pfi2 | i);
+  free(pfj2 | j);
+end
+#+END_EXAMPLE
+* Swap
+- Safe swap
+#+BEGIN_EXAMPLE
+implement main0 () = let
+      (pfi    ) =
+      (pfj    ) =
+      (pfi1     ) =        (pfi       )
+      (pfj2     ) =        (pfj       )
+      (pfi2,pfj2    ) =     (pfi1, pfj1                    )
+in
+      (pfi2    );
+      (pfj2    );
+end
+#+END_EXAMPLE
+* Swap
+- Idiomatic swap
+#+BEGIN_EXAMPLE
+fun {...}
+    swap
+    {...}
+    (...) : void =
+  let
+    val tmp = !p1
+  in
+    !p1 := !p2;
+    !p2 := tmp
+  end
+#+END_EXAMPLE
+* Step back
+- Step back.
+- Overwhelmed?
+  - I am!
+- Breathe ...
+* Factorial
+- Recursion
+  - First class support!
+- Allows typechecker to prove by induction!
+* Factorial
+- Factorial
+#+BEGIN_EXAMPLE
+fun factorial
+    { n : int | n >= 1 }
+    (i : int n) : double =
+  let
+    fun loop
+        { n : int | n >= 1 }
+        .<n>.
+        (acc : double, i : int (n)) : double =
+      case- i of
+      | 1 => acc
+      | i when i > 1 => loop(acc * i, i - 1)
+
+  in
+    loop(1.0, i)
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial
+#+BEGIN_EXAMPLE
+fun factorial
+
+
+  let
+    fun loop
+
+
+
+
+
+
+
+  in
+    loop(1.0, i)
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial
+#+BEGIN_EXAMPLE
+fun factorial
+
+    (i : int  ) :        =
+  let
+    fun loop
+
+
+
+
+
+
+
+  in
+    loop(1.0, i)
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial
+#+BEGIN_EXAMPLE
+fun factorial
+
+    (i : int  ) : double =
+  let
+    fun loop
+
+
+
+
+
+
+
+  in
+    loop(1.0, i)
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial
+#+BEGIN_EXAMPLE
+fun factorial
+
+    (i : int n) : double =
+  let
+    fun loop
+
+
+
+
+
+
+
+  in
+    loop(1.0, i)
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial
+#+BEGIN_EXAMPLE
+fun factorial
+    { n : int | n >= 1 }
+    (i : int n) : double =
+  let
+    fun loop
+
+
+
+
+
+
+
+  in
+    loop(1.0, i)
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial
+#+BEGIN_EXAMPLE
+fun factorial
+    { n : int | n >= 1 }
+    (i : int n) : double =
+  let
+    fun loop
+        { n : int | n >= 1 }
+
+
+
+
+
+
+  in
+    loop(1.0, i)
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial
+#+BEGIN_EXAMPLE
+fun factorial
+    { n : int | n >= 1 }
+    (i : int n) : double =
+  let
+    fun loop
+        { n : int | n >= 1 }
+
+        (acc : double, i : int (n)) : double =
+
+
+
+
+  in
+    loop(1.0, i)
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial
+#+BEGIN_EXAMPLE
+fun factorial
+    { n : int | n >= 1 }
+    (i : int n) : double =
+  let
+    fun loop
+        { n : int | n >= 1 }
+        .<n>.
+        (acc : double, i : int (n)) : double =
+
+
+
+
+  in
+    loop(1.0, i)
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial
+#+BEGIN_EXAMPLE
+fun factorial
+    { n : int | n >= 1 }
+    (i : int n) : double =
+  let
+    fun loop
+        { n : int | n >= 1 }
+        .<n>.
+        (acc : double, i : int (n)) : double =
+      case- i of
+
+
+
+  in
+    loop(1.0, i)
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial
+#+BEGIN_EXAMPLE
+fun factorial
+    { n : int | n >= 1 }
+    (i : int n) : double =
+  let
+    fun loop
+        { n : int | n >= 1 }
+        .<n>.
+        (acc : double, i : int (n)) : double =
+      case- i of
+      | 1 => acc
+      |
+
+  in
+    loop(1.0, i)
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial
+#+BEGIN_EXAMPLE
+fun factorial
+    { n : int | n >= 1 }
+    (i : int n) : double =
+  let
+    fun loop
+        { n : int | n >= 1 }
+        .<n>.
+        (acc : double, i : int (n)) : double =
+      case- i of
+      | 1 => acc
+      | i
+
+  in
+    loop(1.0, i)
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial
+#+BEGIN_EXAMPLE
+fun factorial
+    { n : int | n >= 1 }
+    (i : int n) : double =
+  let
+    fun loop
+        { n : int | n >= 1 }
+        .<n>.
+        (acc : double, i : int (n)) : double =
+      case- i of
+      | 1 => acc
+      | i when i > 1
+
+  in
+    loop(1.0, i)
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial
+#+BEGIN_EXAMPLE
+fun factorial
+    { n : int | n >= 1 }
+    (i : int n) : double =
+  let
+    fun loop
+        { n : int | n >= 1 }
+        .<n>.
+        (acc : double, i : int (n)) : double =
+      case- i of
+      | 1 => acc
+      | i when i > 1 => loop(acc * i, i - 1)
+
+  in
+    loop(1.0, i)
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial
+#+BEGIN_EXAMPLE
+fun factorial
+
+
+  let
+    fun loop
+        { n : int | n >= 1 } <---
+
+
+      case- i of
+      |
+      | i when i > 1 => loop(acc * i, i - 1)
+          ^^^^^^^^^^
+  in
+    loop(1.0, i)
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial
+#+BEGIN_EXAMPLE
+fun factorial
+
+
+  let
+    fun loop
+        { n : int | n >= 1 } <---
+
+
+      case- i of
+      |
+      | i when i > 1 => loop(acc * i, i - 1)
+                                      ^^^^^
+  in
+    loop(1.0, i)
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial
+#+BEGIN_EXAMPLE
+fun factorial
+
+
+  let
+    fun loop
+
+        .<n>. <---
+
+      case- i of
+      |
+      | i when i > 1 => loop(acc * i, i + 1)
+                                      ^^^^^
+  in
+    loop(1.0, i)
+  end
+#+END_EXAMPLE
+* Viewtype
+- Viewtype
+  - Connects ADTs, linear resources
+* Viewtype
+- Remember 'swap'?
+#+BEGIN_EXAMPLE
+extern fun swap
+  {a:t@ype}
+  {l1: addr | l1 > null}
+  {l2: addr | l2 > null}
+  (a @ l1 , a @ l2 | i : ptr l1, j : ptr l2, s: sizeof_t a):
+    (a @ l1, a @ l2 | void) = "ext#swap"
+
+
+
+
+#+END_EXAMPLE
+* Viewtype
+- Remember 'swap'?
+#+BEGIN_EXAMPLE
+extern fun swap
+  {a:t@ype}
+  {l1: addr | l1 > null}
+
+  (a @ l1          | i : ptr l1                           ):
+
+
+
+
+
+#+END_EXAMPLE
+* Viewtype
+- Remember 'swap'?
+#+BEGIN_EXAMPLE
+extern fun swap
+  {a:t@ype}
+  {l1: addr | l1 > null}
+
+  (a @ l1          | i : ptr l1                           ):
+
+sortdef ...
+
+viewtypedef ...
+
+#+END_EXAMPLE
+* Viewtype
+- Remember 'swap'?
+#+BEGIN_EXAMPLE
+extern fun swap
+  {a:t@ype}
+  {l1: addr | l1 > null}
+  ^^^^^^^^^^^^^^^^^^^^^^
+  (a @ l1          | i : ptr l1                           ):
+
+sortdef agz = {l:addr | l > null}
+              ^^^^^^^^^^^^^^^^^^
+viewtypedef ...
+
+#+END_EXAMPLE
+* Viewtype
+- Remember 'swap'?
+#+BEGIN_EXAMPLE
+extern fun swap
+  {a:t@ype}
+  {l1: addr | l1 > null}
+  ^^^^^^^^^^^^^^^^^^^^^^
+  (a @ l1          | i : ptr l1                           ):
+   ^^^^^^                ^^^^^^
+sortdef agz = {l:addr | l > null}
+               ^^^^^^^^^^^^^^^^^^
+viewtypedef                             (a @ l | ptr l)
+                                         ^^^^^   ^^^^^
+#+END_EXAMPLE
+* Viewtype
+- Remember 'swap'?
+#+BEGIN_EXAMPLE
+extern fun swap
+  {a:t@ype}
+  {l1: addr | l1 > null}
+
+  (a @ l1          | i : ptr l1                           ):
+
+sortdef agz = {l:addr | l > null}
+        ^^^
+viewtypedef                     [l:agz] (a @ l | ptr l)
+                                ^^^^^^^
+#+END_EXAMPLE
+* Viewtype
+- Remember 'swap'?
+#+BEGIN_EXAMPLE
+extern fun swap
+  {a:t@ype}
+  {l1: addr | l1 > null}
+
+  (a @ l1          | i : ptr l1                           ):
+
+sortdef agz = {l:addr | l > null}
+
+viewtypedef safe_ptr(a:t@ype) = [l:agz] (a @ l | ptr l)
+
+#+END_EXAMPLE
+* Viewtype
+- Remember 'swap'?
+#+BEGIN_EXAMPLE
+extern fun swap
+  {a:t@ype}
+  {l1: addr | l1 > null}
+
+  (a @ l1          | i : ptr l1                           ):
+
+sortdef agz = {l:addr | l > null}
+        ^^^
+viewtypedef safe_ptr(a:t@ype) = [l:agz] (a @ l | ptr l)
+                               ^^^^^^^
+#+END_EXAMPLE
+* Viewtype
+- Remember 'swap'?
+#+BEGIN_EXAMPLE
+extern fun swap
+  {a:t@ype}
+  {l1: addr | l1 > null}
+
+  (a @ l1          | i : ptr l1                           ):
+
+
+
+
+
+#+END_EXAMPLE
+* Viewtype
+- Remember 'swap'?
+#+BEGIN_EXAMPLE
+extern fun swap
+  {a:t@ype}
+
+
+  (                  i : safe_ptr a                        ):
+
+
+
+
+
+#+END_EXAMPLE
+* Viewtypes
+- Viewtypes are the basic building block
+- Can create algebras of linear resources!
+* Algebraic datatypes
+- Linear lists
+#+BEGIN_EXAMPLE
+dataviewtype list_vt
+  (a:viewt@ype, int) =
+  | list_vt_nil(a, 0) of ()
+  | {n:int | n > 0}
+    list_vt_cons(a, n) of (a, list_vt(a, n-1))
+#+END_EXAMPLE
+* Algebraic datatypes
+- Linear lists
+#+BEGIN_EXAMPLE
+dataviewtype list_vt
+  (                ) =
+  | list_vt_nil
+  |
+    list_vt_cons
+#+END_EXAMPLE
+* Algebraic datatypes
+- Linear lists
+#+BEGIN_EXAMPLE
+dataviewtype list_vt
+  (a:viewt@ype     ) =
+  | list_vt_nil
+  |
+    list_vt_cons
+#+END_EXAMPLE
+* Algebraic datatypes
+- Linear lists
+#+BEGIN_EXAMPLE
+dataviewtype list_vt
+  (a:viewt@ype, int) =
+  | list_vt_nil
+  |
+    list_vt_cons
+#+END_EXAMPLE
+* Algebraic datatypes
+- Linear lists
+#+BEGIN_EXAMPLE
+dataviewtype list_vt
+  (a:viewt@ype, int) =
+  | list_vt_nil(a, 0) of ()
+  |
+    list_vt_cons
+#+END_EXAMPLE
+* Algebraic datatypes
+- Linear lists
+#+BEGIN_EXAMPLE
+dataviewtype list_vt
+  (a:viewt@ype, int) =
+  | list_vt_nil(a, 0) of ()
+  |
+    list_vt_cons(a, n)
+#+END_EXAMPLE
+* Algebraic datatypes
+- Linear lists
+#+BEGIN_EXAMPLE
+dataviewtype list_vt
+  (a:viewt@ype, int) =
+  | list_vt_nil(a, 0) of ()
+  |
+    list_vt_cons(a, n) of (a, list_vt(a, n-1))
+#+END_EXAMPLE
+* Algebraic datatypes
+- Linear lists
+#+BEGIN_EXAMPLE
+dataviewtype list_vt
+  (a:viewt@ype, int) =
+  | list_vt_nil(a, 0) of ()
+  | {n:int | n > 0}
+    list_vt_cons(a, n) of (a, list_vt(a, n-1))
+#+END_EXAMPLE
+* Algebraic datatypes
+- Linear lists
+#+BEGIN_EXAMPLE
+list_vt_cons(1,
+  list_vt_cons(2,
+    list_vt_nil())) : list_vt(int,2)
+#+END_EXAMPLE
+* Factorial
+- A factorial that preserves intermediate results in a list
+#+BEGIN_EXAMPLE
+factorial(10)
+=> [(10 * 9), (10 * 9 * 8), (10 * 9 * 8 * 7) ...]
+#+END_EXAMPLE
+* Factorial
+- Factorial with intermediate results
+#+BEGIN_EXAMPLE
+fun factorial
+       {n:int | n >= 2}
+       (i:int n): list_vt(double, n-1) =
+  let
+      var res : ptr
+      fun loop
+          ...
+      val initial = g0i2f(i) * g0i2f(i-1)
+      val () = loop(initial,i-2,res)
+  in
+      res
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial with intermediate results
+#+BEGIN_EXAMPLE
+fun factorial
+
+
+  let
+      var res : ptr
+      fun loop
+          ...
+
+
+  in
+      res
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial with intermediate results
+#+BEGIN_EXAMPLE
+fun factorial
+
+       (i:int  ):                      =
+  let
+      var res : ptr
+      fun loop
+          ...
+
+
+  in
+      res
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial with intermediate results
+#+BEGIN_EXAMPLE
+fun factorial
+       {n:int | n >= 2}
+       (i:int n):                      =
+  let
+      var res : ptr
+      fun loop
+          ...
+
+
+  in
+      res
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial with intermediate results
+#+BEGIN_EXAMPLE
+fun factorial
+       {n:int | n >= 2}
+       (i:int n): list_vt(double, n-1) =
+  let
+      var res : ptr
+      fun loop
+          ...
+
+
+  in
+      res
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial with intermediate results
+#+BEGIN_EXAMPLE
+fun factorial
+       {n:int | n >= 2}
+       (i:int n): list_vt(double, n-1) =
+  let
+      var res : ptr
+      fun loop
+          ...
+      val initial = g0i2f(i) * g0i2f(i-1)
+
+  in
+      res
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial with intermediate results
+#+BEGIN_EXAMPLE
+fun factorial
+       {n:int | n >= 2}
+       (i:int n): list_vt(double, n-1) =
+  let
+      var res : ptr
+      fun loop
+          ...
+      val initial = g0i2f(i) * g0i2f(i-1)
+      val () = loop(initial,i-2,res)
+  in
+      res
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial with intermediate results
+#+BEGIN_EXAMPLE
+fun factorial
+
+
+  let
+      var res : ptr
+      fun loop
+          ...
+      val initial =  ...
+      val () = loop(initial,i-2,res)
+  in
+      res
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial with intermediate results
+#+BEGIN_EXAMPLE
+fun factorial
+       {n:int | n >= 2}
+       (i:int n):                      =
+  let
+      var res : ptr
+      fun loop
+          ...
+      val initial = ...
+      val () = loop(initial,i-2,res)
+  in
+      res
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial with intermediate results
+#+BEGIN_EXAMPLE
+fun factorial
+       {n:int | n >= 2}
+       (i:int n): list_vt(double, n-1) =
+  let
+      var res : ptr
+      fun loop
+          ...
+      val initial = ...
+      val () = loop(initial,i-2,res)
+  in
+      res
+  end
+#+END_EXAMPLE
+* Factorial
+- Factorial with intermediate results
+#+BEGIN_EXAMPLE
+fun factorial
+       {n:int | n >= 2}
+       (i:int n): list_vt(double, n-1) =
+  let
+      var res : ptr
+      fun loop
+          ...
+      val initial = g0i2f(i) * g0i2f(i-1)
+      val () = loop(initial,i-2,res)
+  in
+      res
+  end
+#+END_EXAMPLE
+* Factorial
+- Inner loop
+#+BEGIN_EXAMPLE
+fun loop
+    {n1:int | n1 >= 0 && n1 <= n-2}
+    .<n1>.
+    (
+      seed: double,
+      next: int n1,
+      res: &ptr? >> list_vt(double, n1+1)
+    ) : void = ...
+#+END_EXAMPLE
+* Factorial
+- Inner loop
+#+BEGIN_EXAMPLE
+fun loop
+    {                             }
+    .<  >.
+    (
+
+
+
+    ) : void = ...
+#+END_EXAMPLE
+* Factorial
+- Inner loop
+#+BEGIN_EXAMPLE
+fun loop
+    {                             }
+    .<  >.
+    (
+
+      next: int n1,
+
+    ) : void = ...
+#+END_EXAMPLE
+* Factorial
+- Inner loop
+#+BEGIN_EXAMPLE
+fun loop
+    {n1:int | n1 >= 0 && n1 <= n-2}
+    .<n1>.
+    (
+
+      next: int n1,
+
+    ) : void = ...
+#+END_EXAMPLE
+* Factorial
+- Inner loop
+#+BEGIN_EXAMPLE
+fun loop
+    {n1:int | n1 >= 0 && n1 <= n-2}
+                         ^^^^^^^^^
+
+...
+fun factorial {n:int | n >= 2} (i:int n)
+...
+val () = loop(initial,i-2,res)
+#+END_EXAMPLE
+* Factorial
+- Inner loop
+#+BEGIN_EXAMPLE
+fun loop
+    {n1:int | n1 >= 0 && n1 <= n-2}
+    .<n1>.
+    (
+
+      next: int n1,
+
+    ) : void = ...
+#+END_EXAMPLE
+* Factorial
+- Inner loop
+#+BEGIN_EXAMPLE
+fun loop
+    {n1:int | n1 >= 0 && n1 <= n-2}
+    .<n1>.
+    (
+      seed: double,
+      next: int n1,
+
+    ) : void = ...
+#+END_EXAMPLE
+* Factorial
+- Inner loop
+#+BEGIN_EXAMPLE
+fun loop
+    {n1:int | n1 >= 0 && n1 <= n-2}
+    .<n1>.
+    (
+      seed: double,
+      next: int n1,
+      res: &ptr?
+    ) : void = ...
+#+END_EXAMPLE
+* Factorial
+- Inner loop
+#+BEGIN_EXAMPLE
+fun loop
+    {n1:int | n1 >= 0 && n1 <= n-2}
+    .<n1>.
+    (
+      seed: double,
+      next: int n1,
+      res: &ptr? >> list_vt(double, n1+1)
+    ) : void = ...
+#+END_EXAMPLE
+* Factorial
+- Inner loop
+#+BEGIN_EXAMPLE
+fun loop
+
+
+                  = ...
+  case- next of
+    | 0 =>
+    | next when next > 0 =>
+      let
+
+
+
+
+
+      in
+      end
+#+END_EXAMPLE
+* Factorial
+- Inner loop
+#+BEGIN_EXAMPLE
+fun loop ( seed: double,
+           next: int n1,
+           res: &ptr? >> list_vt(double, n1+1)
+         ) : void = ...
+  case- next of
+    | 0 =>
+    | next when next > 0 =>
+      let
+
+
+
+
+
+      in
+      end
+#+END_EXAMPLE
+* Factorial
+- Inner loop
+#+BEGIN_EXAMPLE
+fun loop ( seed: double,
+           next: int n1,
+           res: &ptr? >> list_vt(double, n1+1)
+         ) : void = ...
+  case- next of
+    | 0 => res := list_vt_cons(seed, list_vt_nil())
+    | next when next > 0 =>
+      let
+
+
+
+
+
+      in
+      end
+#+END_EXAMPLE
+* Factorial
+- Solve this puzzle in a strict FP language!
+- Fold over a list and copy it!
+- As efficiently as a while/for loop with initial null
+- That's it!
+* Factorial
+- But!
+  - No reversing at the end! (1-pass only)
+  - No macros!
+  - No continuations!
+  - No peep holing!
+  - No weird optimization pragmas
+* Factorial
+- MLTon reverses
+- OCaml peep holes
+- Rust (uses macros or peep holes)
+* Factorial
+- Until recently these were elegant!
+- Now just dissatisfied!
+- ATS supports "tail allocation"
+  - A principled, safe way of passing
+    along a "hole"
+* Factorial
+- Inner loop
+#+BEGIN_EXAMPLE
+fun loop ( seed: double,
+           next: int n1,
+           res: &ptr? >> list_vt(double, n1+1)
+         ) : void = ...
+  case- next of
+    | 0 => res := list_vt_cons(seed, list_vt_nil())
+    | next when next > 0 =>
+      let
+        val () = res := list_vt_cons{..}{n1+1}(seed, _)
+
+
+
+
+      in
+      end
+#+END_EXAMPLE
+* Factorial
+- Inner loop
+#+BEGIN_EXAMPLE
+fun loop ( seed: double,
+           next: int n1,
+           res: &ptr? >> list_vt(double, n1+1)
+         ) : void = ...
+  case- next of
+    | 0 =>
+    |                    =>
+      let
+        val () = res := list_vt_cons{..}{n1+1}(seed, _)
+
+
+
+
+      in
+      end
+#+END_EXAMPLE
+* Factorial
+- Inner loop
+#+BEGIN_EXAMPLE
+fun loop ( seed: double,
+           next: int n1,
+           res: &ptr? >> list_vt(double, n1+1)
+         ) : void = ...
+  case- next of
+    | 0 =>
+    |                    =>
+      let
+        val () = res := list_vt_cons{..}{n1+1}(seed, _)
+                                                     |
+                         an uninitialized hole-------+
+
+
+      in
+      end
+#+END_EXAMPLE
+* Factorial
+- Inner loop
+#+BEGIN_EXAMPLE
+fun loop ( seed: double,
+           next: int n1,
+           res: &ptr? >> list_vt(double, n1+1)
+         ) : void = ...
+  case- next of
+    | 0 =>
+    |                    =>
+      let
+        val () = res := list_vt_cons{..}{n1+1}(seed, _)
+        val+list_vt_cons(_,hole) = res               |
+                            |                        |
+                            +-- uninitialized hole --+
+
+      in
+      end
+#+END_EXAMPLE
+* Factorial
+- Inner loop
+#+BEGIN_EXAMPLE
+fun loop ( seed: double,
+           next: int n1,
+           res: &ptr? >> list_vt(double, n1+1)
+         ) : void = ...
+  case- next of
+    | 0 =>
+    |                    =>
+      let
+        val () = res := list_vt_cons{..}{n1+1}(seed, _)
+        val+list_vt_cons(_,hole) = res
+        val curr = seed * g0i2f(next)
+
+
+      in
+      end
+#+END_EXAMPLE
+* Factorial
+- Inner loop
+#+BEGIN_EXAMPLE
+fun loop ( seed: double,
+           next: int n1,
+           res: &ptr? >> list_vt(double, n1+1)
+         ) : void = ...
+  case- next of
+    | 0 =>
+    |                    =>
+      let
+        val () = res := list_vt_cons{..}{n1+1}(seed, _)
+        val+list_vt_cons(_,hole) = res
+        val curr = seed * g0i2f(next)
+        val () = loop(curr, next-1, hole)
+                                     |
+      in             to be filled! --+
+      end
+#+END_EXAMPLE
+* Factorial
+- Inner loop
+#+BEGIN_EXAMPLE
+fun loop
+
+
+                  = ...
+  case- next of
+    |
+    | next        +----------------------------------+
+      let         |                                  |
+                 res := list_vt_cons          (    , _)
+                  |                                  |
+                  +------------------+               |
+                 loop(            , hole)            |
+                                     |               |
+      in                             +---------------+
+      end
+#+END_EXAMPLE
+* Sum up
+- ATS is rough
+  - but contains glimpses of the sys. programming future!
+- Linear logic
+  - Great idea!
+  - Need 1st class access
+- Refinement types
+  - Great idea!
+  - Other languages are coming around to it
+* Sum up
+- Smart typechecker/dumb compiler
+  - Amazing idea!
+  - ATS is a frontend to C
+- Haven't even talked about
+  - ATS has a whole proof level language
+  - Pattern matching and all!
+* The end
+- Repo for this talk
+  - https://github.com/deech/ATS-Strange-Loop-Talk
+- Chris Double's blog
+  - It's amazing (read everything!)
+  - https://bluishcoder.co.nz/tags/ats/index.html
+- The ATS website
+  - http://www.ats-lang.org/
+- The canonical book
+  - http://ats-lang.sourceforge.net/DOCUMENT/INT2PROGINATS/HTML/book1.html
+- Google group
+  - Very helpful!
+  - https://groups.google.com/forum/#!forum/ats-lang-users
+- Thanks!

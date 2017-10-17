@@ -49,6 +49,12 @@ CS520:: ; $(MAKE) -C CS520 -f Makefile_test
 ## ###### ###### ##
 
 all:: \
+Deech
+Deech:: ; $(MAKE) -C Deech -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
 ChrisDone
 ChrisDone:: ; $(MAKE) -C ChrisDone -f Makefile testall
 
