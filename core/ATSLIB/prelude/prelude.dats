@@ -68,58 +68,58 @@ $STDLIB.srandom
 
 local
 #include
-"prelude_bool.dats"
+"./prelude_bool.dats"
 in (* nothing *) end
 
 (* ****** ****** *)
 
 local
 #include
-"prelude_char.dats"
+"./prelude_char.dats"
 in (* nothing *) end
 
 (* ****** ****** *)
 
 local
 #include
-"prelude_integer.dats"
+"./prelude_integer.dats"
 in (* nothing *) end
 
 (* ****** ****** *)
 
 local
 #include
-"prelude_string.dats"
+"./prelude_string.dats"
 in (* nothing *) end
 
 (* ****** ****** *)
 
 local
-#include "prelude_list.dats"
+#include "./prelude_list.dats"
 in (* nothing *) end
 
 (* ****** ****** *)
 
 local
-#include "prelude_list_vt.dats"
+#include "./prelude_list_vt.dats"
 in (* nothing *) end
 
 (* ****** ****** *)
 
 local
-#include "prelude_array.dats"
+#include "./prelude_array.dats"
 in (*nothing*) end // local
 local
-#include "prelude_arrayref.dats"
+#include "./prelude_arrayref.dats"
 in (*nothing*) end // local
 
 (* ****** ****** *)
 
 local
-#include "prelude_stream.dats"
+#include "./prelude_stream.dats"
 in (* nothing *) end
 local
-#include "prelude_stream_vt.dats"
+#include "./prelude_stream_vt.dats"
 in (* nothing *) end
 
 (* ****** ****** *)

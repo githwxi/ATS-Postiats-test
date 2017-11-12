@@ -48,25 +48,25 @@
 (* ****** ****** *)
 
 local
-#include"libats_ML_string.dats"
+#include"./libats_ML_string.dats"
 in (* nothing *) end
 
 (* ****** ****** *)
 
 local
-#include"libats_ML_list0.dats"
+#include"./libats_ML_list0.dats"
 in (* nothing *) end
 
 (* ****** ****** *)
 
 local
-#include"libats_ML_option0.dats"
+#include"./libats_ML_option0.dats"
 in (* nothing *) end
 
 (* ****** ****** *)
 
 local
-#include "libats_ML_array0.dats"
+#include "./libats_ML_array0.dats"
 in (* nothing *) end
 
 (* ****** ****** *)

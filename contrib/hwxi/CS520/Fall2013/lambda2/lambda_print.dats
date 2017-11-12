@@ -5,7 +5,7 @@
 //
 (* ****** ****** *)
 
-staload "lambda.sats"
+staload "./lambda.sats"
 
 (* ****** ****** *)
 

@@ -10,10 +10,10 @@
 
 staload UN = "prelude/SATS/unsafe.sats"
 
-staload "dungeon.sats"
+staload "./dungeon.sats"
 
-#include "exitstable.hats"
-#include "fileformat.hats"
+#include "./exitstable.hats"
+#include "./fileformat.hats"
 
 
 fun direction_index(dir: Direction): natLt(4) =
