@@ -1,0 +1,130 @@
+##
+## A Makefile for testing
+##
+
+## ###### ###### ##
+
+MAKE=make
+
+## ###### ###### ##
+
+all:: \
+lecture-05-23
+lecture-05-23:: ; \
+$(MAKE) -C lecture-05-23 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-05-24
+lecture-05-24:: ; \
+$(MAKE) -C lecture-05-24 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-05-25
+lecture-05-25:: ; \
+$(MAKE) -C lecture-05-25 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-05-30
+lecture-05-30:: ; \
+$(MAKE) -C lecture-05-30 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-05-31
+lecture-05-31:: ; \
+$(MAKE) -C lecture-05-31 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-01
+lecture-06-01:: ; \
+$(MAKE) -C lecture-06-01 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-05
+lecture-06-05:: ; \
+$(MAKE) -C lecture-06-05 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-06
+lecture-06-06:: ; \
+$(MAKE) -C lecture-06-06 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-07
+lecture-06-07:: ; \
+$(MAKE) -C lecture-06-07 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-13
+lecture-06-13:: ; \
+$(MAKE) -C lecture-06-13 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-14
+lecture-06-14:: ; \
+$(MAKE) -C lecture-06-14 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-15
+lecture-06-15:: ; \
+$(MAKE) -C lecture-06-15 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-19
+lecture-06-19:: ; \
+$(MAKE) -C lecture-06-19 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-21
+lecture-06-21:: ; \
+$(MAKE) -C lecture-06-21 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-26
+lecture-06-26:: ; \
+$(MAKE) -C lecture-06-26 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-27
+lecture-06-27:: ; \
+$(MAKE) -C lecture-06-27 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-06-28
+lecture-06-28:: ; \
+$(MAKE) -C lecture-06-28 -f Makefile testall
+
+## ###### ###### ##
+
+## ###### end of [Makefile_test] ###### ##

@@ -38,4 +38,10 @@ Spring2017:: ; $(MAKE) -C Spring2017 -f Makefile_test
 
 ## ###### ###### ##
 
+all:: \
+Summer2017
+Summer2017:: ; $(MAKE) -C Summer2017 -f Makefile_test
+
+## ###### ###### ##
+
 ## ###### end of [Makefile_test] ###### ##
