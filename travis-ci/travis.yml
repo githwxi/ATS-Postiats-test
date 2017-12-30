@@ -38,6 +38,8 @@ script:
   - ${GCC} --version
   - ${CLANG} --version
   - eval CC=\${${CCATS2}}
+  - which gcc
+  - which clang
   # Building ATS1
   - cd ${ATSHOME}
   # ./configure&&make CC=${CC} all
