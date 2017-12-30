@@ -28,12 +28,19 @@ fun
 kfib
 (
   n: int, k: cont(int)
-) : int =
+) : int = let
+//
+val () =
+println!("kfib: n = ", n)
+//
+in
 (
 if n >= 2
   then kfib (n-1, lam res1 => kfib (n-2, lam res2 => k (res1 + res2)))
   else k (n)
 )
+end // end of [kfib]
+
 (* ****** ****** *)
 
 implement
