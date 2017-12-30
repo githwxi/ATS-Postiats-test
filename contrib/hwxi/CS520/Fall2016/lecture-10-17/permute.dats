@@ -3,6 +3,13 @@
 // HX: Permutation
 //
 (* ****** ****** *)
+
+#include
+"share/atspre_staload.hats"
+#include
+"share/atspre_staload_libats_ML.hats"
+
+(* ****** ****** *)
 //
 stacst fact : int -> int
 //

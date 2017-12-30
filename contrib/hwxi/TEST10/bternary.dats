@@ -12,6 +12,8 @@
 //
 #include
 "share/atspre_staload.hats"
+#include
+"share/atspre_staload_libats_ML.hats"
 // 
 (* ****** ****** *)
 // 
@@ -37,13 +39,12 @@ fun
 btern2string
 (
   ds: btern
-) : string =
-  strptr2string(res) where
+) : string = res where
 {
   val xs = list_map_cloref (ds, lam d => btd2string(d))
   val xs = list_vt_reverse (xs)
-  val res = stringlst_concat($UNSAFE.castvwtp1{List(string)}(xs))
-  val () = list_vt_free<string> (xs)
+  val res = stringlst_concat($UNSAFE.castvwtp1{list0(string)}(xs))
+  val ((*void*)) = list_vt_free<string> (xs)
 }
  
 (* ****** ****** *)

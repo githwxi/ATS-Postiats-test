@@ -6,11 +6,15 @@
 //
 #include
 "share/atspre_staload.hats"
+#include
+"share/atspre_staload_libats_ML.hats"
 //
-staload
+(* ****** ****** *)
+//
+#staload
 TIME =
 "libats/libc/SATS/time.sats"
-staload
+#staload
 STDLIB =
 "libats/libc/SATS/stdlib.sats"
 //

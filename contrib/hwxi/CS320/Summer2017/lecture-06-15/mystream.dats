@@ -112,13 +112,11 @@ implement
 mystream_show_elt<int>(x) = alert(String(x))
 
 (* ****** ****** *)
-
+//
 val
 theNats_2 =
 stream_takeLte(theNats, 2)
-val
-theNats_2 = stream_vt2t(theNats_2)
-
+//
 (* ****** ****** *)
 //
 val () =
