@@ -33,7 +33,7 @@ before_install:
   - git clone https://github.com/githwxi/ATS-Postiats-contrib.git ATS-Postiats-contrib
   - export GCC=gcc
   - export CLANG=clang
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export GCC=gcc-4.9; fi
+  # if [ "$TRAVIS_OS_NAME" = "osx" ]; then export GCC=gcc-4.9; fi
 script:
   - ${GCC} --version
   - ${CLANG} --version
@@ -78,7 +78,7 @@ script:
   - export Makefile_test=Makefile_test
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export Makefile_test=Makefile_test_osx; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then export Makefile_test=Makefile_test_linux; fi
-  - make -f ${Makefile_test} all > /dev/null
+  - make -f ${Makefile_test} all
 after_script:
   - date
   # HX-2017-01-17
