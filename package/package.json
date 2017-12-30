@@ -1,42 +1,26 @@
 {
-"name":
-"ats-postiats-test-package"
-,
-"version": "1.0.0"
-,
-"description":
-"For testing  various packages"
-,
-"main": "N/A"
-,
-"scripts": {}
-,
-"repository": {
-  "url": "https://github.com/githwxi/ATS-Postiats-test/tree/master/package"
-}
-,
-"keywords": [
-  "ATS", "testing", "package"
-]
-,
-"dependencies": {
-"effectivats-divideconquer": ">=1.0.0"
-,
-"atscntrb-bucs320-divideconquer": ">=1.0.0"
-,
-"atscntrb-bucs320-mergesort": ">=1.0.0"
-,
-"atscntrb-bucs320-quicksort": ">=1.0.0"
-,
-"atscntrb-bucs320-divideconquerpar": ">=1.0.0"
-,
-"atscntrb-bucs320-mergesortpar": ">=1.0.0"
-,
-"atscntrb-bucs320-quicksortpar": ">=1.0.0"
-}
-,
-"author":
-"Hongwei Xi <gmhwxi@gmail.com>"
-,
-"license": "MIT"
+  "name": "ats-postiats-test-package",
+  "version": "1.0.0",
+  "description": "For testing  various packages",
+  "main": "N/A",
+  "scripts": {},
+  "repository": {
+    "url": "https://github.com/githwxi/ATS-Postiats-test/tree/master/package"
+  },
+  "keywords": [
+    "ATS",
+    "testing",
+    "package"
+  ],
+  "dependencies": {
+    "effectivats-divideconquer": ">=1.0.0",
+    "atscntrb-bucs320-divideconquer": ">=1.0.0",
+    "atscntrb-bucs320-mergesort": ">=1.0.0",
+    "atscntrb-bucs320-quicksort": ">=1.0.0",
+    "atscntrb-bucs320-divideconquerpar": ">=1.0.0",
+    "atscntrb-bucs320-mergesortpar": ">=1.0.0",
+    "atscntrb-bucs320-quicksortpar": ">=1.0.0"
+  },
+  "author": "Hongwei Xi <gmhwxi@gmail.com>",
+  "license": "MIT"
 }

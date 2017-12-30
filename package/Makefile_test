@@ -22,6 +22,8 @@ $(MAKE) -C TEST -f Makefile testall
 cleanall:: ; \
 $(MAKE) -C TEST -f Makefile cleanall
 #
+cleanall:: ; rm -r package-lock.json
+#
 ######
 
 ###### end of [Makefile_test] ######

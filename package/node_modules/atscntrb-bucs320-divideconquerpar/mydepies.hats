@@ -30,4 +30,4 @@ end // end of [local]
 //
 (* ****** ****** *)
 
-(* end of [mylibies.hats] *)
+(* end of [mydepies.hats] *)
