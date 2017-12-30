@@ -40,6 +40,7 @@ script:
   - eval CC=\${${CCATS2}}
   - which gcc
   - which clang
+  - ls /usr/bin/gcc*
   # Building ATS1
   - cd ${ATSHOME}
   # ./configure&&make CC=${CC} all
