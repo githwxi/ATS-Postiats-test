@@ -33,17 +33,17 @@ before_install:
   - git clone https://github.com/githwxi/ATS-Postiats-contrib.git ATS-Postiats-contrib
   - export GCC=gcc
   - export CLANG=clang
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export GCC=gcc-5; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then export GCC=gcc-4.9; fi
 script:
   - ${GCC} --version
   - ${CLANG} --version
+  - eval CC=\${${CCATS2}}
   # Building ATS1
   - cd ${ATSHOME}
-  # ./configure&&make CC=${GCC} all
-  - ./configure&&make CC=${GCC} all_ngc
+  # ./configure&&make CC=${CC} all
+  - ./configure&&make CC=${CC} all_ngc
   # Building ATS2
   - cd ${PATSHOME}
-  - eval CC=\${${CCATS2}}
   - GCFLAG=-D_ATS_NGC
   # GCFLAG=-D_ATS_GCATS
   # GCFLAG=-D_ATS_GCBDW
