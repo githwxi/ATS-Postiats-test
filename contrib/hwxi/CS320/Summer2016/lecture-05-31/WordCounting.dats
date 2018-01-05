@@ -71,7 +71,7 @@ in
 //
 if c0 >= 0
   then
-  string_make_list
+  string_make_list0
   (
     mylist_reverse<char>(get2(list0_sing(tolower(int2char0(c0)))))
   ) (* end of [then] *)

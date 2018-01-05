@@ -70,7 +70,7 @@ val cs =
 //
 in
   case+ cs of
-  | list0_cons _ => string_make_rlist(cs)
+  | list0_cons _ => string_make_rlist0(cs)
   | list0_nil () => $raise Exception_the_get_elt_exn()
 end // end of [word_get]
 

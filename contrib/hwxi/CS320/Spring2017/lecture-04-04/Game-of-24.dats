@@ -151,7 +151,7 @@ list0_concat
 (
 list0_map
 (
-g0ofg1(ts)
+g0ofg1(list_vt2t(ts))
 ,
 lam
 (

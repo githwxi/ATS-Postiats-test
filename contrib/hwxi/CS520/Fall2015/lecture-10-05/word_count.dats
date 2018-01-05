@@ -1,10 +1,13 @@
+(* ****** ****** *)
 //
 #include
 "share/atspre_staload.hats"
 #include
-"share/HATS/atspre_staload_libats_ML.hats"
+"share/atspre_staload_libats_ML.hats"
 //
-staload UN = "prelude/SATS/unsafe.sats"
+(* ****** ****** *)
+//
+#staload UN = "prelude/SATS/unsafe.sats"
 //
 (* ****** ****** *)
 
@@ -68,14 +71,14 @@ loop2
 (
 case+ !cs of
 | stream_nil() => let
-    val w = string_make_rlist(res)
+    val w = string_make_rlist0(res)
   in
     stream_cons(w, $delay(stream_nil()))
   end // end of [stream_nil]
 | stream_cons(c, cs) =>
     if isalpha(c)
       then loop2(cs, list0_cons(int2char0(c), res))
-      else stream_cons(string_make_rlist(res), $delay(loop(cs)))
+      else stream_cons(string_make_rlist0(res), $delay(loop(cs)))
     // end of [if]
 ) (* end of [loop2] *)
 //
