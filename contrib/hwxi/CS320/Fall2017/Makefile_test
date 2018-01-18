@@ -1,0 +1,46 @@
+##
+## A Makefile for testing
+##
+
+## ###### ###### ##
+
+MAKE=make
+
+## ###### ###### ##
+
+all:: \
+lecture-09-05
+lecture-09-05:: ; \
+$(MAKE) -C lecture-09-05 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-09-07
+lecture-09-07:: ; \
+$(MAKE) -C lecture-09-07 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-09-12
+lecture-09-12:: ; \
+$(MAKE) -C lecture-09-12 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-09-14
+lecture-09-14:: ; \
+$(MAKE) -C lecture-09-14 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+lecture-09-19
+lecture-09-19:: ; \
+$(MAKE) -C lecture-09-19 -f Makefile testall
+
+## ###### ###### ##
+
+## ###### end of [Makefile_test] ###### ##
