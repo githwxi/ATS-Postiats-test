@@ -10,6 +10,10 @@ PATSLIB=$(PATSHOME)/ccomp/atslib/lib
 
 ######
 
+ATSCNTRB=$(PATSHOME)/contrib/atscntrb
+
+######
+
 all:: \
 fact
 fact: \
@@ -35,7 +39,7 @@ gfact
 gfact: \
 gfact.dats; \
 $(PATSCC) -D_GNU_SOURCE \
--DATS_MEMALLOC_LIBC -I${PATSHOME}/contrib -o $@ $< -lgmp
+  -DATS_MEMALLOC_LIBC -I$(ATSCNTRB) -o $@ $< -lgmp
 #
 regress:: \
 gfact; ./gfact 12

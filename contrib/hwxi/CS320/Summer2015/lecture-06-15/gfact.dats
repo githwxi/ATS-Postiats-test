@@ -1,8 +1,14 @@
 //
 #include
-"share/atspre_define.hats"
-#include
 "share/atspre_staload.hats"
+//
+(* ****** ****** *)
+//
+#define
+HX_INTINF_targetloc
+"\
+$PATSHOME/contrib\
+/atscntrb/atscntrb-hx-intinf"
 //
 (* ****** ****** *)
 //
