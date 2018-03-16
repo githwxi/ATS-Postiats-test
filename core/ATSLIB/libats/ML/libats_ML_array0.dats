@@ -70,7 +70,7 @@ implement
 intarray0(n) =
 array0_make_list
 (
-list0_of_list_vt
+list_of_list_vt
 (
  list_tabulate<int>(n)
  where

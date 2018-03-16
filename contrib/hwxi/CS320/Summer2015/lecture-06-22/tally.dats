@@ -61,8 +61,9 @@ end // end of [sum_list]
 
 (* ****** ****** *)
 
-val xs = list0_make_intrange(0, 1000000)
-val A0 = array0_make_list (xs)
+val xs =
+list0_make_intrange(0, 1000000)
+val A0 = array0_make_list0( xs )
 
 (* ****** ****** *)
 
