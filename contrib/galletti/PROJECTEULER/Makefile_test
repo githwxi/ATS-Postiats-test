@@ -113,4 +113,11 @@ $(MAKE) -C p26 -f Makefile testall
 
 ## ###### ###### ##
 
+all:: \
+INTINF
+INTINF:: ; \
+$(MAKE) -C INTINF -f Makefile_test
+
+## ###### ###### ##
+
 ## ###### end of [Makefile_test] ###### ##

@@ -38,7 +38,7 @@ clean:: ; rm -f *_?ats.o
 clean:: ; rm -f *_?ats.c
 
 cleanall:: clean
-cleanall:: ; rm -f node_modules -r
+cleanall:: ; rm -rf node_modules
 cleanall:: ; rm -f package-lock.json
 
 ######
