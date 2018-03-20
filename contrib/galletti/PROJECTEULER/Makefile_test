@@ -1,0 +1,179 @@
+##
+## A Makefile for testing
+##
+
+## ###### ###### ##
+
+MAKE=make
+
+## ###### ###### ##
+
+all:: \
+p01
+p01:: ; \
+$(MAKE) -C p01 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p02
+p02:: ; \
+$(MAKE) -C p02 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p04
+p04:: ; \
+$(MAKE) -C p04 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p05
+p05:: ; \
+$(MAKE) -C p05 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p06
+p06:: ; \
+$(MAKE) -C p06 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p07
+p07:: ; \
+$(MAKE) -C p07 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p08
+p08:: ; \
+$(MAKE) -C p08 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p10
+p10:: ; \
+$(MAKE) -C p10 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p11
+p11:: ; \
+$(MAKE) -C p11 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p12
+p12:: ; \
+$(MAKE) -C p12 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p13
+p13:: ; \
+$(MAKE) -C p13 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p14
+p14:: ; \
+$(MAKE) -C p14 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p15
+p15:: ; \
+$(MAKE) -C p15 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p16
+p16:: ; \
+$(MAKE) -C p16 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p17
+p17:: ; \
+$(MAKE) -C p17 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p18
+p18:: ; \
+$(MAKE) -C p18 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p19
+p19:: ; \
+$(MAKE) -C p19 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p20
+p20:: ; \
+$(MAKE) -C p20 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p21
+p21:: ; \
+$(MAKE) -C p21 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p22
+p22:: ; \
+$(MAKE) -C p22 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p23
+p23:: ; \
+$(MAKE) -C p23 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p24
+p24:: ; \
+$(MAKE) -C p24 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p25
+p25:: ; \
+$(MAKE) -C p25 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p26
+p26:: ; \
+$(MAKE) -C p26 -f Makefile testall
+
+## ###### ###### ##
+
+## ###### end of [Makefile_test] ###### ##

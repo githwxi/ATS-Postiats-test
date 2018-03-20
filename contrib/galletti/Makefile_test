@@ -1,88 +1,31 @@
-##
-## A Makefile for testing
-##
+#
+# For testing
+#
 
-## ###### ###### ##
+######
 
 MAKE=make
 
-## ###### ###### ##
+######
 
+all::
+
+######
+#
 all:: \
-3sum
-3sum:: ; \
-$(MAKE) -C 3sum -f Makefile testall
+PRACTICE
+PRACTICE:: ; \
+$(MAKE) -C PRACTICE -f Makefile_test
+#
+######
 
-## ###### ###### ##
-
+######
+#
 all:: \
-2sum
-2sum:: ; \
-$(MAKE) -C 2sum -f Makefile testall
+PROJECTEULER
+PROJECTEULER:: ; \
+$(MAKE) -C PROJECTEULER -f Makefile_test
+#
+######
 
-## ###### ###### ##
-
-all:: \
-Fibonacci
-Fibonacci:: ; \
-$(MAKE) -C Fibonacci -f Makefile testall
-
-## ###### ###### ##
-
-all:: \
-Loading
-Loading:: ; \
-$(MAKE) -C Loading -f Makefile testall
-
-## ###### ###### ##
-
-all:: \
-NQueens
-NQueens:: ; \
-$(MAKE) -C NQueens -f Makefile testall
-
-## ###### ###### ##
-
-all:: \
-Palindrome
-Palindrome:: ; \
-$(MAKE) -C Palindrome -f Makefile testall
-
-## ###### ###### ##
-
-all:: \
-Permutations
-Permutations:: ; \
-$(MAKE) -C Permutations -f Makefile testall
-
-## ###### ###### ##
-
-all:: \
-Roman
-Roman:: ; \
-$(MAKE) -C Roman -f Makefile testall
-
-## ###### ###### ##
-
-all:: \
-Subsets
-Subsets:: ; \
-$(MAKE) -C Subsets -f Makefile testall
-
-## ###### ###### ##
-
-all:: \
-Sudoku
-Sudoku:: ; \
-$(MAKE) -C Sudoku -f Makefile testall
-
-## ###### ###### ##
-
-all:: \
-Trees
-Trees:: ; \
-$(MAKE) -C Trees -f Makefile testall
-
-## ###### ###### ##
-
-## ###### end of [Makefile_test] ###### ##
+###### end of [Makefile_test] ######
