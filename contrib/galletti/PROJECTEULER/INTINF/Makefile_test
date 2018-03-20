@@ -51,6 +51,13 @@ $(MAKE) -C p16 -f Makefile testall
 ## ###### ###### ##
 
 all:: \
+p20
+p20:: ; \
+$(MAKE) -C p20 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
 p22
 p22:: ; \
 $(MAKE) -C p22 -f Makefile testall
