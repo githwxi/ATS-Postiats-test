@@ -1,0 +1,74 @@
+##
+## A Makefile for testing
+##
+
+## ###### ###### ##
+
+MAKE=make
+
+## ###### ###### ##
+
+all:: \
+p08
+p08:: ; \
+$(MAKE) -C p08 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p10
+p10:: ; \
+$(MAKE) -C p10 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p13
+p13:: ; \
+$(MAKE) -C p13 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p14
+p14:: ; \
+$(MAKE) -C p14 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p15
+p15:: ; \
+$(MAKE) -C p15 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p16
+p16:: ; \
+$(MAKE) -C p16 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p20
+p20:: ; \
+$(MAKE) -C p20 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p22
+p22:: ; \
+$(MAKE) -C p22 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p25
+p25:: ; \
+$(MAKE) -C p25 -f Makefile testall
+
+## ###### ###### ##
+
+## ###### end of [Makefile_test] ###### ##

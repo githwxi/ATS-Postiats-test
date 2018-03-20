@@ -1,0 +1,123 @@
+##
+## A Makefile for testing
+##
+
+## ###### ###### ##
+
+MAKE=make
+
+## ###### ###### ##
+
+all:: \
+p01
+p01:: ; \
+$(MAKE) -C p01 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p02
+p02:: ; \
+$(MAKE) -C p02 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p04
+p04:: ; \
+$(MAKE) -C p04 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p05
+p05:: ; \
+$(MAKE) -C p05 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p06
+p06:: ; \
+$(MAKE) -C p06 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p07
+p07:: ; \
+$(MAKE) -C p07 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p11
+p11:: ; \
+$(MAKE) -C p11 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p12
+p12:: ; \
+$(MAKE) -C p12 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p17
+p17:: ; \
+$(MAKE) -C p17 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p18
+p18:: ; \
+$(MAKE) -C p18 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p19
+p19:: ; \
+$(MAKE) -C p19 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p21
+p21:: ; \
+$(MAKE) -C p21 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p23
+p23:: ; \
+$(MAKE) -C p23 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p24
+p24:: ; \
+$(MAKE) -C p24 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+p26
+p26:: ; \
+$(MAKE) -C p26 -f Makefile testall
+
+## ###### ###### ##
+
+all:: \
+INTINF
+INTINF:: ; \
+$(MAKE) -C INTINF -f Makefile_test
+
+## ###### ###### ##
+
+## ###### end of [Makefile_test] ###### ##
