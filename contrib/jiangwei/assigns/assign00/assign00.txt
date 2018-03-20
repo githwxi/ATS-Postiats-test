@@ -1,0 +1,35 @@
+###############
+//
+// Title: Principles of Programming Languages
+// Number: CAS CS 520
+// Semester: Spring 2018
+// Class Time: TR 2:00-3:15
+// Instructor: Hongwei Xi (hwxiATcsDOTbuDOTedu)
+//
+###############
+#
+# Assignment#00
+#
+###############
+
+Due date: the 23rd of January, 2018
+
+###############
+
+Exercise 1: 5 points
+
+Please set up an account at Cloud9 (http://c9.io) and then use
+the script C9-ATS2-install-cs520.sh to install ATS and ATS-contrib.
+
+Exercise 2: 5 points
+
+Please set up an account at Bitbucket for yourself and then make a
+private fork of bithwxi/CS520-2018-Spring. Your private fork should
+be named as CS520-2018-Spring-myuserid, where myuserid is your BU user
+id. Please also share your private fork with me and the grader.
+
+Exercise 3.1: 5 points // See assign00.html
+Exercise 3.2: 5 points // See assign00.html
+Exercise 3.3: 10 points // See assign00.html
+
+###### end of [assign00.txt] ######
