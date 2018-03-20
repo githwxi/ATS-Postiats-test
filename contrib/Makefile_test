@@ -19,4 +19,13 @@ $(MAKE) -C hwxi -f Makefile_test
 #
 ######
 
+######
+#
+all:: \
+galletti
+galletti:: ; \
+$(MAKE) -C galletti -f Makefile_test
+#
+######
+
 ###### end of [Makefile_test] ######
