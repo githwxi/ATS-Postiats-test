@@ -18,13 +18,18 @@ hwxi:: ; \
 $(MAKE) -C hwxi -f Makefile_test
 #
 ######
-
-######
 #
 all:: \
 galletti
 galletti:: ; \
 $(MAKE) -C galletti -f Makefile_test
+#
+######
+#
+all:: \
+jiangwei
+jiangwei:: ; \
+$(MAKE) -C jiangwei -f Makefile_test
 #
 ######
 
