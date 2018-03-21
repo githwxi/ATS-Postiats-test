@@ -27,6 +27,6 @@ cleanall:: ; rm -f perm_dats
 
 ######
 
-%_dats: %.dats; $(PATSCC) -D_GNU_SOURCE -DATS_MEMALLOC_LIBC -o $@ $<
+%_dats: %.dats; $(PATSCC) -D_GNU_SOURCE -DATS_MEMALLOC_GCBDW -o $@ $< -lgc
 
 ###### end of [Makefile] ######
