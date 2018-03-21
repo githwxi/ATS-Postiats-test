@@ -34,7 +34,7 @@ http://rosettacode.org/wiki/Use_another_language_to_call_a_function
 (* ****** ****** *)
 #include "share/atspre_staload.hats"
 #include "share/atspre_staload_libats_ML.hats"
-#include "./../Call-ATS-from-C.dats"
+#include "./Call-ATS-from-C-a.dats"
 staload UN = "prelude/SATS/unsafe.sats"
 
 (* ****** ****** *)

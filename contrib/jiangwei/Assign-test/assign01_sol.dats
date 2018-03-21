@@ -1,6 +1,6 @@
 (* ****** ****** *)
 
-#include "./../assign01.dats"
+#include "./assign01.dats"
 
 (* ****** ****** *)
 

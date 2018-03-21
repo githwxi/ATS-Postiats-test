@@ -1,6 +1,6 @@
 (* ****** ****** *)
 
-#include "./../assign04.dats"
+#include "./assign04.dats"
 
 (* ****** ****** *)
 
@@ -44,6 +44,8 @@ case+ t0 of
 //
 | VALlam(_, _) => fprint!(out, "VALlam(_, _)")
 | VALfix(_, _) => fprint!(out, "VALfix(_, _)")
+//
+| VALunit() => fprint!(out, "VALunit()")
 //
 )
 
@@ -136,7 +138,9 @@ case t0 of
     | VALint(i) =>
       interp2(if i != 0 then t2 else t3, env)
   end
-
+//
+| TMseq(t1, t2) =>
+  let val _ = interp2(t1, env) in interp2(t2, env) end
 ) where
 {
 //
@@ -208,7 +212,40 @@ case- opr of
     case- vs of
     | VALint(i1)::VALint(i2)::nil() => if (i1 = i2) then VALint(1) else VALint(0)
   )
-
+| "print" =>
+  (
+    case- vs of v0::nil() =>
+    (
+    let val () =
+      case+ v0 of
+      | VALint(i) => print(i)
+      | VALstr(s) => print(s)
+      | VALtup(vs) => print("VALtup(...)")
+      | VALlam(_, _) => print("VALlam(...)")
+      | VALfix(_, _) => print("VALfix(...)")
+      | VALunit() => print("VALunit()")
+    in
+      VALunit()
+    end
+    )
+  )
+| "println" =>
+  (
+    case- vs of v0::nil() =>
+    (
+    let val () =
+      case+ v0 of
+      | VALint(i) => println!(i)
+      | VALstr(s) => println!(s)
+      | VALtup(vs) => print("VALtup(...)")
+      | VALlam(_, _) => println!("VALlam(...)")
+      | VALfix(_, _) => println!("VALfix(...)")
+      | VALunit() => print("VALunit()")
+    in
+      VALunit()
+    end
+    )
+  )
 
 end // end of [interp2_opr]
 
@@ -313,7 +350,6 @@ fun sixth(t0: term): term = TMproj(t0, 5)
 fun seventh(t0: term): term = TMproj(t0, 6)
 fun eighth(t0: term): term = TMproj(t0, 7)
 
-
 val bd_get_data = TMvar("bd_get_data")
 
 val board_get = 
@@ -365,6 +401,18 @@ fun search_data(t0: term, t1: term, t2: term, t3: term): term =
  TMtup(cons0(t0, cons0(t1, cons0(t2, cons0(t3, nil0())))))
 
 val scdata = TMvar("scdata")
+val i = TMvar("i")
+val print_dots = 
+  TMfix("f", "i",  TMifnz( (i > TMint(0)), TMseq( TMopr("print", list0_tuple(TMstr(".")) ) , TMapp(f, i-1) ) , i ) )
+
+val print_row = 
+  TMlam("i", TMseq( TMapp(print_dots, i) , TMseq( TMopr("print", list0_tuple(TMstr("Q")) ) , TMseq( TMapp(print_dots, TMint(N-1) - i), TMopr("print", list0_tuple(TMstr("\n"))) ) )))
+
+val bd_data = TMvar("bd_data")
+val print_bd = 
+  TMlam("bd_data", TMseq( TMapp(print_row, fst(bd_data)) ,  TMseq( TMapp(print_row, snd(bd_data)) ,  TMseq( TMapp(print_row, thrd(bd_data)) ,  TMseq( TMapp(print_row, fourth(bd_data)) ,  TMseq( TMapp(print_row, fifth(bd_data)) ,  TMseq( TMapp(print_row, sixth(bd_data)) ,  TMseq( TMapp(print_row, seventh(bd_data)) , TMapp(print_row, eighth(bd_data))  ))))))) )
+
+
 
 val search = 
 TMfix("f", "scdata", TMifnz( thrd(scdata) < TMint(N) , 
@@ -373,7 +421,7 @@ TMfix("f", "scdata", TMifnz( thrd(scdata) < TMint(N) ,
 
 TMifnz( ((snd(scdata)+1) - N) = 0, 
 
-  TMapp(f, search_data( fst(scdata) , snd(scdata) , thrd(scdata)+1 , fourth(scdata)+1 ))
+  TMseq( TMapp(print_bd, TMapp(board_set, board_set_data( fst(scdata) , snd(scdata) , thrd(scdata) )) ) , TMapp(f, search_data( fst(scdata) , snd(scdata) , thrd(scdata)+1 , fourth(scdata)+1 )))
 
 ,  TMapp(f, search_data( TMapp(board_set, board_set_data( fst(scdata) , snd(scdata) , thrd(scdata) )) , snd(scdata) + TMint(1) , TMint(0) , fourth(scdata) )) )
 
@@ -390,16 +438,10 @@ val start_board = board(TMint(0), TMint(0), TMint(0), TMint(0), TMint(0), TMint(
 
 implement main0() = () where
 {
-val () = println!("sample_board = ", interp(sample_board))
 
-val () = println!("board_get = ", interp( TMapp( board_get, board_get_data( sample_board, TMint(7)))) )
-
-val () = println!("board_set = ", interp( TMapp( board_set, board_set_data( sample_board, TMint(4), TMint(0)))) )
-
-val () = println!("safety_test1 = ", interp(TMapp(safety_test1, safety_test1_data(TMint(1),
-TMint(0),TMint(4),TMint(1) ))))
-
-val () = println!("safety_test2(0,0,bd,1) = ", interp(TMapp(safety_test2, safety_test2_data(TMint(1), TMint(1), sample_board, TMint(1)))))
+// val () = println!("print_dots = ", interp(TMapp(print_dots, TMint(5))))
+// val () = println!("print_row = ", interp(TMapp(print_row, TMint(5))))
+// val () = println!("print_bd = ", interp(TMapp(print_bd, sample_board)))
 
 val () = println!("search = ", interp(TMapp(search, search_data( start_board , TMint(0) , TMint(0) , TMint(0) ))))
 
