@@ -28,4 +28,13 @@ $(MAKE) -C PROJECTEULER -f Makefile_test
 #
 ######
 
+######
+#
+all:: \
+LAMBDA
+LAMBDA:: ; \
+$(MAKE) -C LAMBDA -f Makefile_test
+#
+######
+
 ###### end of [Makefile_test] ######

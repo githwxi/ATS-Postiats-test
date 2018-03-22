@@ -1,0 +1,18 @@
+##
+## A Makefile for testing
+##
+
+## ###### ###### ##
+
+MAKE=make
+
+## ###### ###### ##
+
+all:: \
+Functions
+Functions:: ; \
+$(MAKE) -C Functions -f Makefile testall
+
+## ###### ###### ##
+
+## ###### end of [Makefile_test] ###### ##
