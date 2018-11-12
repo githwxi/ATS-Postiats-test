@@ -238,12 +238,23 @@ lpar_term0
 //
 (* ****** ****** *)
 
+extern
+fun
+parser_unlazy
+{a:t@ype}
+{t:t@ype}
+(lp: lazy(parser(a, t))): parser(a, t)
+implement
+parser_unlazy(lp) = lam(inp0) => (!lp)(inp0)
+
+(* ****** ****** *)
+
 val
 par_aterm =
-parser_lazy(lpar_aterm())
+parser_unlazy(lpar_aterm())
 val
 par_term0 =
-parser_lazy(lpar_term0())
+parser_unlazy(lpar_term0())
 
 (* ****** ****** *)
 //
