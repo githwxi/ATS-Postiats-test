@@ -58,7 +58,7 @@ script:
   - make -C ${PATSHOME}/src/CBOOT/libc
   - make -C ${PATSHOME}/src/CBOOT/libats
   - make -C ${PATSHOME}/doc/DISTRIB atspackaging
-  - make -C ${PATSHOME}/doc/DISTRIB atspacktarzvcf
+  - make -C ${PATSHOME}/doc/DISTRIB atspacktarzvcf_int
   - make -C ${PATSHOME}/doc/DISTRIB cleanall
   # Building parsemit
   - (cd ${PATSHOME}/contrib/CATS-parsemit && make all)
