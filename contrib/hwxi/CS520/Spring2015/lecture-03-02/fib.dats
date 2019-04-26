@@ -38,7 +38,7 @@ loop
 (
 if
 i < n
-then loop (pf1, FIBind2(pf0, pf1) | n, i+1, r1, r0+r1)
+then loop(pf1, FIBind2(pf0, pf1) | n, i+1, r1, r0+r1)
 else (FIBind2(pf0, pf1) | r0+r1)
 )
 
@@ -48,7 +48,7 @@ implement
 fib(n) =
 if
 n >= 2
-then loop (FIBbas0(), FIBbas1() | n, 2, 0, 1)
+then loop(FIBbas0(), FIBbas1() | n, 2, 0, 1)
 else (if n = 0 then (FIBbas0() | 0) else (FIBbas1() | 1))
 
 (* ****** ****** *)
