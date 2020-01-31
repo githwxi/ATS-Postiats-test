@@ -154,6 +154,27 @@ cleanall:: ; $(RMF) test13
 
 ## ###### ###### ##
 
+all:: \
+test14
+test14: \
+test14.dats; $(PATSCC) -o $@ $<
+regress:: test14; ./test14
+cleanall:: ; $(RMF) test14
+
+## ###### ###### ##
+
+all:: \
+test15
+test15: test15.dats
+	@if $(PATSCC) -o $@ $< 2> /dev/null; then \
+		echo "test15.dats should not compile"; \
+		exit 1; \
+	fi
+regress:: test15; [ ! -x test15 ] || ./test15
+cleanall:: ; $(RMF) test15
+
+## ###### ###### ##
+
 testall:: all
 testall:: regress
 testall:: cleanall
