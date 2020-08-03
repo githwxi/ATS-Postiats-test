@@ -51,7 +51,7 @@ extern
 fun
 chEvtObjectInit
   {s:int | chss_p(s)}
-  (!chss(s) | cPtr0(event_source_t)): void = "mac#"
+  (!chss(s) | P2tr0(event_source_t)): void = "mac#"
 //
 (* ****** ****** *)
 
